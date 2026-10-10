@@ -41,6 +41,7 @@ solved by the nodes' own built-in mechanisms and never touch Lagrix.
 | What does the SDK look like? | `12-sdk-api-reference.md`, `13-sdk-code-snippets.md` |
 | How is a super-node run? | `14-node-hardware-network.md`, `15-validator-staking-deployment-flow.md`, `16-deployment-docker-monitoring.md` |
 | How is reputation protected from bots? | `17-reputation-nostr-eigentrust.md` |
+| Who decides which protocols the network supports? | `18-governance-protocols-council.md` |
 
 ## Rules that hold
 

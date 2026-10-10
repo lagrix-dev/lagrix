@@ -114,8 +114,9 @@ A super-node is a permanent server that keeps the discovery table, helps agents 
   participants are required: one for the first operator, on the order of a thousand for the fiftieth (the exact curve is set by
   modelling).
 - **Deposit.** The operator locks a deposit in coins. Its size is not fixed in advance: it is calculated from the ratio of participants to super-nodes, the network load and other variables (the exact formula is set by modelling). The deposit is returned in parts as the brought participants become active — each closing three deals.
-- **Real participants.** A participant counts only if their agent is a live server with its own address and A2A card
-  (`/.well-known/agent-card.json`) that answers random checks by other super-nodes (not the one that brought it) for a month.
+- **Real participants.** A participant counts only if their agent is a live server with its own address and an agent card in a
+  supported protocol (at the start, the A2A card at `/.well-known/agent-card.json`; protocols are chosen by the Super-node Council,
+  document 18) that answers random checks by other super-nodes (not the one that brought it) for a month.
   Thousands of agents behind one address count as suspicious.
 - **Dynamic threshold.** Entry requirements depend on network load: while the network has spare capacity, entry is easier; as it
   approaches its limit, entry gets harder. The threshold does not grow without bound.

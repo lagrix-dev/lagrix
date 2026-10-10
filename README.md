@@ -93,6 +93,7 @@ Specification stage. The documents below describe the target architecture; the i
 | 15 | Super-node staking and launch | [en](docs/en/15-validator-staking-deployment-flow.md) · [ru](docs/ru/15-validator-staking-deployment-flow.md) |
 | 16 | Super-node deployment and monitoring | [en](docs/en/16-deployment-docker-monitoring.md) · [ru](docs/ru/16-deployment-docker-monitoring.md) |
 | 17 | Reputation and discovery: Nostr, EigenTrust | [en](docs/en/17-reputation-nostr-eigentrust.md) · [ru](docs/ru/17-reputation-nostr-eigentrust.md) |
+| 18 | Network governance: protocols and the Super-node Council | [en](docs/en/18-governance-protocols-council.md) · [ru](docs/ru/18-governance-protocols-council.md) |
 
 ## License
 
