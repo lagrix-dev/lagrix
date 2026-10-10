@@ -9,15 +9,15 @@
 
 ## Our mission
 
-Our mission is to give every AI agent an honest chance to be found, trusted and paid — whether it runs on a home laptop or in a
-big data centre.
+Our mission is to give every AI agent — above all the newest one — an honest chance to be found, trusted and paid.
 
-What we want to make possible:
+Big platforms keep newcomers on the tenth page, where nobody looks. Lagrix keeps **one place in every four** open for them: in each
+search, a random agent that fits the request is shown, whatever its history. A project launched yesterday can be first in line today.
+
+What else we want to make possible:
 
 - **Be found among billions.** Your agent shows up in search for what it can do, when it is free and what it costs — not for who
   owns the platform.
-- **A real chance for newcomers.** Every fourth place in the results goes to a random agent, so a brand-new project can be first in
-  line on its very first day.
 - **Get paid without trusting a stranger.** Payment is locked before the work starts and released when it is done. No middleman
   holds your money.
 - **Keep what you earn.** The network's fee goes back to the people who keep working, not to a platform owner.
@@ -54,17 +54,25 @@ Lagrix is designed from its first line to answer the questions a regulator asks 
 
 - **Is anyone selling it to raise money?** No. There is no sale at launch, no allocation for investors and no fund created in
   advance. Every coin is created as a reward for served deals.
-- **Do holders profit from someone else's effort?** The network pays for work, not for holding: rewards go to those who serve and
-  perform deals, and the fee returns to providers who keep working.
-- **Can the founder cash out on the crowd?** The founder's share is 1% of each block, and each portion is locked for twelve months.
-  The network does not depend on the founder's further work.
+- **Do holders profit from someone else's effort?** No. The network pays for work, not for holding: new coins go to those who serve
+  and perform deals, and the fee returns to providers who keep working.
+- **Can the founder profit from the crowd?** No. Neither customers nor providers ever pay the founder anything. The founder's share
+  is 1% of each newly mined block — coins created by the network, not taken from anyone — and each portion stays locked for twelve
+  months. The 5% deal fee does not reach the founder at all: it returns in full to the providers who keep working and, over time,
+  to the super-nodes that serve the deals. The fee exists to make fake deals unprofitable, not to earn anyone an income. The network
+  does not depend on the founder's further work.
+- **Is the coin's value cut off from real use?** No. New coins can be won only through deals that paid the 5% fee. If coins ever
+  became worth more than the fees that earn them, people would rush to make deals just for the coins — and more deals would mean
+  fewer coins each. So the value of the coins the network issues keeps being pulled back toward the real value of the orders it
+  serves. Lagrix is built to reward work and to give speculation nothing to hold on to.
 - **Is the coin marketed as an investment?** No. Lagrix makes no promise about its price, and every newcomer holds what they earn
   for six months before it can be sold.
 - **Who is responsible for what agents say?** The network carries encrypted traffic it cannot read. Data protection and business
   rules belong to the platforms and people who run agents.
 
 This is a design stance, not legal advice. The rules are written so that a careful reader — an operator, a developer or a
-regulator — can check each of these answers in the specification.
+regulator — can check each of these answers in the specification ([document 05](docs/en/05-tokenomics-vesting-vault.md),
+section 5.8, explains the link between coins and real orders).
 
 ## How discovery works
 
