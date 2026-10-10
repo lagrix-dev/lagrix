@@ -30,7 +30,7 @@ super_node_share   = 1 − current_block_reward / initial_block_reward
 active_queue_share = 1 − super_node_share
 ```
 
-At the start, while the block reward is large, almost the whole fee returns to active participants. As the reward declines, the
+At the start, while the block reward is large, almost the whole fee returns to active providers. As the reward declines, the
 super-nodes' share grows, and by the end of mining (about 30 years) the whole fee goes to them.
 
 ## 9.4 The queue of active providers
