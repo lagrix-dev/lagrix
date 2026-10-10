@@ -13,7 +13,7 @@ syntax = "proto3";
 
 package lagrix.a2a.v1;
 
-option go_package = "github.com/bolshiyanov/lagrix/gen/v1;lagrixv1";
+option go_package = "github.com/lagrix-dev/lagrix/gen/v1;lagrixv1";
 
 // Главный сервис взаимодействия между ИИ-Агентами
 service AgentService {

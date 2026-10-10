@@ -26,7 +26,7 @@ volumes:
 services:
   # 1. Главный исполнительный узел (Control Plane + Kademlia DHT)
   lagrix-core:
-    image: ghcr.io/bolshiyanov/lagrix-node:v6.0.0
+    image: ghcr.io/lagrix-dev/lagrix-node:v6.0.0
     container_name: lagrix-core
     restart: unless-stopped
     network_mode: host # Обязательно для пробивки NAT и работы STUN/TURN

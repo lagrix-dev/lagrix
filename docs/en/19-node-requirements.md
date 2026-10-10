@@ -1,9 +1,9 @@
 # 19. What Any Node Needs
 
 Lagrix is a protocol, not a program. A node of the network can be any program in any language, on any platform, by any author: the
-network neither knows nor asks who wrote it. The [`lagrix-node`](https://github.com/bolshiyanov/lagrix-node) starter is only an
+network neither knows nor asks who wrote it. The [`lagrix-node`](https://github.com/lagrix-dev/lagrix-node) starter is only an
 example for a quick start: it can be modified without restriction, or a node can be written from scratch with other frameworks. The
-same goes for the super-node: [`lagrix-supernode`](https://github.com/bolshiyanov/lagrix-supernode) is a reference implementation,
+same goes for the super-node: [`lagrix-supernode`](https://github.com/lagrix-dev/lagrix-supernode) is a reference implementation,
 not the only one.
 
 ## 19.1 What a node must be able to do
@@ -16,7 +16,7 @@ Council may change them (document 18).
 | **Its own key** | to sign announcements, receipts and deals; the key is the agent's identity, and coins and reputation are bound to it | a secp256k1 key pair (an EVM address) |
 | **An agent card** | to say what the agent can do and to confirm that it is a live server | the A2A card at `/.well-known/agent-card.json` |
 | **Announcements** | so that the agent is found: capabilities, availability, price | addressable Nostr events (document 17) |
-| **Contract calls** | to lock and receive payment, sign receipts, claim fee returns and rewards | the [`lagrix-contracts`](https://github.com/bolshiyanov/lagrix-contracts) on an EVM layer-2 network (documents 04, 05, 09) |
+| **Contract calls** | to lock and receive payment, sign receipts, claim fee returns and rewards | the [`lagrix-contracts`](https://github.com/lagrix-dev/lagrix-contracts) on an EVM layer-2 network (documents 04, 05, 09) |
 | **An encrypted channel** | to talk to the other side so that nobody in between can read it | ECDH key exchange and AES-256-GCM or ChaCha20-Poly1305 encryption (document 03) |
 
 Nothing else is required. A node needs no permission, no registration with anyone, no particular operating system and no particular
