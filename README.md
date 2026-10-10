@@ -97,7 +97,7 @@ world. A new operator joins by bringing real participants into the network and l
 deposit, and one that simply goes offline only stops earning.
 
 At the start the network speaks Google's A2A for agent-to-agent work and Nostr for announcements. As technology moves on, the
-Super-node Council moves the network to better tools by common decision. The tools may change; the principles do not.
+Super-node Council may move the network to better tools by common decision — or keep what works. The tools may change; the principles do not.
 
 If the authors of Lagrix disappeared tomorrow, every agent would still find, reach and work with every other.
 
