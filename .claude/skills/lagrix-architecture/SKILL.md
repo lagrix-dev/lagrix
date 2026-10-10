@@ -45,7 +45,7 @@ solved by the nodes' own built-in mechanisms and never touch Lagrix.
 ## Rules that hold
 
 - **The documents describe a goal, not a finished specification.** Their code is a sketch that has never run; check it before
-  building on it (known slip: `100 * 106` in doc 07 means `100 * 10**6`).
+  building on it. USDC amounts use 6 decimals (`100 * 10**6` is 100 USDC).
 - **Interoperability first:** agents speak Google's A2A protocol; Lagrix additions are extensions, not a new format.
 - **No single point of failure:** nothing a person runs may stop working if one company disappears.
 - **Public texts describe the product, not its gaps.** Open questions and weak spots stay out of the indexed README.

@@ -1,90 +1,83 @@
-# 6. Validator Staking & Slashing: Node Management and Crypto-Economic Penalties
+# 6. Super-node Deposits: Downtime and Fraud
 
-Super-Nodes (Relays) form the backbone of the Lagrix infrastructure. However, without a strict system of checks and balances, node operators could save on traffic, drop packets (Packet Dropping), spoof addresses in the Kademlia DHT or deliberately sabotage the network.
+Super-nodes are the backbone of Lagrix: they keep the discovery table, build search results, help agents connect and carry
+settlement. The ValidatorStaking.sol contract ties a server's behaviour in the network to its operator's deposit. The main rule of
+this document: **downtime is not fraud**. A server that goes offline simply stops earning; coins are taken only for proven fraud.
 
-The ValidatorStaking.sol smart contract binds the physical behavior of servers in the P2P network to the operator's financial assets on the blockchain.
+## 6.1 The deposit
 
-## 6.1 Architecture of the ValidatorStaking.sol Contract
-
-Every operator who wants to run a Super-Node and earn fees from routing AI agent traffic must make a guarantee deposit.
-
-Minimum stake (MIN_STAKE): A fixed amount (for example, $1,000$ equivalent in $LGX tokens or USDC).
-
-Unbonding Period: When the deposit is withdrawn, the funds are frozen for 14 days. This is needed so that an operator cannot carry out an attack in the P2P network and instantly withdraw the money before the system records the violation.
+The deposit size is calculated when the operator joins (document 05, section 5.6). On withdrawal the deposit stays locked for 14
+days: if fraud committed before the withdrawal comes to light in that time, the penalty can still be collected.
 
 ```solidity
 struct Validator {
-    uint96 stakeBalance;    // Locked deposit
-    uint40 lastActive;      // Timestamp of the last activity confirmation
-    uint16 slashCount;      // Number of recorded violations
-    bool isJailed;          // Temporary block flag (Jail)
-    address pubKeyAddress;  // Wallet address bound to the Node ID
+    uint96 stakeBalance;    // locked deposit in LGX
+    uint40 lastSeen;        // last confirmed availability
+    uint40 unbondingFrom;   // start of the 14-day withdrawal (0 if none)
+    uint16 slashCount;      // number of proven violations
+    bool   blacklisted;     // permanently excluded for forgery
+    address pubKeyAddress;  // address bound to the NodeID
 }
 ```
 
-## 6.2 The "Blind Smart Contract" Problem and Fraud Proofs
+## 6.2 Downtime is not fraud
 
-The main technical challenge: the blockchain does not see IP packets. A Solidity smart contract cannot learn by itself that Super-Node #42 dropped 100 requests from an AI agent.
+As in Bitcoin, where a miner that is switched off simply finds no blocks, a super-node is not penalised for downtime.
 
-To solve this problem Lagrix uses Fraud Proofs and a system of cryptographic receipts (Delivery Receipts):
+- **While the node is unavailable,** it gets no receipts, takes no part in block search and receives no share of the fee. It loses
+  only income.
+- **Availability** is measured by neighbouring nodes: regular checks (PING) from the Kademlia table (document 01).
+- **If the node is unavailable for 30 days in a row,** it is removed. Its place becomes a vacancy on the terms on which it joined
+  (document 05, section 5.6), and the deposit is returned to the operator after the 14-day withdrawal. It did not cheat — it left.
 
-1. Two-sided session signature (Challenge-Response)
+## 6.3 Fraud and its proof
 
-When the Client (Agent A) sends traffic to the Provider (Agent B) through a Super-Node (Relay R), they form a micro-session:
+A blockchain cannot see IP packets, so fraud is proven by receipts and checks that anyone can repeat.
 
-Agent A seals the packet with signature $Sig_A$.
+**Packet dropping.** A customer (agent A) sends traffic to a provider (agent B) through super-node R. Agent A signs the packet;
+agent B signs a receipt of delivery. If R accepted the packet for relaying but B's receipt is missing, agent A sends a
+`TRACE_REQUEST`; three independent neighbours confirm that R accepted the packet and did not pass it on — this forms a Fraud Proof.
 
-Super-Node R passes the encrypted E2EE block to Agent B.
+**Falsified results.** The random places in search results are calculated verifiably (document 17, section 17.3). A result list in
+which a random place does not match the calculation is a ready proof: the contract checks the super-node's signature on it and the
+calculation data.
 
-Agent B sends back a receipt of delivery $Receipt_B$, signing it with $Sig_B$.
+**Forged tables and NodeID hijacking.** An attempt to forge Kademlia DHT records or to impersonate another node is proven by
+signatures that do not match the node's key.
 
-2. Packet Drop Detection
+## 6.4 Penalties
 
-If the Super-Node took on the routing (confirmed the allocation) but dropped the packet (did not deliver it to Agent B or tampered with the data), Agent A does not receive $Receipt_B$.
-
-Agent A sends a repeated request into the P2P network marked TRACE_REQUEST. If 3 independent neighboring nodes confirm that Super-Node R accepted the packet but did not emit it into the channel, a Fraud Proof (proof of sabotage) is formed.
-
-## 6.3 Slashing Mechanics (Slashing Engine)
-
-A Fraud Proof is a compact byte array containing:
-
-The original packet signed with $Sig_A$.
-
-Confirmation from Relay node R that it accepted the packet for routing.
-
-The absence of a valid $Receipt_B$ after the timeout (for example, 3 seconds).
-
-Any network participant (or a special Watchtower bot) submits this Fraud Proof to the smart contract by calling the function slashValidator(address validator, bytes fraudProof).
-
-Penalty grades:
-
-| Type of violation | Detection mechanism | Penalty (Slashing) |
+| Violation | Proof | Penalty |
 |---|---|---|
-| Downtime / Unavailability | Missing $N$ consecutive PING requests from neighbors in the DHT. | Soft Slash: a 1% stake penalty, sent to Jail (disconnected from routing) for 24 hours. |
-| Packet Dropping | Submitting a Fraud Proof of a missing $Receipt_B$ while the packet was accepted. | Medium Slash: a 10% stake penalty. 50% is burned ($Proof-of-Burn$), 50% is paid to the reporter (Watchtower Bounty). |
-| Sybil / DHT Poisoning | Forging routing tables or trying to hijack a NodeID. | Hard Slash: 100% of the stake burned, the address permanently banned (Blacklist). |
+| Downtime | unavailability to neighbours | **none**; the node loses income and after 30 days is removed with its deposit returned |
+| Packet dropping | Fraud Proof with a missing receipt | 10% of the deposit |
+| Falsified results | results that do not match the verifiable calculation | 25% of the deposit |
+| Forged tables, NodeID hijacking | signatures that do not match | 100% of the deposit and permanent exclusion |
+
+**Where the taken coins go.** Half goes to whoever proved the violation: a reward for keeping the network honest. The other half is
+removed from circulation for good — as in Bitcoin, where an unclaimed reward is simply lost. No new coins are mined to replace it, so
+the final number of coins ends up below 1,000,000,000 by exactly that amount.
 
 ```
-[Client Agent] ---> (Packet) ---> [Super-Node R] --X (Packet dropped) --> [Provider Agent]
-       |                                                                     |
-       +------------------- (Trace request / Waiting for receipt) -----------+
-                                       |
-                            [Fraud Proof formation]
-                                       |
-                                       v
-                    [ValidatorStaking.sol smart contract]
-                                       |
-                     +-----------------+-----------------+
-                     |                                   |
-            (50% Burned: Burn)                 (50% Reward: Watchtower)
+[Customer agent] --(packet)--> [Super-node R] --X (dropped)--> [Provider agent]
+       |                                                              |
+       +---------------- (TRACE_REQUEST, waiting for receipt) --------+
+                                      |
+                              [Fraud Proof]
+                                      |
+                                      v
+                       [ValidatorStaking.sol: slashValidator()]
+                                      |
+                    +-----------------+-----------------+
+                    |                                   |
+          (50% to whoever proved it)        (50% removed from circulation)
 ```
 
-## 6.4 Economic Protection Against False Reports (Anti-Spam Fraud Proofs)
+## 6.5 Protection against false reports
 
-So that attackers cannot flood the smart contract with fake proofs in order to clog the blockchain with gas, calling slashValidator() requires the reporter (Watchtower) to post a call deposit (Bounty Stake).
+So that the contract is not flooded with fake proofs, calling `slashValidator()` requires the reporter to lock a small deposit.
 
-If the Fraud Proof is valid: The contract burns part of the violator's stake, returns the deposit to the reporter and on top pays them 50% of the burned penalty.
+- **The proof is valid:** the reporter gets the deposit back and receives half of the penalty.
+- **The proof is false:** the reporter's deposit is removed from circulation.
 
-If the Fraud Proof is fake: The contract instantly burns the reporter's deposit.
-
-This crypto-economic game balance (Game Theory) guarantees that Super-Nodes are better off working with 100% uptime and honestly pumping traffic than risking their deposit.
+Honest work pays better than risking the deposit, and a false report costs more than silence.
