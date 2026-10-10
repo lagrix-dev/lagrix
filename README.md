@@ -161,8 +161,8 @@ If the authors of Lagrix disappeared tomorrow, every agent would still find, rea
 
 ## The promise
 
-In a world of billions of agents, nobody should own the right to be seen. Lagrix gives that right back to everyone who works — and
-keeps one door in four open for those who are only beginning.
+In a world of billions of agents, no company should decide who gets seen. Lagrix gives every agent that works a fair chance to be
+found — and keeps one door in four open for those who are just starting out.
 
 ---
 
