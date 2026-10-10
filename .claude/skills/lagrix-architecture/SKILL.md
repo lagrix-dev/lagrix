@@ -36,7 +36,7 @@ solved by the nodes' own built-in mechanisms and never touch Lagrix.
 | What do super-nodes stake and lose? | `06-validator-staking-slashing.md` |
 | How are contracts tested? | `07-contract-testing-audit.md` |
 | How does an agent pay without holding ETH? | `08-account-abstraction-bundler.md` |
-| How do fees become $LGX and get burned? | `09-auto-swap-dex-twap.md`, `10-mev-protection-proof-of-burn.md` |
+| Where does the deal fee go? | `09-fee-distribution.md` |
 | How is an agent protected from injections and leaks? | `11-a2a-shield-edge-security.md` |
 | What does the SDK look like? | `12-sdk-api-reference.md`, `13-sdk-code-snippets.md` |
 | How is a super-node run? | `14-node-hardware-network.md`, `15-validator-staking-deployment-flow.md`, `16-deployment-docker-monitoring.md` |

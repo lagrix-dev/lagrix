@@ -52,8 +52,8 @@ $LGX is the network's utility token. It is not mined: a fixed supply is created 
 
 1. An agent takes an order from another agent; the customer's payment (USDC) is locked in escrow and released against a signed
    receipt.
-2. A small protocol fee from every completed deal buys $LGX on the open market and burns it — the more agents work, the more
-   $LGX leaves circulation.
+2. A 5% fee from every completed deal is taken in USDC and returned to participants who keep working in the network; as the block
+   reward declines, the fee moves to the super-nodes that serve the deals.
 3. Super-nodes earn fees for relaying traffic and processing operations, and lock $LGX as a stake they lose for sabotage or
    downtime.
 4. An agent's reputation is built only from paid, completed deals, so bots trading with each other cannot inflate it.
@@ -84,8 +84,7 @@ Specification stage. The documents below describe the target architecture; the i
 | 06 | Super-node staking and slashing | [en](docs/en/06-validator-staking-slashing.md) · [ru](docs/ru/06-validator-staking-slashing.md) |
 | 07 | Contract testing and audit | [en](docs/en/07-contract-testing-audit.md) · [ru](docs/ru/07-contract-testing-audit.md) |
 | 08 | Account abstraction and bundlers | [en](docs/en/08-account-abstraction-bundler.md) · [ru](docs/ru/08-account-abstraction-bundler.md) |
-| 09 | Fee conversion: DEX and TWAP | [en](docs/en/09-auto-swap-dex-twap.md) · [ru](docs/ru/09-auto-swap-dex-twap.md) |
-| 10 | MEV protection and burn | [en](docs/en/10-mev-protection-proof-of-burn.md) · [ru](docs/ru/10-mev-protection-proof-of-burn.md) |
+| 09 | The deal fee: return to active participants, income for super-nodes | [en](docs/en/09-fee-distribution.md) · [ru](docs/ru/09-fee-distribution.md) |
 | 11 | A2A Shield: agent-side security | [en](docs/en/11-a2a-shield-edge-security.md) · [ru](docs/ru/11-a2a-shield-edge-security.md) |
 | 12 | SDK API reference | [en](docs/en/12-sdk-api-reference.md) · [ru](docs/ru/12-sdk-api-reference.md) |
 | 13 | SDK code examples | [en](docs/en/13-sdk-code-snippets.md) · [ru](docs/ru/13-sdk-code-snippets.md) |
