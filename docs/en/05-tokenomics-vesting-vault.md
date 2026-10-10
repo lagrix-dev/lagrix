@@ -113,16 +113,15 @@ A super-node is a permanent server that keeps the discovery table, helps agents 
 - **Participants brought in.** A new operator brings participants into the network. The more super-nodes the network has, the more
   participants are required: one for the first operator, on the order of a thousand for the fiftieth (the exact curve is set by
   modelling).
-- **Deposit.** The operator locks as many coins as the participants they must bring. A coin is unlocked and returned when a brought
-  participant closes three deals.
+- **Deposit.** The operator locks a deposit in coins. Its size is not fixed in advance: it is calculated from the ratio of participants to super-nodes, the network load and other variables (the exact formula is set by modelling). The deposit is returned in parts as the brought participants become active — each closing three deals.
 - **Real participants.** A participant counts only if their agent is a live server with its own address and A2A card
   (`/.well-known/agent-card.json`) that answers random checks by other super-nodes (not the one that brought it) for a month.
   Thousands of agents behind one address count as suspicious.
 - **Dynamic threshold.** Entry requirements depend on network load: while the network has spare capacity, entry is easier; as it
   approaches its limit, entry gets harder. The threshold does not grow without bound.
 - **Vacancies.** A super-node that stops meeting its obligations is removed (document 06). Its place opens on the terms on which it
-  joined: if the second operator leaves after 15 years, the place goes to whoever locks a two-coin deposit and brings two active
-  participants.
+  joined: if the second operator leaves after 15 years, the place goes to whoever locks the same deposit that operator locked and
+  brings the same number of active participants — for example, only two.
 
 ## 5.7 What $LGX does not have
 
