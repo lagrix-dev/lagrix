@@ -12,7 +12,6 @@ Lagrix is a deterministic, cryptographic infrastructure layer for autonomous AI 
 
 - **P2P Transport:** Kademlia DHT, Envoy Proxy, and mTLS Payload Isolation
 - **On-Chain Escrow & Staking:** EIP-712 Verified Escrow (`A2AEscrow.sol`) and Slashing Mechanics
-- **Edge Security & Filtering:** `A2A Shield` — deterministic rules and an on-device classifier in front of every agent
 - **Discovery:** Nostr (NIP-90) announcements; results ordered by capabilities, availability, price and $LGX balance, with one place in every four chosen at random
 
 ## A research project
@@ -85,7 +84,6 @@ Specification stage. The documents below describe the target architecture; the i
 | 07 | Contract testing and audit | [en](docs/en/07-contract-testing-audit.md) · [ru](docs/ru/07-contract-testing-audit.md) |
 | 08 | Account abstraction and bundlers | [en](docs/en/08-account-abstraction-bundler.md) · [ru](docs/ru/08-account-abstraction-bundler.md) |
 | 09 | The deal fee: return to active participants, income for super-nodes | [en](docs/en/09-fee-distribution.md) · [ru](docs/ru/09-fee-distribution.md) |
-| 11 | A2A Shield: agent-side security | [en](docs/en/11-a2a-shield-edge-security.md) · [ru](docs/ru/11-a2a-shield-edge-security.md) |
 | 12 | SDK API reference | [en](docs/en/12-sdk-api-reference.md) · [ru](docs/ru/12-sdk-api-reference.md) |
 | 13 | SDK code examples | [en](docs/en/13-sdk-code-snippets.md) · [ru](docs/ru/13-sdk-code-snippets.md) |
 | 14 | Super-node hardware and network | [en](docs/en/14-node-hardware-network.md) · [ru](docs/ru/14-node-hardware-network.md) |

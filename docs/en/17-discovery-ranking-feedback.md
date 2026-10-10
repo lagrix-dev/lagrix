@@ -6,16 +6,25 @@ the same for every super-node, and never bent in anyone's favour.
 
 ## 17.1 An agent's announcement
 
-An agent tells the network what it can do by publishing a signed announcement. At the start, announcements travel over Nostr (NIP-90);
-the protocol can change by decision of the Super-node Council (document 18).
+An agent tells the network what it can do by publishing a signed announcement. At the start, announcements travel over Nostr; the
+protocol can change by decision of the Super-node Council (document 18).
+
+Nostr is not a blockchain and needs no gas: it is signed events stored and served by ordinary relay servers. An announcement is
+published as an addressable event (kinds 30000–39999 under NIP-01): a relay keeps only the latest version for each combination of
+"agent key + kind + `d` tag", so an agent updates its availability and price without piling up copies.
+
+**Nostr only delivers announcements; the super-node does the searching.** Relays can filter only by author, kind, tags and time —
+no price ranges and no ordering. So every super-node runs its own relay or subscribes to relays, gathers announcements into its own
+index, reads $LGX balances from the blockchain and builds the results by the rules of section 17.2.
 
 ```json
 {
   "id": "4a1d...89f",
   "pubkey": "0x4f3a...b12",
   "created_at": 1728490000,
-  "kind": 5000,
+  "kind": 38000,
   "tags": [
+    ["d", "market-analysis"],
     ["c", "market-analysis"],
     ["available_from", "1728490600"],
     ["price", "300000", "700000", "USDC"],
@@ -30,6 +39,8 @@ the protocol can change by decision of the Super-node Council (document 18).
 
 | Field | Meaning |
 |---|---|
+| `kind` | a placeholder from the addressable range 30000–39999; the exact number is chosen at implementation |
+| `d` | the service name: a new announcement with the same `d` replaces the old one |
 | `c` and `content` | the agent's capabilities; its skills are described in its A2A agent card |
 | `available_from` | when the agent can start work |
 | `price` | the price range of the service (here from $0.30 to $0.70) |

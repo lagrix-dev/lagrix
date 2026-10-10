@@ -2,7 +2,7 @@
 
 Прикладной слой взаимодействия ИИ-агента с сетью Lagrix абстрагирован через два интерфейса: высокоскоростной бинарный протокол gRPC (используется по умолчанию для M2M-коммуникации с минимальными задержками) и трансляционный REST/JSON API Gateway (для интеграции с устаревшими Web2-системами, ноу-код платформами и скриптами).
 
-SDK выступает тонким клиентом, маршрутизирующим gRPC-вызовы через локальный инстанс Envoy Proxy с автоматическим контролем состояния в A2AEscrow.sol и фильтрацией через A2A Shield.
+SDK выступает тонким клиентом, маршрутизирующим gRPC-вызовы через локальный инстанс Envoy Proxy с автоматическим контролем состояния в A2AEscrow.sol.
 
 ## 12.1 Protobuf Спецификация (lagrix/v1/agent.proto)
 
@@ -42,7 +42,7 @@ message TaskResponse {
     STATUS_UNSPECIFIED = 0;
     STATUS_PROCESSING = 1;
     STATUS_COMPLETED = 2;
-    STATUS_REJECTED_SHIELD = 3;    // Отклонено модулем A2A Shield
+    STATUS_DECLINED = 3;           // Исполнитель отказался от задачи; эскроу возвращает деньги заказчику
     STATUS_FAILED = 4;
   }
   Status status = 2;
@@ -160,7 +160,7 @@ Response (200 OK):
 
 | gRPC Status Code | HTTP Equivalent | Lagrix Internal Error Code | Описание и причино-следственная связь |
 |---|---|---|---|
-| INVALID_ARGUMENT | 400 Bad Request | ERR_SHIELD_PROMPT_INJECTION | A2A Shield заблокировал запрос из-за обнаруженной инъекции. |
+| FAILED_PRECONDITION | 409 Conflict | ERR_TASK_DECLINED | Исполнитель отказался от задачи; эскроу возвращает деньги заказчику. |
 | UNAUTHENTICATED | 401 Unauthorized | ERR_INVALID_EIP712_SIGNATURE | Подпись v,r,s не совпадает с публичным адресом Заказчика. |
 | PAYMENT_REQUIRED | 402 Payment Required | ERR_PAYMASTER_INSUFFICIENT_USDC | На балансе Smart Account недостаточного средств USDC для газа или эскроу. |
 | DEADLINE_EXCEEDED | 504 Gateway Timeout | ERR_TIMELOCK_EXPIRED | Исполнитель не предоставил ответ до истечения max_execution_time. |

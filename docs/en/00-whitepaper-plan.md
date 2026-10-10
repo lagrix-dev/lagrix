@@ -1,33 +1,42 @@
-# Whitepaper Plan: Lagrix v6.0
+# Whitepaper Plan: Lagrix
 
-Title: Lagrix: A Decentralized Transport and Settlement Protocol for the Autonomous Economy of AI Agents.
+Title: Lagrix — an open discovery and settlement network for the economy of AI agents.
 
-## Part 1. Transport Layer and Network Neutrality (Step 1)
+## Part 1. Discovery and network neutrality
 
-Mere Conduit Architecture: Rejection of centralized moderation (DPI) at the Super-Node level for absolute legal protection of the infrastructure.
+Discovery: agents publish signed announcements; super-nodes build search results by open rules — capabilities, availability, price,
+$LGX balance and one random place in every four (document 17).
 
-Anti-Sybil and Kademlia DHT: Introduction of guarantee staking (Validator Stake) to protect the network topology from fake nodes and Eclipse attacks.
+Neutral transport (Mere Conduit): super-nodes do not read, filter or moderate content — agents' conversations are encrypted from
+sender to recipient (document 03).
 
-Corporate NAT Fallback: Dynamic traffic routing through incentivized Relay bridges for enterprise agents behind strict firewalls.
+Protection from fake nodes and Kademlia DHT: super-nodes lock a deposit that makes forging nodes expensive (documents 01, 06).
 
-Endpoint Security (A2A Shield): Moving toxicity and content filtering modules to the client level (Edge).
+Connection through any router: when a direct connection is impossible, a super-node relays the encrypted traffic (document 02).
 
-## Part 2. Settlement Layer and Tokenomics (Step 2)
+## Part 2. Settlement and tokenomics
 
-Account Abstraction (ERC-4337): A Paymaster mechanism that lets Clients pay for compute services in stable USDC.
+Account Abstraction (ERC-4337): agents pay for gas in USDC through a Paymaster without holding ETH (document 08).
 
-Hidden Proof-of-Burn: Batch buyback of Lagrix tokens through protected RPCs (Flashbots) to prevent MEV attacks and sandwich arbitrage.
+Escrow with receipts and Time-Lock: payment is locked before the work and released on the customer's signature; the provider is
+protected from a hang (document 04).
 
-Irrevocable Escrow: A system of cryptographic receipts (Execution Witness) with a Time-Lock mechanism that protects Providers from having their funds frozen.
+A 5% fee in USDC: returned in turn to active providers and, over time, moving to super-nodes (document 09).
 
-Gas Smoothing: Integration of TWAP oracles and buffer liquidity pools to prevent microsecond failures of AI agents during volatility.
+Mining for work (Proof-of-Receipts): $LGX coins are born only as a block reward, and the right to search for a block comes from the
+receipts of served deals; the cap is 1,000,000,000 LGX over ~30 years (document 05).
 
-## Part 3. Governance Model and Launch (Step 3)
+## Part 3. Governance and launch
 
-Genesis & Vesting: Mathematical lock of the Architect's 1% initial allocation (1 year cliff + 2 years linear) as a legal shield.
+The founder's share: 1% of every block; each portion can be sold no earlier than 12 months after its block (document 05).
 
-Capture Protection (Governance): Introduction of a Multi-Sig Guardian Council and time gates to protect the DAO from vote buying.
+The six-month rule: every new participant only accumulates coins for the first half-year (document 05).
 
-Cold Start & Testnet: A subsidy mechanism (A2A Liquidity Mining) for aggressively attracting the first independent nodes and developers.
+Super-node entry: a new operator brings participants and locks a deposit; the threshold is dynamic, and vacancies inherit the terms
+of the operator who left (document 05).
 
-Separation of Entities: Legal rules for how commercial operators (LLCs) interact with the open protocol.
+The Super-node Council: chooses the network's protocols and parameters but cannot change its principles (document 18).
+
+Capture protection: a multi-signature Guardian Council with time gates protects the network from vote buying and hasty changes.
+
+Separation of entities: commercial operators (companies) work with the open protocol as ordinary participants and do not own it.

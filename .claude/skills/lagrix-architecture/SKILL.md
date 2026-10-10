@@ -3,7 +3,7 @@ name: lagrix-architecture
 description: >
   How to find your way in the Lagrix repository: what Lagrix is responsible for, what it is not, and which of the 18
   documents answers which question. Load it at the start of any work in this repository; before writing code, a contract or a
-  README; when a question mentions escrow, the $LGX token, staking, super-nodes, discovery, NAT relays, A2A Shield or reputation;
+  README; when a question mentions escrow, the $LGX token, staking, super-nodes, discovery, NAT relays or reputation;
   and when someone asks whether something belongs to Lagrix at all. The rule that changes behaviour: Lagrix settles PAID work between
   agents (A2A); relations of nodes and of whole elements (M2M) are never Lagrix's concern. Preliminary skill (2026-10-09).
 ---
@@ -37,7 +37,6 @@ solved by the nodes' own built-in mechanisms and never touch Lagrix.
 | How are contracts tested? | `07-contract-testing-audit.md` |
 | How does an agent pay without holding ETH? | `08-account-abstraction-bundler.md` |
 | Where does the deal fee go? | `09-fee-distribution.md` |
-| How is an agent protected from injections and leaks? | `11-a2a-shield-edge-security.md` |
 | What does the SDK look like? | `12-sdk-api-reference.md`, `13-sdk-code-snippets.md` |
 | How is a super-node run? | `14-node-hardware-network.md`, `15-validator-staking-deployment-flow.md`, `16-deployment-docker-monitoring.md` |
 | How are likes and dislikes protected from bots? | `17-discovery-ranking-feedback.md` |

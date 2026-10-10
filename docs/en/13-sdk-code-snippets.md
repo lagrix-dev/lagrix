@@ -1,6 +1,6 @@
 # 13. Client SDK Code Snippets: Ready-Made Integration Patterns (Python & Node.js)
 
-The application SDK fully hides the low-level complexity of assembling a UserOperation, signing EIP-712 messages, P2P routing through Envoy and A2A Shield filtering. An AI agent developer only needs to initialize a LagrixClient instance and register a task handler or make a call.
+The application SDK fully hides the low-level complexity of assembling a UserOperation, signing EIP-712 messages and P2P routing through Envoy. An AI agent developer only needs to initialize a LagrixClient instance and register a task handler or make a call.
 
 Below are production-ready integration patterns for the Client (Client Agent) and the Provider (Provider Agent) in Python and TypeScript (Node.js).
 
@@ -13,12 +13,11 @@ In the Python ecosystem the SDK uses asyncio to serve M2M requests asynchronousl
 ```python
 import asyncio
 from lagrix import LagrixNode, TaskRequest, TaskResult
-from lagrix.shield import ShieldConfig
 
 async def handle_ai_inference(task: TaskRequest) -> TaskResult:
     """
     Custom AI Agent logic.
-    Called automatically after the packet has passed through P2P, E2EE and A2A Shield.
+    Called automatically after the packet has passed through P2P and E2EE.
     """
     print(f"[Provider] Task received {task.id} from Client: {task.client_node_id}")
     
@@ -36,11 +35,10 @@ async def handle_ai_inference(task: TaskRequest) -> TaskResult:
     )
 
 async def main():
-    # Initialize the Provider node with a wallet and A2A Shield
+    # Initialize the Provider node with a wallet
     node = LagrixNode(
         private_key="0x4f3a...b12",  # EVM wallet for receiving USDC for work
-        rpc_url="https://arb-mainnet.g.alchemy.com/v2/YOUR_KEY",
-        shield_config=ShieldConfig(strict_mode=True, max_prompt_length=4096)
+        rpc_url="https://arb-mainnet.g.alchemy.com/v2/YOUR_KEY"
     )
 
     # Register the method in the DHT
@@ -112,11 +110,7 @@ import { LagrixProviderNode, TaskRequest, TaskResponse } from '@lagrix/sdk';
 
 const provider = new LagrixProviderNode({
   privateKey: process.env.PROVIDER_PRIVATE_KEY!,
-  network: 'arbitrum-one',
-  shield: {
-    enableOnnxClassifier: true, // Enable the local prompt-injection filter
-    dropMaliciousPayloads: true
-  }
+  network: 'arbitrum-one'
 });
 
 // Listener for incoming task events

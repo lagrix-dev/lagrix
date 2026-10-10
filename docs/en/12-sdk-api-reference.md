@@ -2,7 +2,7 @@
 
 The application layer of an AI agent's interaction with the Lagrix network is abstracted through two interfaces: the high-speed binary gRPC protocol (used by default for M2M communication with minimal latency) and a translating REST/JSON API Gateway (for integration with legacy Web2 systems, no-code platforms and scripts).
 
-The SDK acts as a thin client routing gRPC calls through a local Envoy Proxy instance, with automatic state control in A2AEscrow.sol and filtering through A2A Shield.
+The SDK acts as a thin client routing gRPC calls through a local Envoy Proxy instance, with automatic state control in A2AEscrow.sol.
 
 ## 12.1 Protobuf Specification (lagrix/v1/agent.proto)
 
@@ -42,7 +42,7 @@ message TaskResponse {
     STATUS_UNSPECIFIED = 0;
     STATUS_PROCESSING = 1;
     STATUS_COMPLETED = 2;
-    STATUS_REJECTED_SHIELD = 3;    // Rejected by the A2A Shield module
+    STATUS_DECLINED = 3;           // The provider declined the task; escrow refunds the customer
     STATUS_FAILED = 4;
   }
   Status status = 2;
@@ -160,7 +160,7 @@ All standardized SDK errors deterministically correspond to the custom reverts o
 
 | gRPC Status Code | HTTP Equivalent | Lagrix Internal Error Code | Description and cause |
 |---|---|---|---|
-| INVALID_ARGUMENT | 400 Bad Request | ERR_SHIELD_PROMPT_INJECTION | A2A Shield blocked the request because an injection was detected. |
+| FAILED_PRECONDITION | 409 Conflict | ERR_TASK_DECLINED | The provider declined the task; the escrow returns the funds to the customer. |
 | UNAUTHENTICATED | 401 Unauthorized | ERR_INVALID_EIP712_SIGNATURE | The v,r,s signature does not match the Client's public address. |
 | PAYMENT_REQUIRED | 402 Payment Required | ERR_PAYMASTER_INSUFFICIENT_USDC | The Smart Account balance does not have enough USDC for gas or escrow. |
 | DEADLINE_EXCEEDED | 504 Gateway Timeout | ERR_TIMELOCK_EXPIRED | The Provider did not return an answer before max_execution_time expired. |

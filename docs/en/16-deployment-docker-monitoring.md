@@ -222,6 +222,6 @@ Network Health: Number of active neighbors in k-buckets, status of PING checks f
 
 Relay Throughput: Rate of encrypted E2EE traffic pumped in Mbit/s, number of active TURN sessions.
 
-Financial Accounting: Accumulated amount of USDC fees for bandwidth, balance of burned $LGX tokens.
+Financial Accounting: the super-node's accumulated share of deal fees in USDC, $LGX block rewards and the state of its deposit.
 
 Slashing Risk Metrics: Counter of recorded anomalies and a timer until the stake can be safely withdrawn (Unbonding Countdown).
