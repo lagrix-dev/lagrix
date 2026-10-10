@@ -112,7 +112,7 @@ function registerValidator(bytes32 nodeId, uint96 amount) external nonReentrant 
     });
 
     nodeIdToAddress[nodeId] = msg.sender;
-    emit ValidatorRegistered(msg.sender, nodeId, amount, tier);
+    emit ValidatorRegistered(msg.sender, nodeId, amount);
 }
 ```
 
