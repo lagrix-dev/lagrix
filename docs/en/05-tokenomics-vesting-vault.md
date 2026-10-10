@@ -30,13 +30,15 @@ messages: a thousand messages inside one deal give one receipt.
 **Right to search for a block.** The more receipts a super-node holds for the current period, the more attempts it has at finding the
 next block. The network adjusts the difficulty so that blocks appear at a steady average rate and issuance follows the schedule.
 
-**Splitting the reward.** 1% of each block reward goes to the founder (section 5.5). The rest is split as follows:
+**Splitting the reward.** First, 1% of the block reward goes to the founder (section 5.5). The remaining 99% is split 50/30/20:
 
-| Who | Share | How it is distributed |
-|---|---|---|
-| The super-node that found the block | 50% | in full |
-| Providers | 30% | in proportion to the weight of their receipts in this block |
-| Customers | 20% | in proportion to the weight of their receipts in this block |
+| Who | Share of the remainder | Share of the whole reward | How it is distributed |
+|---|---|---|---|
+| The founder | — | 1% | into the 12-month rolling lock |
+| The super-node that found the block | 50% | 49.5% | in full |
+| Providers | 30% | 29.7% | in proportion to the weight of their receipts in this block |
+| Customers | 20% | 19.8% | in proportion to the weight of their receipts in this block |
+| **Total** | 100% | **100%** | |
 
 All three sides of the work receive coins: those who serve it, those who do it and those who order it. Coins held by an agent raise
 its standing in search results (document 17).
