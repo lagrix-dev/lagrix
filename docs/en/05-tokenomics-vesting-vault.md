@@ -13,7 +13,7 @@ The numbers below are starting parameters. The exact issuance schedule, entry th
 | Issuance cap | 1,000,000,000 LGX, mined over about 30 years |
 | How coins appear | only as the reward for a found block (section 5.2) |
 | Sale at launch | none: no presale, no investor allocation, no fund created in advance |
-| Block reward | declines on a schedule, as in Bitcoin: early blocks pay more, later blocks less |
+| Block reward | issuance spans about 30 years; the shape of the schedule — declining as in Bitcoin, constant, or tied to volume — is set by modelling |
 | Deal fee | 5% of the deal amount (section 5.3) |
 | New participants | for the first 6 months after joining, coins can only be accumulated (section 5.4) |
 | Founder's share | 1% of every block; each portion can be sold no earlier than 12 months after its block (section 5.5) |
@@ -28,7 +28,9 @@ receives a receipt — a signed record of a completed, paid deal. A receipt's we
 messages: a thousand messages inside one deal give one receipt.
 
 **Right to search for a block.** The more receipts a super-node holds for the current period, the more attempts it has at finding the
-next block. The network adjusts the difficulty so that blocks appear at a steady average rate and issuance follows the schedule.
+next block. The network keeps the block rate constant however many receipts there are: the number of attempts per receipt is adjusted
+so that blocks appear at even intervals on average. Whether a declining reward schedule as in Bitcoin is needed on top of that, or
+the network balances itself well enough through the fee (section 5.8), is a matter for modelling.
 
 **Splitting the reward.** First, 1% of the block reward goes to the founder (section 5.5). The remaining 99% is split 50/30/20:
 
@@ -62,10 +64,10 @@ The queue keeps a single pointer, so the load on the network is the same for any
 more than a month is skipped until they close a deal again.
 
 **The fee moves to super-nodes over time.** While the block reward is large, it alone sustains the super-nodes, and the fee returns to
-providers. As the reward declines, the share of the fee that goes to super-nodes grows:
+providers. As coins are mined, the share of the fee that goes to super-nodes grows — under any issuance schedule:
 
 ```
-super_node_share   = 1 − current_block_reward / initial_block_reward
+super_node_share   = coins_mined_so_far / 1,000,000,000
 active_queue_share = 1 − super_node_share
 ```
 

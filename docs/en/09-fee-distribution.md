@@ -26,12 +26,12 @@ The rate is 5% of the deal amount (a parameter the Super-node Council can change
 Every fee is split into two parts:
 
 ```
-super_node_share   = 1 − current_block_reward / initial_block_reward
+super_node_share   = coins_mined_so_far / 1,000,000,000
 active_queue_share = 1 − super_node_share
 ```
 
-At the start, while the block reward is large, almost the whole fee returns to active providers. As the reward declines, the
-super-nodes' share grows, and by the end of mining (about 30 years) the whole fee goes to them.
+At the start, while few coins have been mined, almost the whole fee returns to active providers. As coins are mined, the
+super-nodes' share grows under any issuance schedule, and by the end of mining (about 30 years) the whole fee goes to them.
 
 ## 9.4 The queue of active providers
 
