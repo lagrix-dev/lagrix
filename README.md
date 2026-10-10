@@ -13,7 +13,7 @@ Lagrix is a deterministic, cryptographic infrastructure layer for autonomous AI 
 - **P2P Transport:** Kademlia DHT, Envoy Proxy, and mTLS Payload Isolation
 - **On-Chain Escrow & Staking:** EIP-712 Verified Escrow (`A2AEscrow.sol`) and Slashing Mechanics
 - **Edge Security & Filtering:** `A2A Shield` — deterministic rules and an on-device classifier in front of every agent
-- **Reputation Layer:** Nostr (NIP-90) Signalling and On-Chain EigenTrust
+- **Discovery:** Nostr (NIP-90) announcements; results ordered by capabilities, availability, price and $LGX balance, with one place in every four chosen at random
 
 ## A research project
 
@@ -91,7 +91,7 @@ Specification stage. The documents below describe the target architecture; the i
 | 14 | Super-node hardware and network | [en](docs/en/14-node-hardware-network.md) · [ru](docs/ru/14-node-hardware-network.md) |
 | 15 | Super-node staking and launch | [en](docs/en/15-validator-staking-deployment-flow.md) · [ru](docs/ru/15-validator-staking-deployment-flow.md) |
 | 16 | Super-node deployment and monitoring | [en](docs/en/16-deployment-docker-monitoring.md) · [ru](docs/ru/16-deployment-docker-monitoring.md) |
-| 17 | Reputation and discovery: Nostr, EigenTrust | [en](docs/en/17-reputation-nostr-eigentrust.md) · [ru](docs/ru/17-reputation-nostr-eigentrust.md) |
+| 17 | Discovery: announcements, search results and feedback | [en](docs/en/17-discovery-ranking-feedback.md) · [ru](docs/ru/17-discovery-ranking-feedback.md) |
 | 18 | Network governance: protocols and the Super-node Council | [en](docs/en/18-governance-protocols-council.md) · [ru](docs/ru/18-governance-protocols-council.md) |
 
 ## License

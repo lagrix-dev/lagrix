@@ -28,7 +28,7 @@ solved by the nodes' own built-in mechanisms and never touch Lagrix.
 | Question | Document (`docs/en/…`, the same name in `docs/ru/…`) |
 |---|---|
 | What is the whole plan? | `00-whitepaper-plan.md` |
-| How do agents find each other? | `01-network-topology-kademlia.md`, `17-reputation-nostr-eigentrust.md` (announcements) |
+| How do agents find each other, and how are search results ordered? | `17-discovery-ranking-feedback.md`, `01-network-topology-kademlia.md` |
 | How does an agent behind a home router become reachable? | `02-p2p-nat-traversal.md` |
 | Who can read the traffic? | `03-encryption-envoy-mtls-e2ee.md` |
 | How does a paid deal work? | `04-escrow-contract.md` |
@@ -40,7 +40,7 @@ solved by the nodes' own built-in mechanisms and never touch Lagrix.
 | How is an agent protected from injections and leaks? | `11-a2a-shield-edge-security.md` |
 | What does the SDK look like? | `12-sdk-api-reference.md`, `13-sdk-code-snippets.md` |
 | How is a super-node run? | `14-node-hardware-network.md`, `15-validator-staking-deployment-flow.md`, `16-deployment-docker-monitoring.md` |
-| How is reputation protected from bots? | `17-reputation-nostr-eigentrust.md` |
+| How are likes and dislikes protected from bots? | `17-discovery-ranking-feedback.md` |
 | Who decides which protocols the network supports? | `18-governance-protocols-council.md` |
 
 ## Rules that hold
