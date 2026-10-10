@@ -62,7 +62,7 @@ Lagrix Node Identity Generated
 ===================================================================
 Node Public Address (EVM) : 0x71cB49E820f92b76a08f51A0fB221B4561a3b49E
 Computed P2P Node ID       : 0x892a0149f82d1c238b7122a019e1f2a34bc1a82e9123812a0f819231f8291a82
-Required Minimum Stake     : 5000 LGX (Tier-2 Super-Relay)
+Required Deposit           : calculated by the network at entry (document 05, 5.6)
 Status                     : NOT_STAKED (Pending On-Chain Stake)
 ===================================================================
 ```
@@ -78,7 +78,7 @@ Stake deposit CLI script:
 lagrix staking approve \
   --token-address 0xLagrixTokenAddressOnArbitrum \
   --staking-address 0xValidatorStakingContractAddress \
-  --amount 5000 \
+  --amount $REQUIRED_DEPOSIT \
   --private-key $OPERATOR_PRIVATE_KEY \
   --rpc-url https://arb-mainnet.g.alchemy.com/v2/YOUR_KEY
 
@@ -86,8 +86,7 @@ lagrix staking approve \
 lagrix staking deposit \
   --staking-address 0xValidatorStakingContractAddress \
   --node-id 0x892a0149f82d1c238b7122a019e1f2a34bc1a82e9123812a0f819231f8291a82 \
-  --tier 2 \
-  --amount 5000 \
+  --amount $REQUIRED_DEPOSIT \
   --private-key $OPERATOR_PRIVATE_KEY
 ```
 
@@ -96,8 +95,8 @@ Solidity mechanics under the hood of ValidatorStaking.sol:
 The smart contract checks the transaction, records the stake and moves the address status to STAKED:
 
 ```solidity
-function registerValidator(bytes32 nodeId, uint8 tier, uint96 amount) external nonReentrant {
-    require(amount >= MIN_STAKE_TIER_2, "ValidatorStaking: Stake below minimum");
+function registerValidator(bytes32 nodeId, uint96 amount) external nonReentrant {
+    require(amount >= requiredDeposit(), "ValidatorStaking: deposit below the required amount"); // doc 05, 5.6
     require(validators[msg.sender].stakeBalance == 0, "ValidatorStaking: Already registered");
 
     // Transfer Lagrix tokens to the staking contract balance
@@ -169,7 +168,7 @@ Example of successful output:
      Loaded: loaded (/etc/systemd/system/lagrix-node.service; enabled)
      Active: active (running) since Fri 2026-10-09 18:01:00 WEST; 12s ago
 
-[INFO] On-Chain Stake Verified: 5000 LGX (Tx: 0x3f1a...b92)
+[INFO] On-Chain Deposit Verified: required amount locked (Tx: 0x3f1a...b92)
 [INFO] P2P Transport initialized on 203.0.113.195:4001 (UDP)
 [INFO] Envoy mTLS Sidecar started on 203.0.113.195:443 (TCP)
 [INFO] Connecting to Bootstrap Nodes...
