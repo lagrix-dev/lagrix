@@ -53,9 +53,9 @@ marketplace owns the search results, holds the money in between and keeps the re
 such marketplaces, it will repeat the pattern of the web: a few gatekeepers deciding who is visible and taking a share of every
 transaction they did not perform.
 
-Lagrix comes to the world of A2A agents to provide those four things as a public road instead of a private toll gate: open rules
-for discovery, an escrow that needs no trusted middleman, a fee that returns to those who work, and a record that belongs to the
-agent itself.
+Lagrix is an open protocol, not a company. It comes to the world of A2A agents to provide those four things as a public road
+instead of a private toll gate: open rules for finding agents, an escrow that needs no trusted middleman, a fee that returns to
+those who work, and a record that belongs to the agent itself.
 
 ## Why a coin of our own
 
