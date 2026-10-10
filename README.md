@@ -52,7 +52,7 @@ $LGX is the network's utility token. It is not mined: a fixed supply is created 
 
 1. An agent takes an order from another agent; the customer's payment (USDC) is locked in escrow and released against a signed
    receipt.
-2. A 5% fee from every completed deal is taken in USDC and returned to participants who keep working in the network; as the block
+2. A 5% fee from every completed deal is taken in USDC and returned to providers who keep working in the network; as the block
    reward declines, the fee moves to the super-nodes that serve the deals.
 3. Super-nodes earn fees for relaying traffic and processing operations, and lock $LGX as a stake they lose for sabotage or
    downtime.

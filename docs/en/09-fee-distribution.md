@@ -1,4 +1,4 @@
-# 9. The Deal Fee: Returned to Active Participants, Income for Super-nodes
+# 9. The Deal Fee: Returned to Active Providers, Income for Super-nodes
 
 The network takes a fee on every deal. This document describes the currency it is taken in, where it goes and how it is distributed.
 The $LGX coin plays no part in this mechanism: the fee is money for work, while $LGX is a participant's standing in the network
@@ -33,35 +33,37 @@ active_queue_share = 1 − super_node_share
 At the start, while the block reward is large, almost the whole fee returns to active participants. As the reward declines, the
 super-nodes' share grows, and by the end of mining (about 30 years) the whole fee goes to them.
 
-## 9.4 The queue of active participants
+## 9.4 The queue of active providers
 
-**Who is in the queue.** A participant who has closed more than three deals in total and at least one deal in the last 30 days.
+**Who is in the queue.** A provider who has closed more than three deals as a provider in total and at least one such deal in the last
+30 days. The fee is deducted from the provider's payment (document 04), so it is returned to providers — those who keep working.
+Customers are rewarded by the network through their share of block rewards (document 05).
 
-**Order.** Participants stand in one shared queue in the order they joined the network. The queue runs in a circle.
+**Order.** Providers stand in one shared queue in the order they joined the network. The queue runs in a circle.
 
-**Payout.** The queue part of each new deal's fee is credited in full to the next participant in the queue, and the pointer moves on.
+**Payout.** The queue part of each new deal's fee is credited in full to the next provider in the queue, and the pointer moves on.
 There is no draw: the payout is the fee share of the deal that fell to that turn of the queue.
 
 **Skips.**
-- a participant with no deals for more than 30 days is skipped until they close a deal again;
-- the parties of the deal the fee came from are skipped too, so the fee never returns to whoever paid it.
+- a provider with no deals for more than 30 days is skipped until they close a deal again;
+- the provider of the deal the fee came from is skipped too, so the fee never returns to the one it was deducted from.
 
 **Load.** The queue keeps a single pointer, so a payout costs the same for any number of participants. Money is not transferred on
-every deal: it is credited to the participant's balance, and they withdraw what has accumulated in one transaction whenever they
+every deal: it is credited to the provider's balance, and they withdraw what has accumulated in one transaction whenever they
 choose.
 
 ```solidity
-// Sketch: crediting a fee share to the next active participant in the queue
-function _creditQueue(uint256 amount, address customer, address provider) internal {
+// Sketch: crediting a fee share to the next active provider in the queue
+function _creditQueue(uint256 amount, address provider) internal {
     for (uint256 i = 0; i < MAX_SKIPS; i++) {
         address next = queue[pointer];
         pointer = (pointer + 1) % queue.length;
-        if (next == customer || next == provider) continue;
-        if (dealsTotal[next] <= 3 || block.timestamp > lastDealAt[next] + 30 days) continue;
-        claimable[next] += amount;               // the participant withdraws it later
+        if (next == provider) continue;
+        if (dealsAsProvider[next] <= 3 || block.timestamp > lastProviderDealAt[next] + 30 days) continue;
+        claimable[next] += amount;               // the provider withdraws it later
         return;
     }
-    superNodePool += amount;                      // if no active participant is found, the share goes to super-nodes
+    superNodePool += amount;                      // if no active provider is found, the share goes to super-nodes
 }
 
 function claim() external {
@@ -80,6 +82,6 @@ The super-nodes' share accumulates in a shared pool and is divided among them fo
 
 ## 9.6 How to talk about it
 
-This is a return of the fee to those who keep working in the network, and income for those who serve it. The amount of a return is
-not known in advance and is not guaranteed by anything: it depends on which deals close in the network and when a participant's turn
+This is a return of the fee to providers who keep working in the network, and income for those who serve it. The amount of a return is
+not known in advance and is not guaranteed by anything: it depends on which deals close in the network and when a provider's turn
 in the queue comes.

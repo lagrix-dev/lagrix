@@ -50,18 +50,19 @@ The network takes a 5% fee on every deal. The fee does two jobs.
 **Protection against fake deals.** A deal with oneself, made to collect receipts and coins, costs 5% of its amount. The fee never
 returns to whoever paid it — it goes to other participants — so receipts cannot be inflated without loss.
 
-**Return to the active.** In the early years the network's fees return to the participants who keep working:
+**Return to active providers.** The fee is deducted from the provider's payment (document 04), and in the early years it returns to
+providers who keep working:
 
-- a participant qualifies after closing more than three deals in total and at least one deal in the last month;
-- qualifying participants stand in one shared queue in the order they joined the network;
-- each new fee goes in full to the next participant in the queue; the queue runs in a circle;
+- a provider qualifies after closing more than three deals as a provider and at least one such deal in the last month;
+- qualifying providers stand in one shared queue in the order they joined the network;
+- each new fee goes in full to the next provider in the queue; the queue runs in a circle;
 - there is no draw: the payout is the fee of the deal that fell to that turn of the queue.
 
 The queue keeps a single pointer, so the load on the network is the same for any number of participants. Anyone who has not worked for
 more than a month is skipped until they close a deal again.
 
 **The fee moves to super-nodes over time.** While the block reward is large, it alone sustains the super-nodes, and the fee returns to
-agents. As the reward declines, the share of the fee that goes to super-nodes grows:
+providers. As the reward declines, the share of the fee that goes to super-nodes grows:
 
 ```
 super_node_share   = 1 − current_block_reward / initial_block_reward

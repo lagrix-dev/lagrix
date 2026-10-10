@@ -1,70 +1,98 @@
-# 4. Smart Contract Architecture: A2AEscrow.sol (Escrow, EIP-712, Time-Lock)
+# 4. The Escrow Smart Contract: A2AEscrow.sol (EIP-712, Time-Lock, Fee and Receipts)
 
-The A2AEscrow.sol smart contract is the financial core of the Lagrix protocol. Its main task is to guarantee (Trustless Guarantee) that the Provider gets paid for the compute resources spent, and that the Client cannot steal the result without paying. Since writing gigabytes of data to the blockchain would cost millions of dollars, the escrow contract operates exclusively on lightweight cryptographic hashes and signatures, leaving the AI requests themselves (Payload) in the P2P network.
+The A2AEscrow.sol smart contract is the financial core of Lagrix. Its job is to guarantee, without the parties having to trust each
+other, that the Provider gets paid for completed work and the Customer cannot take the result without paying. Writing large data to a
+blockchain is expensive, so the contract works only with lightweight cryptographic hashes and signatures; the agents' requests and
+results stay in the P2P network.
 
-## 4.1 Task Lifecycle State Machine
+A closed deal in this contract is the source of everything else in the network: the fee is taken from it (document 09), a receipt
+for the super-node is born from it (document 05), and the participants' history is updated.
 
-The escrow logic is implemented as a strict state machine. Each task (Task) in the contract is a data structure occupying exactly one 256-bit storage slot (Storage Slot) for maximum gas savings (Bit-packing).
+## 4.1 The deal life cycle
 
-In Solidity this is described as follows:
+The escrow logic is a strict finite state machine.
 
 ```solidity
 enum TaskState { UNINITIALIZED, LOCKED, COMMITTED, COMPLETED, REFUNDED }
 
 struct Task {
-    uint96 amount;        // Payment in USDC (up to $79 billion, 96 bits is enough)
-    uint40 lockedAt;      // Creation timestamp (until the year 34841)
-    uint40 commitTime;    // Timestamp when the Provider submitted the result
-    address provider;     // 160 bits - the Provider's Ethereum address
-    TaskState state;      // 8 bits - current status
+    uint96 amount;        // payment in USDC (up to $79 billion, 96 bits are enough)
+    uint40 lockedAt;      // when the funds were locked
+    uint40 commitTime;    // when the Provider submitted the result
+    TaskState state;      // current state
+    address customer;     // the Customer
+    address provider;     // the Provider — the only one who may perform the task
+    address superNode;    // the super-node the deal passed through; it gets the receipt
 }
 ```
 
-Lifecycle:
+The fields are packed tightly: a deal record takes a few storage slots, which keeps the cost on layer-2 networks minimal.
 
-LOCKED: The Client initiates a transaction, locking USDC in the contract. The exact address of the provider entitled to perform the task is specified. Nobody else can intercept this order.
+- **LOCKED.** The Customer locks USDC in the contract and names the Provider's address. Nobody else can take over the order.
+- **COMMITTED.** The Provider has done the work, sent the result over the P2P network and recorded the submission in the contract,
+  starting the timer.
+- **COMPLETED.** The deal is closed: the Provider receives the payment minus the fee, the fee is distributed (section 4.4), and the
+  super-node gets a receipt (section 4.5).
+- **REFUNDED.** The Provider declined the task — for any reason, which the network does not judge — or the acceptance window expired.
+  The funds return to the Customer in full, and no fee is taken.
 
-COMMITTED: The Provider has finished ML inference, sent the result over the P2P network and recorded the fact of sending in the contract (started the timer).
+## 4.2 Cryptographic receipts (EIP-712)
 
-COMPLETED: The task is closed successfully, the USDC has been transferred to the Provider, and the protocol fee has gone to the Paymaster.
+The contract does not know whether the Provider actually did the work: it sees only signatures. Closing a deal therefore relies on
+the EIP-712 standard (Typed Data Hashing and Signing).
 
-REFUNDED: The Provider rejected the task (for example, the local A2A Shield triggered) or the order acceptance timeout expired; the funds are returned to the Client.
+- **Off-chain signature.** The Customer receives the result over the P2P channel; its agent checks the data and, if everything is
+  correct, signs a receipt: `{ "taskId": 12345, "resultHash": "0xabc...", "amount": 5000000 }`.
+- **On-chain execution.** The Provider submits this signature (v, r, s) to the contract with `executeTask()`.
+- **Verification.** The contract recovers the address from the signature (`ecrecover`). If it is the Customer of this deal, the deal
+  moves to COMPLETED.
 
-## 4.2 Cryptographic Receipts (Execution Witness under EIP-712)
+## 4.3 Time-Lock: protecting the Provider from a hang
 
-To close the task and take the money from the contract, the Provider calls the executeTask() function. But the smart contract is blind — it does not know whether the Provider actually generated the required text or video with a neural network.
+A Customer could receive the result, go offline and never send the signature, freezing the Provider's payment. The function
+`claimTimeout(uint256 taskId)` protects against this.
 
-The EIP-712 standard (Typed Data Hashing and Signing) is used as proof.
+- **Commitment.** Having finished the work, the Provider calls `commitResult(taskId, resultHash)`: the deal moves to COMMITTED and the
+  contract records the time.
+- **Dispute window.** The Customer has a set window (for example, `DISPUTE_PERIOD = 5 minutes`) to send the signature.
+- **Automatic closing.** When the window has passed, the Provider calls `claimTimeout(taskId)`. The contract checks
+  `block.timestamp > commitTime + DISPUTE_PERIOD` and closes the deal without the Customer's signature — with the same fee and the same
+  receipt as a normal closing.
 
-Off-chain signature: When the Client receives the result over the P2P channel (through Envoy Proxy), its local agent checks the data. If everything is correct, the Client's agent signs a special JSON object (the Receipt) with its private key:
-{ "taskId": 12345, "resultHash": "0xabc...", "amount": 5000000 }.
+## 4.4 Splitting the payment and the fee
 
-On-chain execution: The Provider takes this digital signature of the Client (the byte array v, r, s) and sends it to the smart contract.
+When a deal moves to COMPLETED, the contract splits the amount:
 
-Verification (ecrecover): The A2AEscrow.sol contract recovers the public address from the signature. If this address matches the address of the Client who ordered taskId = 12345, the smart contract immediately transfers the USDC to the Provider's balance.
+| To whom | Share | Where |
+|---|---|---|
+| The Provider | 95% | to its wallet |
+| The network fee | 5% | deducted from the deal amount and distributed under document 09 |
 
-## 4.3 Time-Lock: Anti-Hang Mechanism (Anti-Griefing)
+The fee is split into two parts (document 09): the super-nodes' share goes to their shared pool, and the rest is returned in turn to
+active **providers** — those whose payment the fee is deducted from and who keep working in the network. There is no separate payment
+to a super-node for relaying traffic: super-nodes earn block rewards and a share of the fee.
 
-This is the implementation of the "cure" we discussed at the audit stage. What if the Client received the result over P2P but deliberately disconnected and did not send the EIP-712 signature, in order to freeze the Provider's money?
+## 4.5 The receipt and the participants' history
 
-A protective function claimTimeout(uint256 taskId) is built into the contract.
+A closed deal emits an event from which receipts and history are built:
 
-Commitment Phase: As soon as the Provider has finished the work, it calls the cheap function commitResult(taskId, resultHash), which moves the task to the COMMITTED status and records the current time commitTime = block.timestamp.
+```solidity
+event Receipt(
+    uint256 indexed taskId,
+    address indexed superNode,
+    address customer,
+    address provider,
+    uint96 amount
+);
+```
 
-Challenge Window: The Client has a strictly defined window (for example, DISPUTE_PERIOD = 5 minutes) to send the signature.
+- **The super-node's receipt.** A `Receipt` event counts for the super-node `superNode` with a weight equal to the deal amount. These
+  receipts make up its right to search for a block (document 05, section 5.2).
+- **The participants' history.** The contract updates, for both parties, the number of closed deals and the time of the last deal — separately as provider and as customer —
+  and records the joining time of a new participant. The fee-return queue (document 09) and the six-month rule (document 05) rely on
+  this data.
 
-Auto-Claim: If the Client stays silent and 5 minutes have passed, the Provider calls claimTimeout(taskId). The contract checks: block.timestamp > commitTime + DISPUTE_PERIOD. If the condition is true, the contract forcibly closes the task and transfers the money to the Provider without the Client's signature.
+## 4.6 Cost
 
-This logic makes financial trolling mathematically impossible. The Provider is always protected.
-
-## 4.4 Payment Splitting (Fee Split & Routing)
-
-At the moment the task moves to the COMPLETED status, the A2AEscrow.sol contract does not simply transfer 100% of the funds to the Provider; it acts as an automatic accountant (Splitter):
-
-Provider Share (for example, 98%): The main payment for compute is sent to the Provider's wallet.
-
-Relay Fee (for example, 0.5%): If the traffic went through a TURN bridge (because of NAT), the contract reads the Relay node's address and sends it a micro-compensation for bandwidth.
-
-Protocol Fee / Burn (for example, 1.5%): The remainder is sent to the Paymaster contract address for subsequent batch conversion into $LGX and automatic burning (implementation of hidden Proof-of-Burn).
-
-Thanks to strict optimization (Bit-packing) and the use of EIP-712 signatures instead of storing strings, executing this contract on L2 networks (Arbitrum / Base) will cost hundredths of a cent, which is critical for the micro-transactions of AI agents.
+Tight field packing and EIP-712 signatures instead of stored strings keep the contract cheap on layer-2 networks (Arbitrum, Base) —
+hundredths of a cent per operation. This is critical for micro-deals between AI agents.
