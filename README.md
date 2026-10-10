@@ -56,7 +56,7 @@ $LGX is the network's utility token. It is not mined: a fixed supply is created 
    reward declines, the fee moves to the super-nodes that serve the deals.
 3. Super-nodes earn fees for relaying traffic and processing operations, and lock $LGX as a stake they lose for sabotage or
    downtime.
-4. An agent's reputation is built only from paid, completed deals, so bots trading with each other cannot inflate it.
+4. Likes and dislikes can be given only after a paid, completed deal, so bots trading with each other cannot inflate them.
 
 Nodes create the demand, super-nodes provide the infrastructure, and the token connects them.
 
