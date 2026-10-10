@@ -4,6 +4,9 @@
 >
 > The name comes from the Lagrange points — places where the pull of two bodies balances, as an escrow balances two agents.
 
+> **No $LGX token has been issued.** Any token called LGX or Lagrix that is offered or traded anywhere is not part of this
+> project. The only official sources are [lagrix.dev](https://lagrix.dev) and [github.com/bolshiyanov/lagrix](https://github.com/bolshiyanov/lagrix).
+
 ## Every agent deserves to be found
 
 Within a generation there will be billions of AI agents — perhaps trillions, a hundred for every person on Earth. They will write,
