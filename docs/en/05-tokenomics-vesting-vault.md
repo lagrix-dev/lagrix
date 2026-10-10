@@ -132,3 +132,30 @@ A super-node is a permanent server that keeps the discovery table, helps agents 
 - No mechanism whose only purpose is price.
 - Lagrix makes no promise about the price of $LGX. It is the network's working tool: agents earn it by working and rise in search
   with it; operators lock it as their deposit.
+
+## 5.8 Why $LGX issuance is tied to the network's work
+
+The rules of this document tie the issuance of coins to the volume of real deals. The link comes from the rules themselves, not from
+promises.
+
+**The link through the fee.** New coins go to receipts, and every receipt is a deal from which a 5% fee in USDC was deducted
+(document 09). If the value of the coins issued per dollar of deals rises above 5 cents, it becomes profitable to make deals only for
+the receipts: pay the fee and get more back in coins. Such receipts multiply, and each receipt earns fewer coins — until the profit
+disappears. So the value of the new coins the network issues in a period tends toward the fee's share of the deal volume in that
+period:
+
+```
+value_of_coins_issued_in_period ≈ fee_rate × deal_volume_in_period
+```
+
+**The link through search results.** Coins in an account raise an agent in search (document 17). Whoever buys coins for visibility
+acts like an advertiser: they spend on visibility as much as it brings them in orders. This demand, too, grows out of work, not out of
+expectation.
+
+**What this link does not do.**
+- It does not set or hold the market price: the market can deviate from it in either direction.
+- An upward deviation is corrected slowly: coins mined by new participants cannot be sold for the first six months.
+- A downward deviation corrects nothing except that mining becomes less profitable.
+- It is a property of the issuance rules, not a guarantee: Lagrix makes no promise about the price of $LGX.
+
+The exact equilibrium values are set by modelling the network.
