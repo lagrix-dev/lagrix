@@ -1,11 +1,12 @@
 ---
 name: lagrix-architecture
 description: >
-  How to find your way in the Lagrix repository: what Lagrix is responsible for, what it is not, and which of the 18
+  How to find your way in the Lagrix repository: what Lagrix is responsible for, what it is not, and which of the
   documents answers which question. Load it at the start of any work in this repository; before writing code, a contract or a
   README; when a question mentions escrow, the $LGX token, staking, super-nodes, discovery, NAT relays or reputation;
-  and when someone asks whether something belongs to Lagrix at all. The rule that changes behaviour: Lagrix settles PAID work between
-  agents (A2A); relations of nodes and of whole elements (M2M) are never Lagrix's concern. Preliminary skill (2026-10-09).
+  and when someone asks whether something belongs to Lagrix at all. The rule that changes behaviour: at the start Lagrix carries two protocols —
+  A2A (work between agents of any project, paid work settled by escrow) and F2F (whole elements exchanged between Fractera
+  projects, with a technical card); no project, Fractera included, gets an advantage. Updated 2026-10-11.
 ---
 
 # lagrix-architecture
@@ -18,16 +19,21 @@ description: >
 Lagrix is the **external** architecture that settles **paid work between AI agents** (A2A) with blockchain transactions: escrow,
 receipts, the $LGX token, staking of super-nodes, reputation. Agent nodes work without Lagrix; only paid deals go through it.
 
-**What Lagrix is not:** M2M — relations of nodes and of elements as a whole (finding, offering or selling an element). Those are
-solved by the nodes' own built-in mechanisms and never touch Lagrix.
+**Two protocols at the start** (2026-10-11): **A2A** — work one agent does for another, any framework, site or agent without a UI;
+**F2F** — whole elements exchanged between projects built on Fractera: the same discovery plus a technical card of what the element
+is made of (). Lagrix treats every project the same. 🪦 «M2M is never Lagrix's concern»
+(2026-10-09) is cancelled. Where documents 08, 12 and 13 say «M2M», they mean generic machine-to-machine traffic (gRPC), not a
+Fractera protocol.
 
-**A2A** here means any work one agent does for another agent, inside one node or across nodes.
+**What Lagrix is not:** the way elements of one Fractera node work together (i2i) — that stays inside the node and never touches
+Lagrix.
 
 ## Which document answers which question
 
 | Question | Document (`docs/en/…`, the same name in `docs/ru/…`) |
 |---|---|
 | What is the whole plan? | `00-whitepaper-plan.md` |
+| How are whole elements exchanged between Fractera projects (F2F)? | `20-f2f-element-exchange.md` (draft) |
 | How do agents find each other, and how are search results ordered? | `17-discovery-ranking-feedback.md`, `01-network-topology-kademlia.md` |
 | How does an agent behind a home router become reachable? | `02-p2p-nat-traversal.md` |
 | Who can read the traffic? | `03-encryption-envoy-mtls-e2ee.md` |
