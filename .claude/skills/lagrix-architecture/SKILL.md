@@ -21,7 +21,7 @@ receipts, the $LGX token, staking of super-nodes, reputation. Agent nodes work w
 
 **Two protocols at the start** (2026-10-11): **A2A** — work one agent does for another, any framework, site or agent without a UI;
 **F2F** — whole elements exchanged between projects built on Fractera: the same discovery plus a technical card of what the element
-is made of (). Lagrix treats every project the same. 🪦 «M2M is never Lagrix's concern»
+is made of (`docs/en/20-f2f-element-exchange.md`). Lagrix treats every project the same. 🪦 «M2M is never Lagrix's concern»
 (2026-10-09) is cancelled. Where documents 08, 12 and 13 say «M2M», they mean generic machine-to-machine traffic (gRPC), not a
 Fractera protocol.
 
