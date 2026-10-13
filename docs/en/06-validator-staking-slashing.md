@@ -6,8 +6,9 @@ this document: **downtime is not fraud**. A server that goes offline simply stop
 
 ## 6.1 The deposit
 
-The deposit size is calculated when the operator joins (document 05, section 5.6). The first 100 operators join without a deposit:
+The deposit is set by the place the operator wins (document 05, section 5.6). Operators of places 1–100 join without a deposit:
 their first rewards stay locked as the deposit until it reaches the required size, and penalties are taken from what has accumulated.
+Later operators lock a small deposit, the same for everyone, in coins they earned.
 On withdrawal the deposit stays locked for 14 days: if fraud committed before the withdrawal comes to light in that time, the penalty
 can still be collected.
 
@@ -26,11 +27,14 @@ struct Validator {
 
 As in Bitcoin, where a miner that is switched off simply finds no blocks, a super-node is not penalised for downtime.
 
-- **While the node is unavailable,** it serves no deals, so it earns no receipts and no share of the period's reward, and as an inactive
-  node it receives no share of the fee. It loses only income.
+- **While the node is unavailable,** it serves no deals, so it earns no receipts and no share of the period's reward; it is not drawn
+  as a witness, so it receives no fee; and it does not pass the period's quality minimum. It loses only income.
 - **Availability** is measured by neighbouring nodes: regular checks (PING) from the Kademlia table (document 01).
-- **If the node is unavailable for 30 days in a row,** it is removed. Its place becomes a vacancy on the terms on which it joined
-  (document 05, section 5.6), and the deposit is returned to the operator after the 14-day withdrawal. It did not cheat — it left.
+- **If the node is unavailable for 30 days in a row, or fails the quality minimum for several periods,** it is removed. Its place
+  reopens on the terms of the day it reopens (document 05, section 5.6), and the deposit is returned to the operator after the 14-day
+  withdrawal. It did not cheat — it left.
+- **Rotation is not a penalty either.** Once every 1 year / N a super-node chosen at random leaves; its deposit is returned in the same
+  way (document 05, section 5.6).
 
 ## 6.3 Fraud and its proof
 
