@@ -28,8 +28,8 @@ A fee in USDC, a constant of at most 5% set by modelling: paid to witnesses, sup
 sign its receipt; the super-node that served the deal is never one of them (document 09).
 
 Issuance for work: $LGX coins are born only as the reward of an issuance period, divided by the receipts of served deals; no mining; the
-cap is 1,000,000,000 LGX over ~30 years on a smoothly declining schedule; shares: 49.5% super-nodes by receipts, 29.7% provider agents
-by receipts, 19.8% equally to super-nodes that passed the quality minimum, 1% the founder; customer agents receive no coins (document 05).
+cap is 1,000,000,000 LGX over ~30 years on a smoothly declining schedule; shares: 50% super-nodes by receipts, 30% provider agents
+by receipts, 20% equally to super-nodes that passed the quality minimum; no founder share; customer agents receive no coins (document 05).
 
 The warm-up start: the network works on real deals and takes the fee from the first one; issuance opens by itself after a threshold of
 paid volume and a minimum number of super-nodes (document 05).
@@ -39,8 +39,7 @@ paid volume and a minimum number of super-nodes (document 05).
 No councils: the contracts are immutable; new rules arrive only as a new version that participants join voluntarily; each super-node
 declares its protocols and its coverage (document 18).
 
-The founder: 1% of every period's reward, each portion locked for 12 months; no other advantage; the founder and related persons,
-Fractera, Inc. included, run no super-nodes and act as no witness (document 05).
+The founder: no share of issuance; the founder and Fractera, Inc. take part only on the same terms as anyone (document 05).
 
 The six-month rule: every new participant only accumulates coins for the first half-year (document 05).
 

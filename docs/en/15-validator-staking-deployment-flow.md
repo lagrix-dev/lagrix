@@ -7,8 +7,7 @@ Below is the full step-by-step algorithm for putting a node into operation — f
 **Before stage 3, the operator must hold a place.** Places 1–100 are taken without a deposit. Places 101–1,000 go by invitation to
 owners of provider agents with paid work over the last year; after 1,000, places open two at a time when the network is overloaded. In
 both cases the applicant's server is measured by random agents and the place is assigned at random; once every 1 year / N a random
-super-node leaves by rotation and its place is assigned again at random (document 05, section 5.6). Addresses named by the founder and related
-persons, Fractera, Inc. included, cannot take a place (document 05, section 5.5).
+super-node leaves by rotation and its place is assigned again at random (document 05, section 5.6).
 
 ## 15.1 End-to-End Launch Process (Deployment Flow Pipeline)
 
@@ -103,7 +102,6 @@ The smart contract checks the transaction, records the stake and moves the addre
 ```solidity
 function registerValidator(bytes32 nodeId, uint96 amount) external nonReentrant {
     require(placeWon[msg.sender], "ValidatorStaking: no place assigned");               // doc 05, 5.6
-    require(!namedFounderAddress[msg.sender], "ValidatorStaking: founder and related addresses excluded"); // doc 05, 5.5
     require(amount >= requiredDeposit(), "ValidatorStaking: deposit below the required amount"); // doc 05, 5.6
     require(validators[msg.sender].stakeBalance == 0, "ValidatorStaking: Already registered");
 

@@ -7,8 +7,7 @@
 **До этапа 3 у оператора должно быть место.** Места 1–100 занимаются без залога. Места 101–1 000 достаются по приглашению
 владельцам агентов-исполнителей с оплаченной работой за последний год; после 1 000 места открываются по два, когда сеть перегружена. В
 обоих случаях сервер заявителя измеряют случайные агенты, а место назначается случайным выбором; раз в 1 год / N случайный супер-узел выбывает
-по ротации, и его место заново назначается случайным выбором (документ 05, раздел 5.6). Адреса, названные основателем и связанными с ним лицами,
-включая Fractera, Inc., места занять не могут (документ 05, раздел 5.5).
+по ротации, и его место заново назначается случайным выбором (документ 05, раздел 5.6).
 
 ## 15.1 Общий сквозной процесс запуска (Deployment Flow Pipeline)
 
@@ -103,7 +102,6 @@ Solidity Механика под капотом ValidatorStaking.sol:
 ```solidity
 function registerValidator(bytes32 nodeId, uint96 amount) external nonReentrant {
     require(placeWon[msg.sender], "ValidatorStaking: no place assigned");               // doc 05, 5.6
-    require(!namedFounderAddress[msg.sender], "ValidatorStaking: founder and related addresses excluded"); // doc 05, 5.5
     require(amount >= requiredDeposit(), "ValidatorStaking: deposit below the required amount"); // doc 05, 5.6
     require(validators[msg.sender].stakeBalance == 0, "ValidatorStaking: Already registered");
 

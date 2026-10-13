@@ -26,8 +26,7 @@ These are choices for the start, not forever. When a better protocol appears, su
 - Search results follow the last twelve months of paid work, and one place in every four is chosen at random among the matching agents.
 - Coins, likes, dislikes and order counts are visible to the parties but do not affect search results.
 - The network has no central server and no single point of failure.
-- The founder's share is 1% of every period's reward with a 12-month lock; it cannot be increased, and the founder has no other
-  advantage.
+- The founder has no share of issuance and takes part only on the same terms as anyone.
 
 ## 18.3 Rules live in immutable contracts
 

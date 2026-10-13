@@ -27,15 +27,14 @@ The fee is taken from the very first deal, including during the warm-up before i
 ## 9.3 Where the fee goes: witnesses
 
 For every deal the contract chooses **witnesses** at random among the active super-nodes. A witness checks the deal's receipt and signs
-it; the fee is divided among the witnesses who signed. The super-node that served the deal is never a witness to it, and neither is an
-address of the founder or of persons related to them (document 05, section 5.5).
+it; the fee is divided among the witnesses who signed. The super-node that served the deal is never a witness to it.
 
 The warm-up changes nothing: from the first deal, the fee goes to that deal's witnesses. Nothing accumulates in the contract for later.
 
 ```solidity
 // Sketch: witnesses are chosen for a deal; those who sign its receipt share the fee
 function _openWitnessing(bytes32 dealId, address servingNode) internal {
-    address[] memory w = _chooseWitnesses(dealId, servingNode, WITNESSES_PER_DEAL); // excludes servingNode and named founder addresses
+    address[] memory w = _chooseWitnesses(dealId, servingNode, WITNESSES_PER_DEAL); // excludes servingNode
     witnesses[dealId] = w;
 }
 

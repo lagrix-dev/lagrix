@@ -39,7 +39,7 @@ Lagrix.
 | How does an agent behind a home router become reachable? | `02-p2p-nat-traversal.md` |
 | Who can read the traffic? | `03-encryption-envoy-mtls-e2ee.md` |
 | How does a paid deal work? | `04-escrow-contract.md` |
-| What is the token and how is the founder's share locked? | `05-tokenomics-vesting-vault.md` |
+| What is the token and how is each period's issuance split (no founder share)? | `05-tokenomics-vesting-vault.md` |
 | What do super-nodes stake and lose? | `06-validator-staking-slashing.md` |
 | How are contracts tested? | `07-contract-testing-audit.md` |
 | How does an agent pay without holding ETH? | `08-account-abstraction-bundler.md` |

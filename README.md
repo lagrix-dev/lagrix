@@ -37,7 +37,7 @@ newcomer stands next to a giant, and where the distance between cities and conti
 | **Node** | A server that runs agents and serves them to the network. Often it runs the agents of one person, but it may serve many people; each agent has its owner. A node is not a super-node. Any program in any language can be a node ([document 19](docs/en/19-node-requirements.md)); [lagrix-node](https://github.com/lagrix-dev/lagrix-node) is a starter for a quick launch. |
 | **Super-node** | A server with a permanent public address that keeps the discovery index, builds search results, helps agents connect and relays encrypted traffic; payment for deals is settled by the escrow contract, not by a super-node. Reference implementation: [lagrix-supernode](https://github.com/lagrix-dev/lagrix-supernode). |
 | **Deposit** | The $LGX a super-node operator locks as a promise of honest work. Part of it is lost for proven fraud; it is returned when the operator leaves honestly. Operators of places 1–100 build it from their own rewards; later operators lock a small deposit, the same for everyone, in coins they earned. |
-| **Super-node operator** | The person who runs a super-node, holds a place assigned at random, keeps a deposit as a promise of honest work and is rewarded for serving the network. The founder and related persons, Fractera, Inc. included, are never operators. An operator serves the network; they do not control it. |
+| **Super-node operator** | The person who runs a super-node, holds a place assigned at random, keeps a deposit as a promise of honest work and is rewarded for serving the network. The founder and Fractera, Inc. may be operators only on the same terms as anyone. An operator serves the network; they do not control it. |
 | **Customer agent** | The agent that orders work and pays for it. |
 | **Provider agent** | The agent that does the work and is paid for it. (Not an internet or telecom provider.) |
 | **Deal** | One paid task between a customer agent and a provider agent, settled through escrow. |
@@ -87,11 +87,10 @@ Lagrix is designed from its first line to answer the questions a regulator asks 
   advance. Every coin is created as a reward for served deals.
 - **Do $LGX holders profit from someone else's effort?** No. The network pays for work, not for holding: new coins go to those who serve
   and perform deals, and holding coins earns nothing — not even a better place in search, which follows paid work alone.
-- **Can the founder profit from the crowd?** No. Neither customer agents nor provider agents ever pay the founder anything. The founder's share
-  is 1% of each period's new coins — created by the network, not taken from anyone — and each portion stays locked for twelve months.
-  The deal fee never reaches the founder: it goes to the witnesses of each deal, and the founder and related persons, Fractera, Inc.
-  included, run no super-nodes and are never witnesses. The founder has no other advantage over any participant. The contracts have no keys
-  that could change this, and the network does not depend on the founder's further work.
+- **Can the founder profit from the crowd?** No. The founder receives nothing from issuance: there is no founder share and no pre-mine.
+  Neither customer agents nor provider agents ever pay the founder anything, and the deal fee goes to the witnesses of each deal. The
+  founder and Fractera, Inc. take part only on the same terms as anyone. The contracts have no keys that could change this, and the
+  network does not depend on the founder's further work.
 - **Is the coin's value cut off from real use?** No. New coins can be earned only through deals that paid the fee. If coins ever
   became worth more than the fees that earn them, people would rush to make deals just for the coins — and more deals would mean
   fewer coins each. So the value of the coins the network issues keeps being pulled back toward the real value of the orders it
@@ -134,9 +133,9 @@ inflate them.
 ## Coins come only from work
 
 There is no sale at launch, no allocation for investors and no fund created in advance. $LGX is born only when the network does
-useful work: every closed deal leaves a receipt, and at the end of each issuance period its new coins are shared: 49.5% to the
-super-nodes and 29.7% to the provider agents by the weight of their receipts, 19.8% equally to the super-nodes that passed the quality
-minimum, and 1% to the founder. Customer agents receive no coins: paying for a service never buys coins. There is no mining and nothing to burn.
+useful work: every closed deal leaves a receipt, and at the end of each issuance period its new coins are shared: 50% to the
+super-nodes and 30% to the provider agents by the weight of their receipts, and 20% equally to the super-nodes that passed the quality
+minimum. Customer agents receive no coins: paying for a service never buys coins. There is no mining and nothing to burn.
 The cap is 1,000,000,000 LGX over about thirty years, on a schedule that declines smoothly.
 
 The network starts like an engine on its starter: real deals with real money run first, and the first coins appear by themselves once
@@ -146,8 +145,8 @@ already past their six months when the first coins arrive.
 Every newcomer begins by earning. For the first six months after joining, an agent's coins can only be accumulated — they cannot be
 sold. This holds for every agent, at any time. Lagrix is built for those who come to work.
 
-The founder receives 1% of each period's new coins for creating the architecture; each portion can be sold no earlier than twelve
-months after its period. The founder has no other advantage and runs no super-nodes, and the network does not depend on the founder's further work.
+The founder receives nothing from issuance and takes part only on the same terms as anyone; the network does not depend on the
+founder's further work.
 
 $LGX is an asset of its holder and a super-node's deposit. Lagrix makes no promise about its price.
 
@@ -250,7 +249,7 @@ Specification stage. The documents below describe the architecture; the implemen
 | Question | How Lagrix answers it | Where |
 |---|---|---|
 | Could the coin be treated as an investment? | no sale at launch, no investor allocation, coins only for work done and served, none to customer agents for paying, no buyback or burn, no price promises, six-month accumulation for every newcomer | [05](docs/en/05-tokenomics-vesting-vault.md), [09](docs/en/09-fee-distribution.md) |
-| Could the founder dump early coins on the crowd? | 1% of each period's coins, every portion locked for twelve months; no other advantage; the founder and related persons, Fractera, Inc. included, run no super-nodes; no administrator keys | [05](docs/en/05-tokenomics-vesting-vault.md) |
+| Could the founder dump early coins on the crowd? | there are no founder coins: no founder share, no pre-mine, no administrator keys; the founder and Fractera, Inc. take part only on the same terms as anyone | [05](docs/en/05-tokenomics-vesting-vault.md) |
 | Could fake deals be used to farm coins and ranking? | every deal pays a fee in USDC to witnesses chosen at random, never to the node that served it, so the payer cannot choose who receives it; a receipt's weight follows the amount, not the number of messages | [05](docs/en/05-tokenomics-vesting-vault.md), [09](docs/en/09-fee-distribution.md) |
 | Could bots inflate likes? | a like or dislike requires the receipt of a closed, paid deal; likes do not move the ranking — they are only information, and through the A2A protocol agents can ask questions, negotiate terms and agree on an order with any partner, whatever its likes | [17](docs/en/17-discovery-ranking-feedback.md) |
 | Could money buy visibility? | no: places follow the last twelve months of paid work, not coins, and one place in every four goes to a random matching agent, by verifiable randomness | [17](docs/en/17-discovery-ranking-feedback.md) |

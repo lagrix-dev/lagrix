@@ -80,15 +80,15 @@ rotation about once every year divided by the number of super-nodes, so no group
 **Is a super-node's reward payment for services or profit from others' efforts?** *(Release 33-11412: rewards to miners and node
 operators are "payments … in exchange for services it provides"; the reward structure is "predetermined by the protocol")*
 Payment for services, fixed in code:
-- 49.5% of each period's issuance is divided among super-nodes by the weight of the deals each one served;
-- 19.8% is divided equally among the super-nodes that passed the period's quality minimum — payment for staying available and good
+- 50% of each period's issuance is divided among super-nodes by the weight of the deals each one served;
+- 20% is divided equally among the super-nodes that passed the period's quality minimum — payment for staying available and good
   enough, which cannot be enlarged with fake volume;
 - the deal fee goes only to the witnesses of a deal: super-nodes chosen at random to check its receipt and sign it, paid for that check
   ([09](09-fee-distribution.md); changelog entry 12).
 No super-node receives a share of a deal it did nothing for.
 
 **Is a provider's reward payment for work?** *(Release 33-11412)*
-Yes. 29.7% of each period's issuance is divided among provider agents by the weight of the receipts of their paid work.
+Yes. 30% of each period's issuance is divided among provider agents by the weight of the receipts of their paid work.
 
 **Is there a common enterprise — a shared pot?** *(Howey; Release 33-11412: the common enterprise element must be satisfied)*
 The network has no pot that grows with deposits and is shared among holders. Each period's issuance follows a schedule fixed before
@@ -98,21 +98,21 @@ per deal to that deal's witnesses (changelog entries 2, 12 and 14).
 ## 22.4 The founder
 
 **Does the founder have a share or any advantage?** *(Release 33-11412: representations and the issuer's interest)*
-The founder receives 1% of each period's issuance for creating the architecture. Each portion can be sold no earlier than twelve months
-after its period, so the founder never holds a large amount that could be dumped at once. The share is created together with each period
-and grows only while the network works; not one coin exists in advance. The founder has no other advantage: no pre-mine, no key that
-issues coins or changes rules ([05](05-tokenomics-vesting-vault.md), section 5.5; changelog entry 9).
+No. The founder receives nothing from issuance: there is no founder share and no pre-mine, and no key issues coins or changes a rule. The
+founder and persons related to them, Fractera, Inc. included, take part only on the same terms as anyone — a super-node place only by the
+same random selection, a witness only when chosen like anyone, provider agents paid by the same rules ([05](05-tokenomics-vesting-vault.md),
+section 5.5; changelog entry 18).
 
-**Can the founder earn by running super-nodes or warming up the network?** *(the case of an author who controls the early network)*
-No. The founder and persons related to them, Fractera, Inc. included, run no super-nodes and are never witnesses. They name their
-addresses publicly in advance, and the contracts refuse those addresses the role of super-node and of witness (changelog entry 13).
-During the warm-up no coins are issued, receipts closed then never earn coins, and the fee goes to the witnesses of each deal rather than
-into a pot. A founder who pushed the network to its start with deals of their own would pay the fee on every one of them and get back
-neither coins nor the fee.
+**Can the founder earn by warming up the network?** *(the case of an author who controls the early network)*
+No. During the warm-up no coins are issued, receipts closed then never earn coins, and every deal pays its fee to the witnesses of that
+deal rather than into a pot. A founder who pushed the network to its start with deals of their own would pay the fee on every one of them
+and get back neither coins nor the fee.
 
 **Does the network depend on the founder's further work?** *(Release 33-11412: reliance on the issuer's efforts)*
 No. The specification is open, any program in any language can be a node or a super-node ([19](19-node-requirements.md)), and the
-contracts cannot be changed. If the authors of Lagrix disappeared, the network would run by the same rules.
+contracts cannot be changed. Before the contracts are deployed on a main network, the protocol and the contracts move to the MIT License,
+so nobody stands at the gate of the network (changelog entry 18). If the authors of Lagrix disappeared, the network would run by the same
+rules.
 
 ## 22.5 Market integrity
 

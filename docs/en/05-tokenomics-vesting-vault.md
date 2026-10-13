@@ -20,7 +20,7 @@ not fixed below are set once, by modelling, before deployment.
 | Deal fee | a constant of at most 5% of the deal amount, set by modelling (5% until then), paid to witnesses (section 5.3, document 09) |
 | What the coin is for | an asset of its holder and the deposit of a super-node operator; it does not buy a place in search |
 | New participants | for the first 6 months after joining, coins can only be accumulated (section 5.4) |
-| Founder's share | 1% of every period's reward; each portion can be sold no earlier than 12 months after its period (section 5.5) |
+| Founder's share | none: the founder receives nothing from issuance and takes part on the same terms as anyone (section 5.5) |
 
 ## 5.2 Receipts and issuance by period
 
@@ -41,10 +41,9 @@ forge or add a period, and a receipt cannot be forged: it is the closing of a pa
 
 | Who | Share of the reward | How it is distributed |
 |---|---|---|
-| The founder | 1% | into the 12-month rolling lock (section 5.5) |
-| Super-nodes, by work | 49.5% | in proportion to the weight of the receipts of the deals they served in this period |
-| Provider agents | 29.7% | in proportion to the weight of the receipts of their paid work in this period |
-| Super-nodes, equally | 19.8% | in equal parts to the super-nodes that passed the quality minimum in this period (section 5.6) |
+| Super-nodes, by work | 50% | in proportion to the weight of the receipts of the deals they served in this period |
+| Provider agents | 30% | in proportion to the weight of the receipts of their paid work in this period |
+| Super-nodes, equally | 20% | in equal parts to the super-nodes that passed the quality minimum in this period (section 5.6) |
 | **Total** | **100%** | |
 
 Coins go to those who do the work and those who serve it. Customer agents receive no coins: a customer who received coins for paying for
@@ -90,31 +89,15 @@ function _update(address from, address to, uint256 amount) internal override {
 
 Whoever comes to buy and quickly sell will sell nothing in six months. Whoever comes to work keeps working while the period runs.
 
-## 5.5 The founder
+## 5.5 No founder share
 
-The founder receives 1% of every period's reward for creating the architecture. The share is created together with the period and
-grows only while the network actually works; not a single coin is created in advance.
+The founder receives nothing from issuance: there is no founder share, no founder tranche and no pre-mine. No key issues coins and no key
+changes a rule; the start of issuance is triggered by volume, not by a person. Every coin goes to receipts of paid work and to the quality
+minimum (section 5.2).
 
-Each portion can be sold no earlier than 12 months after its period. The lock is rolling: the founder never holds a large amount that
-could be dumped on the market at once. The share has no administrator keys: it cannot be accelerated, increased or taken away.
-
-```solidity
-// Sketch: the founder's portion from period n becomes available 12 months after that period
-struct FounderTranche { uint96 amount; uint40 issuedAt; }
-function releasable(FounderTranche memory t) public view returns (uint96) {
-    return block.timestamp >= t.issuedAt + 365 days ? t.amount : 0;
-}
-```
-
-**No other advantage.** The founder has no advantage over any participant except this share. The code makes the rest impossible: there
-is no pre-mine and no key that issues coins; no key that changes any rule; the start of issuance is triggered by volume, not by a
-person; and pushing the start with fake deals costs the fee, which goes to witnesses chosen at random.
-
-**No super-nodes.** The founder and persons related to them, Fractera, Inc. included, run no super-nodes and act as no witness. They
-name their addresses publicly in advance, and the contracts refuse those addresses the role of super-node and of witness; everything
-these addresses receive is locked for 12 months. Super-nodes receive the witness fee and most of the issuance, so a founder running them
-would earn from the network on top of the 1%. A contract sees addresses, not people, so it can bind only the addresses that are named;
-the public statement binds the person.
+The founder and persons related to them, Fractera, Inc. included, take part only on the same terms as anyone: a super-node place only by
+the same random selection and on the same conditions (section 5.6), a witness only when chosen like anyone (document 09), provider agents
+paid by the same rules. There is no privilege and no exclusion.
 
 ## 5.6 How new super-nodes join
 
@@ -138,7 +121,7 @@ A super-node is a permanent server that keeps the discovery index, builds search
   penalty: its deposit is returned. Its place is assigned by the same random selection, on the terms of the day it reopens. On average a super-node stays
   about a year, so the door stays open to those who do paid work now.
 - **The quality minimum.** Every period, random agents check each super-node against a minimum: passed or failed. Those who passed
-  share 19.8% of the period's reward equally (section 5.2); a super-node that fails for several periods leaves.
+  share 20% of the period's reward equally (section 5.2); a super-node that fails for several periods leaves.
 - **Vacancies.** A place freed by rotation, by failing the minimum or by removal for fraud (document 06) reopens on the terms of the day
   it reopens, never on the terms of the operator who left.
 

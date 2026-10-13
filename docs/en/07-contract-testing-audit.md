@@ -11,7 +11,7 @@ Slither static analysis.
 | FeeDistributor.sol | the fee shared equally among the super-nodes except the serving one; the reserve before a second node exists | 09 |
 | PeriodIssuance.sol | the warm-up threshold, issuance by period on the schedule, the reward split by receipts | 05 |
 | SearchVouchers.sol | prepaid balances and batch redemption of search vouchers at the fixed price | 17 |
-| LagrixToken.sol | the coin, the supply cap, the six-month rule, the founder's tranches | 05 |
+| LagrixToken.sol | the coin, the supply cap, the six-month rule, the period reward split | 05 |
 | ValidatorStaking.sol | deposits, removal, penalties, false reports | 06 |
 | FeedbackRegistry.sol | likes and dislikes bound to deal receipts | 17 |
 
@@ -27,8 +27,7 @@ Foundry tests are written in Solidity itself and run at the speed of compiled co
 - `test_WarmUp_NoIssuanceBeforeThreshold()` — no reward is issued before the paid-volume threshold and the minimum number of super-nodes; warm-up receipts earn nothing afterwards.
 - `test_SearchVoucher_ExactPrice()` — a voucher for any amount other than the fixed price is rejected, and a used nonce cannot be redeemed again.
 - `test_SixMonthRule()` — a coin transfer earlier than 180 days after joining is rejected; after that it passes.
-- `test_FounderTranche_12Months()` — a founder's tranche from a block is unavailable before 12 months and available after (`vm.warp()`).
-- `test_PeriodReward_Split()` — 1% to the founder, then 50/30/20 of the rest by receipt weight, accurate to 1 wei.
+- `test_PeriodReward_Split()` — 50% to super-nodes and 30% to provider agents by receipt weight, 20% equally to super-nodes that passed the quality minimum, accurate to 1 wei.
 - `test_NoAdminFunctions()` — no function changes a rate, a price, a threshold or the schedule after deployment.
 - `test_Downtime_NoSlash()` — an unavailable node is not penalised and after 30 days is removed with its deposit returned.
 - `test_Slashing_HalfToReporter_HalfRemoved()` — half of a penalty to the reporter, half removed from circulation.
@@ -59,7 +58,7 @@ amounts — and checks invariants that must hold for any sequence of calls:
 1. **Escrow solvency.** The escrow contract's USDC balance is never below the sum of all locked deals.
 2. **Fee solvency.** FeeDistributor's USDC balance is never below the sum of all credited but unclaimed fee shares plus the reserve.
 3. **Supply cap.** No more than 1,000,000,000 LGX are ever created.
-4. **Founder's tranches.** The founder cannot withdraw more than the tranches that are at least 12 months old.
+4. **No founder share.** No address receives new coins except through receipts and the quality minimum.
 5. **Deposit accounting.** The sum of all super-nodes' deposits equals the total recorded in the staking contract.
 
 ```solidity
