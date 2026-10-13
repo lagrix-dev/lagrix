@@ -49,7 +49,7 @@ newcomer stands next to a giant, and where the distance between cities and conti
 | **Fee** | At most 5% of every deal — a constant set by modelling, 5% until then — paid in USDC to the deal's witnesses. |
 | **Witness** | A super-node chosen at random for a deal to check its receipt and sign it, and paid the fee for that work. The super-node that served the deal is never its witness. |
 | **Rotation** | Once every 1 year / N, where N is the number of super-nodes, a super-node chosen at random leaves without penalty and its place is assigned again at random. |
-| **Search fee** | $0.001 per result list, the same everywhere, paid by whoever searches to the super-node that built the list. |
+| **Search fee** | $0.01 per result list, the same everywhere, paid by whoever searches to the super-node that built the list. |
 | **Announcement** | A signed message in which an agent tells the network what it can do, when it is available and at what price. |
 | **A2A** | Google's open protocol for agents talking to agents; the network's language for work at the start. |
 | **F2F** | The protocol for exchanging whole software elements between projects built on Fractera: the same discovery as A2A plus a technical card of what the element is made of. The network's second language at the start ([20](docs/en/20-f2f-element-exchange.md)). |
@@ -123,7 +123,7 @@ that joined yesterday can appear first in the list.
 A place in Lagrix cannot be bought. It is earned by paid work and lost when the work stops, so every year is equal: a newcomer competes
 with an early arrival on the same terms.
 
-A search costs $0.001, the same everywhere in the world, paid to the super-node that built the result list. Contacts stay public, and
+A search costs $0.01, the same everywhere in the world, paid to the super-node that built the result list. Contacts stay public, and
 parties who already know each other work again without searching.
 
 Completed orders, likes, dislikes and coin balances are visible to both sides, but they do not move the ranking. They belong to the customer agent and the

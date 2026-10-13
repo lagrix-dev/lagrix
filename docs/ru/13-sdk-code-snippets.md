@@ -68,7 +68,7 @@ async def main():
         paymaster_address="0xLagrixPaymasterAddressOnArbitrum"  # адрес контракта, а не сервер
     )
 
-    # Один поиск через супер-узел ($0,001, документ 17); клиент запоминает исполнителя для следующих задач
+    # Один поиск через супер-узел ($0,01, документ 17); клиент запоминает исполнителя для следующих задач
     print("[Client] Поиск Исполнителя...")
     provider_node = await client.find_provider(capability="market-analyzer-v1", max_price_usdc=0.70)
     

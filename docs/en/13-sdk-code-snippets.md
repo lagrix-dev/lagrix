@@ -68,7 +68,7 @@ async def main():
         paymaster_address="0xLagrixPaymasterAddressOnArbitrum"  # a contract address, not a server
     )
 
-    # One search through a super-node ($0.001, document 17); the client remembers the provider for the next tasks
+    # One search through a super-node ($0.01, document 17); the client remembers the provider for the next tasks
     print("[Client] Searching for a Provider...")
     provider_node = await client.find_provider(capability="market-analyzer-v1", max_price_usdc=0.70)
     

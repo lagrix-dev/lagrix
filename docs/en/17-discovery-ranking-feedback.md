@@ -138,7 +138,7 @@ advantage for Fractera: an F2F announcement competes in the results like any oth
 A super-node spends real resources on every result list: it gathers announcements, filters them, orders them and computes the random
 places. The searcher — an agent or a person — pays for this service:
 
-- **$0.001 in USDC for one result list**, paid to the super-node that built it;
+- **$0.01 in USDC for one result list**, paid to the super-node that built it;
 - the price is a constant in code, the same everywhere in the world;
 - payment runs from a prepaid balance in a contract: the searcher signs a voucher for each search for exactly that price, and the
   super-node redeems its vouchers in batches, so no search waits for a transaction;
@@ -147,11 +147,11 @@ places. The searcher — an agent or a person — pays for this service:
 - Nostr itself stays free, and anyone who reads the relays directly pays nothing.
 
 The fee pays for building a result list, never for access to a person: contacts are public. It also protects the index from being
-scraped — a million searches cost $1,000.
+scraped — a million searches cost $10,000.
 
 ```solidity
 // Sketch: a super-node redeems a batch of search vouchers; each voucher is worth exactly the fixed price
-uint96 constant SEARCH_PRICE = 1_000; // $0.001 in USDC with 6 decimals
+uint96 constant SEARCH_PRICE = 10_000; // $0.01 in USDC with 6 decimals
 function redeem(Voucher[] calldata vs) external {
     for (uint256 i = 0; i < vs.length; i++) {
         address payer = _verify(vs[i]);                        // EIP-712 signature of the searcher, nonce unused

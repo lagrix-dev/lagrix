@@ -36,7 +36,7 @@ once have decided is either a constant or a formula in code:
 | Rule | How it is fixed |
 |---|---|
 | Deal fee | 5%, a constant (document 09) |
-| Search fee | $0.001 per result list, a constant (document 17) |
+| Search fee | $0.01 per result list, a constant (document 17) |
 | Issuance | a smoothly declining schedule up to the cap, divided by period (document 05) |
 | Start of issuance | a threshold of paid volume and a minimum number of super-nodes, constants (document 05) |
 | Super-node entry and deposit | formulas of network size and load (document 05, section 5.6) |
