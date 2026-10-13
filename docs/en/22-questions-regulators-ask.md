@@ -141,6 +141,12 @@ are created only as rewards for work done in the network.
 Lagrix does not seek admission of $LGX to trading and announces no intention to do so. Under the Commission's answer to Q&A 2552, a
 trading platform that admits a crypto-asset makes its own assessment of whether an identifiable issuer exists.
 
+**The project's own rule.** Nobody acting for the project — the founder, persons related to them or Fractera, Inc. — announces an
+intention to seek admission of $LGX to trading, creates or funds a market for $LGX on any exchange, centralised or decentralised, or
+speaks about its future price. Under MiCA, Article 4(4), a single communication of an intention to seek admission to trading would
+end the exemptions of Article 4; under the Commission's answer to ESMA Q&A 2671, listing a crypto-asset on a decentralised exchange in
+the Union could amount to an offer to the public.
+
 **Do super-nodes hold or transfer clients' crypto-assets?** *(MiCA, Article 3(1)(17), custody; Article 3(1)(26), transfer services)*
 No. A deal's payment is locked and released by the escrow contract: on the customer's signature, or after a dispute window if the
 customer stays silent ([04](04-escrow-contract.md)). No super-node holds a client's funds or the keys to them. Super-nodes keep the
@@ -167,9 +173,7 @@ These questions do not yet have an answer in the architecture. They are named he
 
 - **An identifiable issuer under MiCA.** The founder writes and deploys the contracts. Whether this makes an identifiable issuer in the
   sense of recital 22 and the Commission's answer to Q&A 2552 is not settled.
-- **MiCA Article 4(3)(b).** The exemption covers crypto-assets "automatically created as a reward for the maintenance of the distributed
-  ledger or the validation of transactions". Super-nodes serve discovery and connection and check and sign the receipts of deals;
-  whether this is "the validation of transactions" in the sense of the exemption is not settled.
+- **MiCA Article 4(3)(b).** Whether the exemption in Article 4(3)(b) applies to $LGX is not settled.
 - **The paymaster.** Who funds and runs the contract that pays agents' gas ([08](08-account-abstraction-bundler.md)) is not decided.
 - **Anti-money-laundering and sanctions.** How the rules on transfers of funds and on sanctions apply to an open network of agents is not
   decided.
