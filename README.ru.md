@@ -234,7 +234,7 @@ Lagrix находит, соединяет и записывает. Он не ч�
 | 06 | Залоги супер-узлов: простой и мошенничество | [ru](docs/ru/06-validator-staking-slashing.md) · [en](docs/en/06-validator-staking-slashing.md) |
 | 07 | Тестирование и аудит контрактов | [ru](docs/ru/07-contract-testing-audit.md) · [en](docs/en/07-contract-testing-audit.md) |
 | 08 | Абстракция аккаунтов и бандлеры | [ru](docs/ru/08-account-abstraction-bundler.md) · [en](docs/en/08-account-abstraction-bundler.md) |
-| 09 | Комиссия сделки: доход супер-узлов, которые не обслуживали эту сделку | [ru](docs/ru/09-fee-distribution.md) · [en](docs/en/09-fee-distribution.md) |
+| 09 | Комиссия сделки: плата свидетелям сделки | [ru](docs/ru/09-fee-distribution.md) · [en](docs/en/09-fee-distribution.md) |
 | 12 | Справочник API SDK | [ru](docs/ru/12-sdk-api-reference.md) · [en](docs/en/12-sdk-api-reference.md) |
 | 13 | Примеры кода SDK | [ru](docs/ru/13-sdk-code-snippets.md) · [en](docs/en/13-sdk-code-snippets.md) |
 | 14 | Оборудование и сеть супер-узла | [ru](docs/ru/14-node-hardware-network.md) · [en](docs/en/14-node-hardware-network.md) |

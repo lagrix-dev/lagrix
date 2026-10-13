@@ -52,7 +52,7 @@ Tunnel formation: The Super-Node opens a TCP/WSS socket and tells both agents it
 
 End-to-end proxying: The agents connect to the Super-Node as ordinary clients. The Super-Node blindly forwards encrypted bytes from A to B and back.
 
-Payment for relaying: whether and how a super-node is paid for the traffic it relays is an open question of the changelog (document 000); until it is decided, relaying is described without a price. A super-node already earns its share of every period's reward for the deals it serves and an equal share of the fee of the deals it does not serve (documents 05, 09).
+Payment for relaying: whether and how a super-node is paid for the traffic it relays is an open question of the changelog (document 000); until it is decided, relaying is described without a price. A super-node already earns its share of every period's reward for the deals it serves and the fee of the deals it witnesses (documents 05, 09).
 
 ## 2.5 Connection Establishment State Machine
 

@@ -231,7 +231,7 @@ Specification stage. The documents below describe the architecture; the implemen
 | 06 | Super-node deposits: downtime and fraud | [en](docs/en/06-validator-staking-slashing.md) · [ru](docs/ru/06-validator-staking-slashing.md) |
 | 07 | Contract testing and audit | [en](docs/en/07-contract-testing-audit.md) · [ru](docs/ru/07-contract-testing-audit.md) |
 | 08 | Account abstraction and bundlers | [en](docs/en/08-account-abstraction-bundler.md) · [ru](docs/ru/08-account-abstraction-bundler.md) |
-| 09 | The deal fee: income for the super-nodes that did not serve the deal | [en](docs/en/09-fee-distribution.md) · [ru](docs/ru/09-fee-distribution.md) |
+| 09 | The deal fee: payment to the witnesses of a deal | [en](docs/en/09-fee-distribution.md) · [ru](docs/ru/09-fee-distribution.md) |
 | 12 | SDK API reference | [en](docs/en/12-sdk-api-reference.md) · [ru](docs/ru/12-sdk-api-reference.md) |
 | 13 | SDK code examples | [en](docs/en/13-sdk-code-snippets.md) · [ru](docs/ru/13-sdk-code-snippets.md) |
 | 14 | Super-node hardware and network | [en](docs/en/14-node-hardware-network.md) · [ru](docs/ru/14-node-hardware-network.md) |
