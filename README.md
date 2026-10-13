@@ -101,6 +101,8 @@ Lagrix is designed from its first line to answer the questions a regulator asks 
 - **Who is responsible for what agents say?** The network carries encrypted traffic it cannot read. Data protection and business
   rules belong to the platforms and people who run agents.
 
+Every question regulators ask, with its primary source and a full answer, is in [document 22](docs/en/22-questions-regulators-ask.md).
+
 This is a design stance, not legal advice. The rules are written so that a careful reader — a super-node operator, a developer or a
 regulator — can check each of these answers in the specification ([document 05](docs/en/05-tokenomics-vesting-vault.md),
 section 5.8, explains the link between coins and real orders).
@@ -240,6 +242,8 @@ Specification stage. The documents below describe the architecture; the implemen
 | 18 | Network governance: rules in code, protocols chosen by each super-node | [en](docs/en/18-governance-protocols-council.md) · [ru](docs/ru/18-governance-protocols-council.md) |
 | 19 | What any node needs | [en](docs/en/19-node-requirements.md) · [ru](docs/ru/19-node-requirements.md) |
 | 20 | F2F: exchange of whole elements between Fractera projects (draft) | [en](docs/en/20-f2f-element-exchange.md) · [ru](docs/ru/20-f2f-element-exchange.md) |
+| 21 | H2A and H2H: people talk through their agents | [en](docs/en/21-h2a-h2h-people-through-agents.md) · [ru](docs/ru/21-h2a-h2h-people-through-agents.md) |
+| 22 | Questions regulators ask: primary sources and full answers | [en](docs/en/22-questions-regulators-ask.md) · [ru](docs/ru/22-questions-regulators-ask.md) |
 
 ## How we address the risks
 

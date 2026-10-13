@@ -52,6 +52,7 @@ Lagrix.
 | What does a search cost, and how is ranking computed? | `17-discovery-ranking-feedback.md` (sections 17.2, 17.8, 17.9) |
 | What must any node implement? | `19-node-requirements.md` |
 | How do people talk to their agent and to each other (H2A, H2H)? | `21-h2a-h2h-people-through-agents.md` — only through the agents; the agent advises, the person decides |
+| What do regulators ask, and what does the network answer? | `22-questions-regulators-ask.md` — each question with its primary source and full answer; unanswered ones listed as open, never as compliance |
 
 ## Rules that hold
 
