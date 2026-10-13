@@ -6,7 +6,8 @@ description: >
   README; when a question mentions escrow, the $LGX token, staking, super-nodes, discovery, NAT relays or reputation;
   and when someone asks whether something belongs to Lagrix at all. The rule that changes behaviour: at the start Lagrix carries two protocols —
   A2A (work between agents of any project, paid work settled by escrow) and F2F (whole elements exchanged between Fractera
-  projects, with a technical card); no project, Fractera included, gets an advantage. Updated 2026-10-11.
+  projects, with a technical card); no project, Fractera included, gets an advantage. Since 2026-10-13 there is no council:
+  contracts are immutable and every change is recorded in a changelog document 000 first. Updated 2026-10-13.
 ---
 
 # lagrix-architecture
@@ -46,7 +47,9 @@ Lagrix.
 | What does the SDK look like? | `12-sdk-api-reference.md`, `13-sdk-code-snippets.md` |
 | How is a super-node run? | `14-node-hardware-network.md`, `15-validator-staking-deployment-flow.md`, `16-deployment-docker-monitoring.md` |
 | How are likes and dislikes protected from bots? | `17-discovery-ranking-feedback.md` |
-| Who decides which protocols the network supports? | `18-governance-protocols-council.md` |
+| Who decides which protocols the network supports? | `18-governance-protocols-council.md` — nobody centrally: each super-node declares its own |
+| What changed in the specification, and why? | `000-changelog-<date>.md` — the newest changelog is the authority over older sentences |
+| What does a search cost, and how is ranking computed? | `17-discovery-ranking-feedback.md` (sections 17.2, 17.8, 17.9) |
 | What must any node implement? | `19-node-requirements.md` |
 
 ## Rules that hold
@@ -54,7 +57,11 @@ Lagrix.
 - **The documents describe a goal, not a finished specification.** Their code is a sketch that has never run; check it before
   building on it. USDC amounts use 6 decimals (`100 * 10**6` is 100 USDC).
 - **Interoperability first:** agents speak Google's A2A protocol; Lagrix additions are extensions, not a new format.
-- **No single point of failure:** nothing a person runs may stop working if one company disappears.
+- **No single point of failure:** nothing a person runs may stop working if one company disappears — no `lagrix.dev` address in
+  anything the network needs to run.
+- **No council, no keys:** contracts are immutable; a rule is a constant or a formula, never a vote. Each super-node declares its own
+  protocols and coverage. A change to the rules is a new contract version and a new changelog entry (document 000), written in en and ru.
+- **Ranking follows the last twelve months of paid work, never coins.** The coin is an asset and a super-node's deposit.
 - **Public texts describe the product, not its gaps.** Open questions and weak spots stay out of the indexed README.
 - **License:** `main` is Business Source License 1.1, MIT from 2028-10-09.
 - **Commit and tag messages are written in English.**
