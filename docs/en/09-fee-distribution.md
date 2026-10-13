@@ -26,16 +26,16 @@ The fee is taken from the very first deal, including during the warm-up before i
 
 ## 9.3 Where the fee goes: witnesses
 
-For every deal the contract draws **witnesses** at random among the active super-nodes. A witness checks the deal's receipt and signs
+For every deal the contract chooses **witnesses** at random among the active super-nodes. A witness checks the deal's receipt and signs
 it; the fee is divided among the witnesses who signed. The super-node that served the deal is never a witness to it, and neither is an
 address of the founder or of persons related to them (document 05, section 5.5).
 
 The warm-up changes nothing: from the first deal, the fee goes to that deal's witnesses. Nothing accumulates in the contract for later.
 
 ```solidity
-// Sketch: witnesses are drawn for a deal; those who sign its receipt share the fee
+// Sketch: witnesses are chosen for a deal; those who sign its receipt share the fee
 function _openWitnessing(bytes32 dealId, address servingNode) internal {
-    address[] memory w = _drawWitnesses(dealId, servingNode, WITNESSES_PER_DEAL); // excludes servingNode and named founder addresses
+    address[] memory w = _chooseWitnesses(dealId, servingNode, WITNESSES_PER_DEAL); // excludes servingNode and named founder addresses
     witnesses[dealId] = w;
 }
 
@@ -52,8 +52,8 @@ function claimWitnessFee(bytes32 dealId) external {
 }
 ```
 
-The sketch leaves three things open, named in the changelog (document 000): the source of randomness behind `_drawWitnesses`, the
-number of witnesses per deal, and what happens while the network has too few super-nodes to draw them.
+The sketch leaves three things open, named in the changelog (document 000): the source of randomness behind `_chooseWitnesses`, the
+number of witnesses per deal, and what happens while the network has too few super-nodes to choose them from.
 
 ## 9.4 Why this way
 
@@ -61,9 +61,9 @@ A fee protects against fake deals only if it goes to those an attacker cannot ch
 
 - **A witness is paid for work it does on that deal.** An equal share of every deal would pay every super-node from other people's work,
   whether or not it did anything for the deal — income from the efforts of others, which is exactly what regulators look for.
-- **The payer does not choose the witnesses.** They are drawn at random, so a group that controls k of M super-nodes and routes fake deals
-  through one of them gets its fee back only when the draw happens to land on its own nodes — on average (k−1)/(M−1) of it, and every one
-  of those nodes is a place won by lottery, not bought (document 05, section 5.6).
+- **The payer does not choose the witnesses.** They are chosen at random, so a group that controls k of M super-nodes and routes fake deals
+  through one of them gets its fee back only when the random choice happens to land on its own nodes — on average (k−1)/(M−1) of it, and every one
+  of those nodes is a place assigned at random, not bought (document 05, section 5.6).
 - **Excluding the serving node.** Without it, a super-node could witness its own deals and take its own fee back.
 - **No pot during the warm-up.** A pot accumulated before the start would be paid out to whoever then holds super-nodes, so whoever
   pushed the network to its start could get the cost back.
@@ -73,4 +73,4 @@ A fee protects against fake deals only if it goes to those an attacker cannot ch
 ## 9.5 How to talk about it
 
 The fee is payment to the super-nodes that witness a deal: they check its receipt and sign it. The amount a super-node receives is not
-known in advance and is not guaranteed by anything: it depends on which deals close in the network and on the draw.
+known in advance and is not guaranteed by anything: it depends on which deals close in the network and on the random choice.

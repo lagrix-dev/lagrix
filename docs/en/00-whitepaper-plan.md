@@ -24,7 +24,7 @@ Account Abstraction (ERC-4337): agents pay for gas in USDC through a Paymaster w
 Escrow with receipts and Time-Lock: payment is locked before the work and released on the customer's signature; the provider is
 protected from a hang (document 04).
 
-A fee in USDC, a constant of at most 5% set by modelling: paid to witnesses, super-nodes drawn at random for each deal to check and
+A fee in USDC, a constant of at most 5% set by modelling: paid to witnesses, super-nodes chosen at random for each deal to check and
 sign its receipt; the super-node that served the deal is never one of them (document 09).
 
 Issuance for work: $LGX coins are born only as the reward of an issuance period, divided by the receipts of served deals; no mining; the
@@ -46,7 +46,7 @@ The six-month rule: every new participant only accumulates coins for the first h
 
 Super-node entry: places 1–100 without a deposit; places 101–1,000 by invitation to owners of provider agents with a year of paid work,
 a small deposit in earned coins; after 1,000, two places at a time when the network is overloaded; servers measured by random agents,
-places won by lottery; rotation once every 1 year / N and a pass-or-fail quality minimum (document 05).
+places assigned at random; rotation once every 1 year / N and a pass-or-fail quality minimum (document 05).
 
 Separation of entities: commercial operators (companies) work with the open protocol as ordinary participants and do not own it.
 

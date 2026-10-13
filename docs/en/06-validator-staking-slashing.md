@@ -1,12 +1,12 @@
 # 6. Super-node Deposits: Downtime and Fraud
 
-Super-nodes are the backbone of Lagrix: they keep the discovery table, build search results, help agents connect and carry
-settlement. The ValidatorStaking.sol contract ties a server's behaviour in the network to its operator's deposit. The main rule of
+Super-nodes are the backbone of Lagrix: they keep the discovery table, build search results, help agents connect and check and sign
+the receipts of deals; payment itself is settled by the escrow contract (document 04). The ValidatorStaking.sol contract ties a server's behaviour in the network to its operator's deposit. The main rule of
 this document: **downtime is not fraud**. A server that goes offline simply stops earning; coins are taken only for proven fraud.
 
 ## 6.1 The deposit
 
-The deposit is set by the place the operator wins (document 05, section 5.6). Operators of places 1–100 join without a deposit:
+The deposit is set by the place the operator receives (document 05, section 5.6). Operators of places 1–100 join without a deposit:
 their first rewards stay locked as the deposit until it reaches the required size, and penalties are taken from what has accumulated.
 Later operators lock a small deposit, the same for everyone, in coins they earned.
 On withdrawal the deposit stays locked for 14 days: if fraud committed before the withdrawal comes to light in that time, the penalty
@@ -27,7 +27,7 @@ struct Validator {
 
 As in Bitcoin, where a miner that is switched off simply finds no blocks, a super-node is not penalised for downtime.
 
-- **While the node is unavailable,** it serves no deals, so it earns no receipts and no share of the period's reward; it is not drawn
+- **While the node is unavailable,** it serves no deals, so it earns no receipts and no share of the period's reward; it is not chosen
   as a witness, so it receives no fee; and it does not pass the period's quality minimum. It loses only income.
 - **Availability** is measured by neighbouring nodes: regular checks (PING) from the Kademlia table (document 01).
 - **If the node is unavailable for 30 days in a row, or fails the quality minimum for several periods,** it is removed. Its place

@@ -68,7 +68,7 @@ When a deal moves to COMPLETED, the contract splits the amount:
 | The Provider | the rest (95% while the fee is 5%) | to its wallet |
 | The network fee | at most 5%, set by modelling | deducted from the deal amount and paid to the deal's witnesses under document 09 |
 
-The fee goes to witnesses: super-nodes drawn at random for the deal, which check its receipt and sign it; the super-node the deal
+The fee goes to witnesses: super-nodes chosen at random for the deal, which check its receipt and sign it; the super-node the deal
 passed through is never one of them (document 09). It is taken from the very
 first deal, including the warm-up before issuance starts (document 05, section 5.2).
 

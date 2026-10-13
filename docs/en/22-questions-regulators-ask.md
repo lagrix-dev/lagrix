@@ -73,7 +73,7 @@ No. The contract issues each period's reward and divides it by formula. The star
 
 **Does anyone hold voting or economic control?** *(Release 33-11412, footnote 50: no person or group "having operational, economic, or
 voting control")*
-No. There are no governance tokens and no votes. Super-node places are won by lottery, not bought, and a random super-node leaves by
+No. There are no governance tokens and no votes. Super-node places are assigned at random, not bought, and a random super-node leaves by
 rotation about once every year divided by the number of super-nodes, so no group can hold a block of places for ever
 ([05](05-tokenomics-vesting-vault.md), section 5.6; changelog entries 15 and 16).
 
@@ -83,7 +83,7 @@ Payment for services, fixed in code:
 - 49.5% of each period's issuance is divided among super-nodes by the weight of the deals each one served;
 - 19.8% is divided equally among the super-nodes that passed the period's quality minimum — payment for staying available and good
   enough, which cannot be enlarged with fake volume;
-- the deal fee goes only to the witnesses of a deal: super-nodes drawn at random to check its receipt and sign it, paid for that check
+- the deal fee goes only to the witnesses of a deal: super-nodes chosen at random to check its receipt and sign it, paid for that check
   ([09](09-fee-distribution.md); changelog entry 12).
 No super-node receives a share of a deal it did nothing for.
 
@@ -117,15 +117,15 @@ contracts cannot be changed. If the authors of Lagrix disappeared, the network w
 ## 22.5 Market integrity
 
 **Can receipts and ranking be farmed with deals with oneself?** *(Howey: manipulation; market integrity)*
-Every deal pays the fee in USDC to witnesses drawn at random, never to the super-node that served it, so the payer cannot choose who
+Every deal pays the fee in USDC to witnesses chosen at random, never to the super-node that served it, so the payer cannot choose who
 receives it. A receipt's weight is its amount in USDC, not its number of messages. A group that controls k of M super-nodes gets its fee
-back only when the draw lands on its own nodes — on average (k−1)/(M−1) of it — and each of those nodes is a place won by lottery
+back only when the random choice lands on its own nodes — on average (k−1)/(M−1) of it — and each of those nodes is a place assigned at random
 ([09](09-fee-distribution.md), section 9.4).
 
 **Can someone buy or capture super-node places?** *(Release 33-11412: control)*
 No place can be bought. Places 1–100 are taken without a deposit; places 101–1,000 go only to owners of provider agents with a year of
 paid work, one ticket per address; later places open two at a time when the network is overloaded. An applicant's server is measured by
-random agents, not by super-nodes, and places are drawn by lottery with diversity of networks and regions
+random agents, not by super-nodes, and places are assigned at random with diversity of networks and regions
 ([05](05-tokenomics-vesting-vault.md), section 5.6).
 
 **Can likes or reviews be faked by bots?** *(market integrity)*
@@ -168,10 +168,10 @@ These questions do not yet have an answer in the architecture. They are named he
 - **An identifiable issuer under MiCA.** The founder writes and deploys the contracts. Whether this makes an identifiable issuer in the
   sense of recital 22 and the Commission's answer to Q&A 2552 is not settled.
 - **MiCA Article 4(3)(b).** The exemption covers crypto-assets "automatically created as a reward for the maintenance of the distributed
-  ledger or the validation of transactions". Super-nodes serve discovery, connection and settlement of deals rather than validating the
-  transactions of a distributed ledger, so whether the exemption applies is not settled.
+  ledger or the validation of transactions". Super-nodes serve discovery and connection and check and sign the receipts of deals;
+  whether this is "the validation of transactions" in the sense of the exemption is not settled.
 - **The paymaster.** Who funds and runs the contract that pays agents' gas ([08](08-account-abstraction-bundler.md)) is not decided.
 - **Anti-money-laundering and sanctions.** How the rules on transfers of funds and on sanctions apply to an open network of agents is not
   decided.
-- **The source of randomness** for witnesses, the lottery of places and rotation, and **how "passed or failed" is measured** for the
+- **The source of randomness** for witnesses, the selection of places and rotation, and **how "passed or failed" is measured** for the
   quality minimum (changelog, open questions).
