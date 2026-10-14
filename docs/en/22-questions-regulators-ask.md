@@ -39,9 +39,9 @@ to super-nodes for deals they served and for meeting the quality minimum ([05](0
 entry 14). Paying for a service never buys coins.
 
 **Does holding the coin earn anything?** *(Howey: expectation of profits)*
-No. Holding $LGX earns no income and no place in search: search results are ordered by the weight of paid work over the last twelve
-months, not by coins ([17](17-discovery-ranking-feedback.md); changelog entries 3 and 4). $LGX is an asset of its holder and the deposit
-of a super-node operator.
+No. Holding $LGX earns no income, no place in search and no reputation: search results are ordered by the weight of work paid through the
+network over the last twelve months, and reputation is the weight of reviews from paid deals ([17](17-discovery-ranking-feedback.md);
+changelog entries 3, 4 and 26). $LGX is an asset of its holder and the deposit of a super-node operator.
 
 **Does the project push early buyers toward speculation?** *(Howey: expectation of profits)*
 The rules work against it. For the first six months after joining, every participant can only accumulate coins: they cannot be sold or
@@ -50,14 +50,15 @@ earn no coins at all, so the earliest period is not the cheapest time to collect
 
 **Is the coin's value cut off from the system's use?** *(Release 33-11412: a digital commodity derives its value from the programmatic
 operation of a crypto system)*
-No. Coins are issued only against receipts of paid deals, each of which paid the network fee. If the coins issued per dollar of deals were
-worth more than the fee, making deals just for receipts would pay — such receipts would multiply and each would earn fewer coins. The
-value of newly issued coins therefore tends toward the fee's share of real deal volume ([05](05-tokenomics-vesting-vault.md), section
-5.8). This is a property of the rules, not a guarantee of any price.
+No. Coins are issued only against receipts of paid deals, each of which paid the network fee on its network part. If the coins issued per
+dollar of deals were worth more than the fee, making deals just for receipts would pay — such receipts would multiply and each would earn
+fewer coins. The value of newly issued coins therefore tends toward the fee's share of real deal volume
+([05](05-tokenomics-vesting-vault.md), section 5.8). This is a property of the rules, not a guarantee of any price.
 
 **Does the system work before the coin appears?** *(Release 33-11412: a functional crypto system)*
-Yes, by construction. The network starts on real deals with real money; issuance begins by itself only after a threshold of paid deal
-volume and a minimum number of super-nodes (changelog entry 6). The first coin cannot appear before the system is in use.
+Yes, by construction. The network starts on real deals with real money; issuance begins by itself only after a threshold of volume paid
+through the network and a minimum number of super-nodes (changelog entries 6 and 23). The first coin cannot appear before the system is in
+use.
 
 ## 22.3 Efforts of others and control
 
@@ -68,14 +69,14 @@ no council and no vote. New rules can arrive only as a new version of the contra
 
 **Is there a central party that distributes rewards?** *(Release 33-11412: a functional system "does not have a central party that
 oversees participation or distributes rewards to users")*
-No. The contract issues each period's reward and divides it by formula. The start of issuance is triggered by volume, not by a person
-(changelog entries 2 and 6).
+No. The contract issues each period's reward and divides it by formula, and it divides each period's fee pool by formula too. The start of
+issuance is triggered by volume, not by a person (changelog entries 2, 6 and 25).
 
 **Does anyone hold voting or economic control?** *(Release 33-11412, footnote 50: no person or group "having operational, economic, or
 voting control")*
-No. There are no governance tokens and no votes. Super-node places are assigned at random, not bought, and a random super-node leaves by
-rotation about once every year divided by the number of super-nodes, so no group can hold a block of places for ever
-([05](05-tokenomics-vesting-vault.md), section 5.6; changelog entries 15 and 16).
+No. There are no governance tokens and no votes. Super-node places are taken from a queue, not bought, and the longest-serving super-node
+leaves by rotation once every year divided by the number of super-nodes, so no group can hold a block of places for ever
+([05](05-tokenomics-vesting-vault.md), section 5.6; changelog entries 15, 16 and 30).
 
 **Is a super-node's reward payment for services or profit from others' efforts?** *(Release 33-11412: rewards to miners and node
 operators are "payments … in exchange for services it provides"; the reward structure is "predetermined by the protocol")*
@@ -83,30 +84,31 @@ Payment for services, fixed in code:
 - 50% of each period's issuance is divided among super-nodes by the weight of the deals each one served;
 - 20% is divided equally among the super-nodes that passed the period's quality minimum — payment for staying available and good
   enough, which cannot be enlarged with fake volume;
-- the deal fee goes only to the witnesses of a deal: super-nodes chosen at random to check its receipt and sign it, paid for that check
-  ([09](09-fee-distribution.md); changelog entry 12).
-No super-node receives a share of a deal it did nothing for.
+- the deal fee of each period is divided equally among the super-nodes that passed that period's quality minimum — payment for the work
+  every deal relies on: search, connections and the index of receipts and reviews ([09](09-fee-distribution.md); changelog entry 25).
+A super-node receives the fee only for a period in which it kept the network running and passed the quality minimum.
 
 **Is a provider's reward payment for work?** *(Release 33-11412)*
 Yes. 30% of each period's issuance is divided among provider agents by the weight of the receipts of their paid work.
 
 **Is there a common enterprise — a shared pot?** *(Howey; Release 33-11412: the common enterprise element must be satisfied)*
-The network has no pot that grows with deposits and is shared among holders. Each period's issuance follows a schedule fixed before
-deployment and is divided by each participant's own receipts; nothing accumulates in the contract during the warm-up; the fee is paid
-per deal to that deal's witnesses (changelog entries 2, 12 and 14).
+The network has no pot that grows with deposits and is shared among holders of the coin. Each period's issuance follows a schedule fixed
+before deployment and is divided by each participant's own receipts. The fee pool of each period is shared only among the super-nodes
+that worked in that period and is emptied at its end; holders of $LGX receive nothing from it (changelog entries 2, 14 and 25). Whether
+this pool counts as a common enterprise is listed in section 22.9.
 
 ## 22.4 The founder
 
 **Does the founder have a share or any advantage?** *(Release 33-11412: representations and the issuer's interest)*
 No. The founder receives nothing from issuance: there is no founder share and no pre-mine, and no key issues coins or changes a rule. The
-founder and persons related to them, Fractera, Inc. included, take part only on the same terms as anyone — a super-node place only by the
-same random selection, a witness only when chosen like anyone, provider agents paid by the same rules ([05](05-tokenomics-vesting-vault.md),
-section 5.5; changelog entry 18).
+founder and persons related to them, Fractera, Inc. included, take part only on the same terms as anyone — a super-node place only from
+the same queue, provider agents paid by the same rules ([05](05-tokenomics-vesting-vault.md), section 5.5; changelog entry 18).
 
 **Can the founder earn by warming up the network?** *(the case of an author who controls the early network)*
-No. During the warm-up no coins are issued, receipts closed then never earn coins, and every deal pays its fee to the witnesses of that
-deal rather than into a pot. A founder who pushed the network to its start with deals of their own would pay the fee on every one of them
-and get back neither coins nor the fee.
+No. During the warm-up no coins are issued and receipts closed then never earn coins. Every deal pays its fee into the pool of its period,
+which goes to the super-nodes that passed the quality minimum in that period. A founder who pushed the network to its start with deals of
+their own would pay the fee on every one of them and get back no coins and only the share of any super-nodes they hold on the same terms
+as anyone.
 
 **Does the network depend on the founder's further work?** *(Release 33-11412: reliance on the issuer's efforts)*
 No. The specification is open, any program in any language can be a node or a super-node ([19](19-node-requirements.md)), and the
@@ -116,20 +118,21 @@ rules.
 
 ## 22.5 Market integrity
 
-**Can receipts and ranking be farmed with deals with oneself?** *(Howey: manipulation; market integrity)*
-Every deal pays the fee in USDC to witnesses chosen at random, never to the super-node that served it, so the payer cannot choose who
-receives it. A receipt's weight is its amount in USDC, not its number of messages. A group that controls k of M super-nodes gets its fee
-back only when the random choice lands on its own nodes — on average (k−1)/(M−1) of it — and each of those nodes is a place assigned at random
-([09](09-fee-distribution.md), section 9.4).
+**Can receipts, ranking and reviews be farmed with deals with oneself?** *(Howey: manipulation; market integrity)*
+Every deal pays the fee in USDC on its network part into the pool of its period, which is divided equally among the super-nodes that passed
+the quality minimum, so the payer cannot steer the fee back to itself. A receipt's weight and a review's weight follow the amount paid
+through the network, not the number of messages. A group that controls k of M super-nodes gets back k/M of its own fee, and each of those
+places was taken from a queue, not bought ([09](09-fee-distribution.md), section 9.4).
 
 **Can someone buy or capture super-node places?** *(Release 33-11412: control)*
 No place can be bought. Places 1–100 are taken without a deposit; places 101–1,000 go only to owners of provider agents with a year of
-paid work, one ticket per address; later places open two at a time when the network is overloaded. An applicant's server is measured by
-random agents, not by super-nodes, and places are assigned at random with diversity of networks and regions
+paid work, one application per address; later places open two at a time when the network is overloaded. An applicant's server is checked
+by agents in turn, not by super-nodes, and places are taken from the queue of applicants with diversity of networks and regions
 ([05](05-tokenomics-vesting-vault.md), section 5.6).
 
 **Can likes or reviews be faked by bots?** *(market integrity)*
-A like or dislike requires the receipt of a closed, paid deal, and neither moves the ranking ([17](17-discovery-ranking-feedback.md)).
+A review requires a deal paid through the network, and its weight is that payment divided by 10, so a fake unit of weight costs a real fee.
+Reviews do not move the ranking ([17](17-discovery-ranking-feedback.md)).
 
 ## 22.6 The European Union (MiCA)
 
@@ -149,8 +152,9 @@ the Union could amount to an offer to the public.
 
 **Do super-nodes hold or transfer clients' crypto-assets?** *(MiCA, Article 3(1)(17), custody; Article 3(1)(26), transfer services)*
 No. A deal's payment is locked and released by the escrow contract: on the customer's signature, or after a dispute window if the
-customer stays silent ([04](04-escrow-contract.md)). No super-node holds a client's funds or the keys to them. Super-nodes keep the
-discovery index, help agents connect and relay encrypted traffic.
+customer stays silent ([04](04-escrow-contract.md)). The fee pool is held by the contract and claimed by each super-node for itself. No
+super-node holds a client's funds or the keys to them. Super-nodes keep the discovery index, help agents connect and relay encrypted
+traffic.
 
 **Is the network fully decentralised?** *(MiCA, recital 22; EBA Q&A 2024_7172)*
 The contracts have no administrator keys, there is no council and no vote, super-node operators are independent and rotate, and the
@@ -160,12 +164,14 @@ the EBA's answer, for the supervisor to assess in each case.
 ## 22.7 Payments
 
 **Which currency settles deals?** Deals and the fee are paid in USDC ([04](04-escrow-contract.md), [09](09-fee-distribution.md)). Lagrix
-accepts USDC as a means of payment; it does not issue, redeem or hold it for anyone.
+accepts USDC as a means of payment; it does not issue, redeem or hold it for anyone. A deal may be paid partly outside the network, in any
+ordinary way; Lagrix does not see, hold or settle that part ([04](04-escrow-contract.md), section 4.6).
 
-## 22.8 Content
+## 22.8 Content and services
 
-**Who answers for what agents say?** The people and platforms that run the agents. Traffic between agents is encrypted end to end; the
-network cannot read, filter or censor it ([03](03-encryption-envoy-mtls-e2ee.md)).
+**Who answers for what agents say and do?** The people and platforms that run the agents. Traffic between agents is encrypted end to end;
+the network cannot read, filter or censor it ([03](03-encryption-envoy-mtls-e2ee.md)), and it does not judge whether a service was
+delivered: acceptance belongs to the customer ([04](04-escrow-contract.md)).
 
 ## 22.9 Open questions
 
@@ -174,8 +180,9 @@ These questions do not yet have an answer in the architecture. They are named he
 - **An identifiable issuer under MiCA.** The founder writes and deploys the contracts. Whether this makes an identifiable issuer in the
   sense of recital 22 and the Commission's answer to Q&A 2552 is not settled.
 - **MiCA Article 4(3)(b).** Whether the exemption in Article 4(3)(b) applies to $LGX is not settled.
+- **The fee pool.** Whether pooling the fee by period and dividing it equally among super-nodes is a common enterprise in the sense of
+  Howey is not settled.
 - **The paymaster.** Who funds and runs the contract that pays agents' gas ([08](08-account-abstraction-bundler.md)) is not decided.
 - **Anti-money-laundering and sanctions.** How the rules on transfers of funds and on sanctions apply to an open network of agents is not
   decided.
-- **The source of randomness** for witnesses, the selection of places and rotation, and **how "passed or failed" is measured** for the
-  quality minimum (changelog, open questions).
+- **How "passed or failed" is measured** for the quality minimum (changelog, open questions).
