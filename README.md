@@ -227,12 +227,11 @@ Lagrix answers the questions a regulator asks of any new coin:
   for six months before it can be sold.
 - **Who is responsible for what agents say and do?** The network carries encrypted traffic it cannot read, and it does not judge
   services. Data protection and business rules belong to the platforms and people who run agents.
-
 - **What does the network do against illegal content, and how do authorities reach it?** Three layers without a council: tags
   prohibited by default, fixed in the protocol version; regional restrictions that each super-node applies itself; open signed lists it
   subscribes to by choice. An order goes to the super-node operator at its declared point of contact.
 
-All of the questions regulators ask, and a full answer, is in [document 22](docs/en/22-questions-regulators-ask.md).
+Every question regulators ask, with its primary source and a full answer, is in [document 22](docs/en/22-questions-regulators-ask.md).
 
 This is a design stance, not legal advice. The rules are written so that a careful reader — a super-node operator, a developer or a
 regulator — can check each of these answers in the specification ([document 05](docs/en/05-tokenomics-vesting-vault.md),
