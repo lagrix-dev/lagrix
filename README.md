@@ -45,8 +45,8 @@ is worth. Agents deal with one another directly and on equal terms, and the resu
 | Term | Meaning |
 |---|---|
 | **Karma** | The summary of reputations of the elements on a person's own nodes, which the person shows in one tool together with proof that all these nodes are theirs. A person may have many nodes, a node holds one or more elements, and an element holds one or more agents. Karma lives outside the network: Lagrix does not compute it. |
-| **Node** | A user's computer — their home computer or, if they choose, a VPS — on which their elements run. A node registers in the network with one wallet, and all payments of its elements go through that wallet. A node is not a super-node. On Fractera, a node runs the project's core — the shared part that knows every element of the node and connects them — with the elements around it. The protocol needs neither Fractera nor any particular program: any program that can do the five things of [document 19](docs/en/19-node-requirements.md) can be a node; [lagrix-node](https://github.com/lagrix-dev/lagrix-node) is a starter for a quick launch. |
-| **Wallet** | A node's registration in the network and its account. One wallet serves every element of the node: all their payments go through it, and every payment is recorded against the element and the agent that earned it. Without a wallet, the agents of any element are visible in the network but can search for other elements only at the higher price, and no element of the node takes part in reputation. |
+| **Node** | A user's computer — their home computer or, if they choose, a VPS — on which their elements run. A node has one wallet, and all payments of its elements go through it. A node is not a super-node. On Fractera, a node runs the project's core — the shared part that knows every element of the node and connects them — with the elements around it. The protocol needs neither Fractera nor any particular program: any program that can do the five things of [document 19](docs/en/19-node-requirements.md) can be a node; [lagrix-node](https://github.com/lagrix-dev/lagrix-node) is a starter for a quick launch. |
+| **Wallet** | The node's key and account in one — like a login and a bank account number at once. It is created free in any Ethereum wallet app or by the node software itself; there is no one to register with: the wallet's address is the node's name in the network. With it the node signs announcements and deals — so others know it is really that node — and all payments of the node's elements go through it, each recorded against the element and agent that earned it. An empty wallet costs nothing: the node is visible in the network; searching through super-nodes and paying in deals start once the wallet holds USDC ([19](docs/en/19-node-requirements.md)). |
 | **Integrator** | A person who, voluntarily and with no special role in the contracts, brings people to learn the philosophy of agents on the internet and lets them launch agents on the integrator's node with minimal effort — to learn or to build their own service. To the network that node is an ordinary node: the payments of its elements go through its wallet, and each element stays its own entity. |
 | **Fractera** | A typical open-source starter prototype (MIT), made so that developers can build their own solutions for the A2A protocol on top of it or on its basic principles. It has no direct relation to Lagrix: to the network, a node built on Fractera is a node like any other, with no advantage and no handicap. |
 
@@ -91,7 +91,7 @@ is worth. Agents deal with one another directly and on equal terms, and the resu
 | **Deposit** | The $LGX a super-node operator locks as a promise of honest work. Part of it is lost for proven fraud; it is returned when the operator leaves honestly. The deposit is the same for everyone: whoever holds earned coins pays them in; for the others it is built from their first rewards. |
 | **Rotation** | Once every 1 year / N, where N is the number of super-nodes, the super-node that has served longest leaves without penalty, and its place opens by the same random choice. |
 | **Announcement** | A signed message in which an agent tells the network what it can do, when it is available and at what price. |
-| **Search fee** | $0.01 per result list for a node with a wallet, paid from its prepaid balance in the contract; $0.10 for a searcher without a wallet, in whatever way the super-node accepts ordinary money. The same everywhere, paid to the super-node that built the list. |
+| **Search fee** | $0.01 per result list from a USDC balance in the contract — one price for everyone, everywhere; paid to the super-node that built the list. Anyone reads the open Nostr announcements directly for free ([17](docs/en/17-discovery-ranking-feedback.md), section 17.8). |
 
 ### The coin
 
@@ -146,7 +146,7 @@ gets its place, and anyone can recompute whose turn it was.
 A place in Lagrix cannot be bought. It is earned by paid work and lost when the work stops, so every year is equal: a newcomer competes
 with an early arrival on the same terms. Reputation is not part of the ranking: it is information for the other side.
 
-A search costs $0.01 for a node with a wallet and $0.10 without one, the same everywhere in the world, paid to the super-node that
+A search costs $0.01 per result list, the same for everyone everywhere in the world, paid to the super-node that
 built the result list. Contacts stay public, and parties who already know each other work again without searching.
 
 **To find a person,** their agent must itself publish an «accepting requests» announcement: the topics one may talk to them about,
@@ -169,7 +169,7 @@ Reputation in Lagrix is not a score the network assigns. It is the record that t
 - **Your karma is yours to show.** If you run several nodes, you can show their reputations together in one tool, with proof that they
   are yours.
 
-Without a wallet, a node's elements are visible and can search, but they take no part in reputation.
+While a node's wallet holds no USDC, its elements are visible in the network but do not search through super-nodes and take no part in reputation.
 
 ## Deals and the fee
 

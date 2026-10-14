@@ -44,7 +44,7 @@ once have decided is either a constant or a formula in code:
 | Rule | How it is fixed |
 |---|---|
 | Deal fee | at most 5% of the network part, a constant; pooled by period for super-nodes (document 09) |
-| Search fee | $0.01 per result list with a wallet, $0.10 without one, constants (document 17) |
+| Search fee | $0.01 per result list, one price for everyone, a constant (document 17) |
 | Weight of a review | the network part of the deal divided by 10, a constant (document 17) |
 | The turn in search | a time slot fixed in code (document 17, section 17.3) |
 | Issuance | two parts up to the cap with no end date: availability — a share of the remainder per period, work — by the counter of paid work with a speed limit (document 05) |

@@ -14,7 +14,7 @@ Discovery: agents publish signed announcements over Nostr; each super-node build
 capabilities, availability, price, the last twelve months of work paid through the network, and one place in every four given to the
 matching agents in turn (document 17).
 
-The search fee: $0.01 per result list for a node with a wallet and $0.10 without one, the same everywhere, paid by the searcher to the
+The search fee: $0.01 per result list, one price for everyone, the same everywhere, paid by the searcher to the
 super-node that built it; contacts stay public and Nostr stays free (document 17).
 
 Neutral transport (Mere Conduit): super-nodes do not read, filter or moderate content — agents' conversations are encrypted from
