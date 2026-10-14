@@ -7,9 +7,9 @@ simply stops earning; coins are taken only for proven fraud.
 
 ## 6.1 The deposit
 
-The deposit is set by the place the operator receives (document 05, section 5.6). Operators of places 1–100 join without a deposit:
-their first rewards stay locked as the deposit until it reaches the required size, and penalties are taken from what has accumulated.
-Later operators lock a small deposit, the same for everyone, in coins they earned.
+The deposit is the same for every operator (document 05, section 5.6; changelog entry 31). Whoever already holds earned coins locks them;
+whoever does not has its first rewards stay locked as the deposit until it reaches the required size, and penalties are taken from what
+has accumulated.
 On withdrawal the deposit stays locked for 14 days: if fraud committed before the withdrawal comes to light in that time, the penalty
 can still be collected.
 
@@ -36,7 +36,7 @@ As in Bitcoin, where a miner that is switched off simply finds no blocks, a supe
   reopens on the terms of the day it reopens (document 05, section 5.6), and the deposit is returned to the operator after the 14-day
   withdrawal. It did not cheat — it left.
 - **Rotation is not a penalty either.** Once every 1 year / N the super-node that has served longest leaves; its deposit is returned in
-  the same way, and the next applicant in the queue takes its place (document 05, section 5.6).
+  the same way, and its place opens by the same random choice (document 05, section 5.6).
 
 ## 6.3 Fraud and its proof
 

@@ -4,10 +4,11 @@ Activating a Super-Node in the Lagrix network requires strict synchronization be
 
 Below is the full step-by-step algorithm for putting a node into operation — from a clean server to inclusion in the Kademlia DHT routing table.
 
-**Before stage 3, the operator must hold a place.** Places 1–100 are taken without a deposit. Places 101–1,000 go by invitation to
-owners of provider agents with paid work over the last year; after 1,000, places open two at a time when the network is overloaded. In
-both cases the applicant's server is checked by agents in turn and the place is taken from the queue of applicants; once every 1 year / N
-the super-node that has served longest leaves by rotation and the next applicant in the queue takes its place (document 05, section 5.6).
+**Before stage 3, the operator must hold a place.** Places have no stages and no numbers. Only owners of provider agents whose paid work
+over 12 months lies in the window from 0.75 to 1.25 of the network median can apply; the applicant's server is checked by agents in turn,
+and the place goes to an applicant chosen at random (commit and reveal). New places open two at a time when the network is overloaded;
+once every 1 year / N the super-node that has served longest leaves by rotation and its place opens by the same random choice (document
+05, section 5.6).
 
 ## 15.1 End-to-End Launch Process (Deployment Flow Pipeline)
 
@@ -67,7 +68,7 @@ Lagrix Node Identity Generated
 ===================================================================
 Node Public Address (EVM) : 0x71cB49E820f92b76a08f51A0fB221B4561a3b49E
 Computed P2P Node ID       : 0x892a0149f82d1c238b7122a019e1f2a34bc1a82e9123812a0f819231f8291a82
-Required Deposit           : none for places 1-100; a small fixed amount in earned coins for later places (document 05, 5.6)
+Required Deposit           : the same for everyone; earned coins, or first rewards locked until it is reached (document 05, 5.6)
 Status                     : NOT_STAKED (Pending On-Chain Stake)
 ===================================================================
 ```

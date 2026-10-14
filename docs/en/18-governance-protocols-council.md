@@ -29,7 +29,8 @@ These are choices for the start, not forever. When a better protocol appears, su
 - Search results follow the last twelve months of work paid through the network, and one place in every four goes to the matching agents
   in turn.
 - Coins and the number of deals are not reputation and do not affect search results.
-- No random choice: places, rotation, checks and the turn in search follow queues that anyone can recompute.
+- Super-node places are won by random choice that the contract computes itself with commit and reveal, with no oracle; rotation,
+  checks and the turn in search follow queues that anyone can recompute.
 - Coins are created only by the network's work; the cap is 1,000,000,000 LGX.
 - Every new participant only accumulates coins for the first six months.
 - The network has no central server and no single point of failure.
@@ -48,7 +49,7 @@ once have decided is either a constant or a formula in code:
 | The turn in search | a time slot fixed in code (document 17, section 17.3) |
 | Issuance | a smoothly declining schedule up to the cap, divided by period (document 05) |
 | Start of issuance | a threshold of volume paid through the network and a minimum number of super-nodes, constants (document 05) |
-| Super-node entry and deposit | a queue of applicants; formulas of network size and load (document 05, section 5.6) |
+| Super-node entry and deposit | a window around the median of paid work and random choice; formulas of network size and load (document 05, section 5.6) |
 
 The values that are not yet numbers are set once, by modelling, before deployment.
 

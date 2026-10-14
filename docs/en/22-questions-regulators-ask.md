@@ -74,9 +74,9 @@ issuance is triggered by volume, not by a person (changelog entries 2, 6 and 25)
 
 **Does anyone hold voting or economic control?** *(Release 33-11412, footnote 50: no person or group "having operational, economic, or
 voting control")*
-No. There are no governance tokens and no votes. Super-node places are taken from a queue, not bought, and the longest-serving super-node
+No. There are no governance tokens and no votes. Super-node places are won by random choice, not bought, and the longest-serving super-node
 leaves by rotation once every year divided by the number of super-nodes, so no group can hold a block of places for ever
-([05](05-tokenomics-vesting-vault.md), section 5.6; changelog entries 15, 16 and 30).
+([05](05-tokenomics-vesting-vault.md), section 5.6; changelog entries 15, 16, 30 and 31).
 
 **Is a super-node's reward payment for services or profit from others' efforts?** *(Release 33-11412: rewards to miners and node
 operators are "payments … in exchange for services it provides"; the reward structure is "predetermined by the protocol")*
@@ -101,8 +101,8 @@ this pool counts as a common enterprise is listed in section 22.9.
 
 **Does the founder have a share or any advantage?** *(Release 33-11412: representations and the issuer's interest)*
 No. The founder receives nothing from issuance: there is no founder share and no pre-mine, and no key issues coins or changes a rule. The
-founder and persons related to them, Fractera, Inc. included, take part only on the same terms as anyone — a super-node place only from
-the same queue, provider agents paid by the same rules ([05](05-tokenomics-vesting-vault.md), section 5.5; changelog entry 18).
+founder and persons related to them, Fractera, Inc. included, take part only on the same terms as anyone — a super-node place only by
+the same random choice, provider agents paid by the same rules ([05](05-tokenomics-vesting-vault.md), section 5.5; changelog entry 18).
 
 **Can the founder earn by warming up the network?** *(the case of an author who controls the early network)*
 No. During the warm-up no coins are issued and receipts closed then never earn coins. Every deal pays its fee into the pool of its period,
@@ -122,13 +122,14 @@ rules.
 Every deal pays the fee in USDC on its network part into the pool of its period, which is divided equally among the super-nodes that passed
 the quality minimum, so the payer cannot steer the fee back to itself. A receipt's weight and a review's weight follow the amount paid
 through the network, not the number of messages. A group that controls k of M super-nodes gets back k/M of its own fee, and each of those
-places was taken from a queue, not bought ([09](09-fee-distribution.md), section 9.4).
+places was won by random choice, not bought ([09](09-fee-distribution.md), section 9.4).
 
 **Can someone buy or capture super-node places?** *(Release 33-11412: control)*
-No place can be bought. Places 1–100 are taken without a deposit; places 101–1,000 go only to owners of provider agents with a year of
-paid work, one application per address; later places open two at a time when the network is overloaded. An applicant's server is checked
-by agents in turn, not by super-nodes, and places are taken from the queue of applicants with diversity of networks and regions
-([05](05-tokenomics-vesting-vault.md), section 5.6).
+No place can be bought, and places have no stages and no numbers. Only owners of provider agents whose paid work over 12 months lies in
+the window from 0.75 to 1.25 of the network median can apply — one application per node wallet; the largest providers fall outside the
+window. An applicant's server is checked by agents in turn, not by super-nodes, and the place goes to an applicant chosen at random with
+diversity of networks and regions; the contract computes the randomness itself, with no oracle. New places open two at a time when the
+network is overloaded ([05](05-tokenomics-vesting-vault.md), section 5.6; changelog entry 31).
 
 **Can likes or reviews be faked by bots?** *(market integrity)*
 A review requires a deal paid through the network, and its weight is that payment divided by 10, so a fake unit of weight costs a real fee.

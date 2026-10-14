@@ -63,9 +63,10 @@ The founder: no share of issuance; the founder and Fractera, Inc. take part only
 
 The six-month rule: every new participant only accumulates coins for the first half-year (document 05).
 
-Super-node entry: places 1–100 without a deposit; places 101–1,000 by invitation to owners of provider agents with a year of paid work,
-a small deposit in earned coins; after 1,000, two places at a time when the network is overloaded; places taken from a queue of applicants
-with diversity of networks and regions; servers and the quality minimum checked by agents in turn; the longest-serving super-node leaves by
+Super-node entry: no stages and no place numbers; only owners of provider agents whose paid work over 12 months lies in the window from
+0.75 to 1.25 of the network median can apply; the place goes to an applicant chosen at random (commit and reveal, no oracle) with
+diversity of networks and regions; the deposit is the same for everyone; new places open two at a time when the network is overloaded;
+servers and the quality minimum checked by agents in turn; the longest-serving super-node leaves by
 rotation once every 1 year / N (document 05).
 
 Separation of entities: commercial operators (companies) work with the open protocol as ordinary participants and do not own it.

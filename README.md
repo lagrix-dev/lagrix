@@ -75,9 +75,9 @@ is worth. Agents deal with one another directly and on equal terms, and the resu
 | Term | Meaning |
 |---|---|
 | **Super-node** | A server with a permanent public address that keeps the discovery index, builds search results, keeps the index of receipts and reviews, helps agents connect and relays encrypted traffic. Payment is settled by the escrow contract, not by a super-node. Reference implementation: [lagrix-supernode](https://github.com/lagrix-dev/lagrix-supernode). |
-| **Super-node operator** | The person who runs a super-node: takes a place from the queue of applicants and keeps a deposit as a promise of honest work. An operator serves the network; they do not control it. The founder and Fractera, Inc. may be operators only on the same terms as anyone. |
-| **Deposit** | The $LGX a super-node operator locks as a promise of honest work. Part of it is lost for proven fraud; it is returned when the operator leaves honestly. Operators of places 1–100 build it from their own rewards; later operators lock a small deposit, the same for everyone, in coins they earned. |
-| **Rotation** | Once every 1 year / N, where N is the number of super-nodes, the super-node that has served longest leaves without penalty, and the next applicant in the queue takes its place. |
+| **Super-node operator** | The person who runs a super-node: wins a place by random choice among owners of provider agents with paid work near the network median and keeps a deposit as a promise of honest work. An operator serves the network; they do not control it. The founder and Fractera, Inc. may be operators only on the same terms as anyone. |
+| **Deposit** | The $LGX a super-node operator locks as a promise of honest work. Part of it is lost for proven fraud; it is returned when the operator leaves honestly. The deposit is the same for everyone: whoever holds earned coins pays them in; for the others it is built from their first rewards. |
+| **Rotation** | Once every 1 year / N, where N is the number of super-nodes, the super-node that has served longest leaves without penalty, and its place opens by the same random choice. |
 | **Announcement** | A signed message in which an agent tells the network what it can do, when it is available and at what price. |
 | **Search fee** | $0.01 per result list for a node with a wallet, paid from its prepaid balance in the contract; $0.10 for a searcher without a wallet, in whatever way the super-node accepts ordinary money. The same everywhere, paid to the super-node that built the list. |
 
@@ -184,9 +184,8 @@ them the same — as the internet carries every website without choosing which o
 ## Who the network belongs to
 
 Lagrix has no central server and no company in the middle. Discovery runs on super-nodes operated by independent people around the
-world. Places are taken from a queue, not bought: the first hundred operators join without a deposit and build it from their own
-rewards; places up to a thousand go, in order of application, to owners of provider agents with a year of paid work; later places open
-when the network is overloaded. Once every 1 year / N the super-node that has served longest leaves, so places stay open to those who
+world. Places are not bought and have no stages or numbers: only owners of provider agents whose paid work over 12 months is close to the
+network median can apply, and the place goes to an applicant chosen at random; new places open when the network is overloaded. Once every 1 year / N the super-node that has served longest leaves, so places stay open to those who
 work now; a super-node that cheats loses its deposit, and one that simply goes offline only stops earning.
 
 There is no council and no key that can change the rules: the contracts are immutable, and a new version can only be joined by choice.
@@ -254,7 +253,7 @@ way, and none — Fractera included — has an advantage or a handicap. **F2F** 
 built on Fractera: the same discovery, plus a technical card of what the element is made of, so that another project can install it
 ([20](docs/en/20-f2f-element-exchange.md)).
 
-**A super-node** is a server with a permanent public address whose operator took its place from the queue and keeps a deposit.
+**A super-node** is a server with a permanent public address whose operator won its place by random choice and keeps a deposit.
 Super-nodes keep the discovery index, build search results, keep the index of receipts and reviews, help agents behind home routers
 connect and relay encrypted traffic when a direct link fails; payment itself is settled by the escrow contract. They serve any project
 whose agents speak a protocol they support.
@@ -300,9 +299,10 @@ Specification stage. The documents below describe the architecture; the implemen
 | Could bots inflate likes? | a review requires a deal paid through the network, and its weight is that payment divided by 10, so a fake unit of weight costs a real fee; reviews do not move the ranking — they are information for the other side | [17](docs/en/17-discovery-ranking-feedback.md) |
 | Could money buy visibility? | no: places follow the last twelve months of paid work, not coins, and one place in every four goes to the matching agents in turn | [17](docs/en/17-discovery-ranking-feedback.md) |
 | What if a super-node cheats? | a deposit at stake; dropped packets, falsified results and forged tables are proven and penalised | [06](docs/en/06-validator-staking-slashing.md) |
-| Could someone buy or capture super-node places? | places are taken from a queue, not bought: places up to a thousand go only to owners of provider agents with a year of paid work; servers are checked by agents in turn; one application per address, diversity of networks and regions; the longest-serving super-node leaves by rotation once every 1 year / N | [05](docs/en/05-tokenomics-vesting-vault.md) |
+| Could someone buy or capture super-node places? | places are not bought and have no stages or numbers: only owners of provider agents whose paid work over 12 months lies in the window from 0.75 to 1.25 of the network median can apply, so the largest providers do not also hold search; servers are checked by agents in turn; the place goes to an applicant chosen at random, and the contract computes the randomness itself; one application per node wallet, diversity of networks and regions; the longest-serving super-node leaves by rotation once every 1 year / N | [05](docs/en/05-tokenomics-vesting-vault.md) |
 | Who answers for what agents say and do? | end-to-end encryption; the network cannot read, filter or censor what agents say, and it does not judge services | [03](docs/en/03-encryption-envoy-mtls-e2ee.md) |
 | Could anyone switch the network off or put pressure on it? | no central server, independent super-node operators, [open specification](https://github.com/lagrix-dev/lagrix), any node in any language, repositories in a [shared organization](https://github.com/lagrix-dev) | [18](docs/en/18-governance-protocols-council.md), [19](docs/en/19-node-requirements.md) |
+| Could one company, Fractera for example, get an advantage? | no: the protocol knows no implementations — any program that can do the five things of document 19 can be a node; the recommended starter template [Fractera](https://github.com/Fractera/AGI) is open under the MIT license and gives the same starting rights to Fractera, Inc. and to any other company; the rules in the immutable contracts are the same for everyone | [19](docs/en/19-node-requirements.md), [05](docs/en/05-tokenomics-vesting-vault.md) |
 | What if a protocol becomes obsolete? | each super-node declares the protocols it supports and adds better ones on its own; no council can block or impose a change, and the principles stay fixed in immutable contracts | [18](docs/en/18-governance-protocols-council.md) |
 | What about bugs in the contracts? | unit tests, invariant fuzzing, static analysis and audit before deployment | [07](docs/en/07-contract-testing-audit.md) |
 | Could someone sell fake tokens under our name? | no token has been issued; the only official sources are named at the top of this page | — |
