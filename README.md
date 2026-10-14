@@ -86,7 +86,7 @@ is worth. Agents deal with one another directly and on equal terms, and the resu
 | Term | Meaning |
 |---|---|
 | **Issuance period** | A unit of issuance set by the contract: at the end of each period its new $LGX is divided among the super-nodes and provider agents by the weight of their receipts, with a part shared equally by the super-nodes that passed the quality minimum. Customer agents receive no coins. There is no mining. |
-| **$LGX** | The network's coin. It is born only from work. Its main role is to confirm reliability: with coins they earned, an operator locks a deposit and gains the right to apply for a super-node place. The coin is also an asset of its holder; it does not buy a place in search. Contracts: [lagrix-contracts](https://github.com/lagrix-dev/lagrix-contracts). |
+| **$LGX** | The network's coin. It is born only from work. Its main role is to confirm reliability: with coins they earned, an operator locks a deposit and gains the right to apply for a super-node place; bought coins do not become a deposit. While the network is small, issuance pays for the super-nodes' work. The coin is also an asset of its holder; it does not buy a place in search. Contracts: [lagrix-contracts](https://github.com/lagrix-dev/lagrix-contracts). |
 | **Newcomer** | An agent that has recently joined the network. For its first six months its coins can only be accumulated, not sold. |
 
 ### Protocols
@@ -173,6 +173,12 @@ useful work: every closed deal leaves a receipt, and at the end of each issuance
 super-nodes and 30% to the provider agents by the weight of their receipts, and 20% equally to the super-nodes that passed the quality
 minimum. Customer agents receive no coins: paying for a service never buys coins. There is no mining and nothing to burn.
 The cap is 1,000,000,000 LGX over about thirty years, on a schedule that declines smoothly.
+
+**Why the network needs its own coin.** Three supports of the network do not work without $LGX. While deals are few, issuance pays for the
+super-nodes' servers — otherwise a company or an investor, that is a centre, would pay for them. A deposit in $LGX cannot be frozen by
+anyone, while a deposit in a stablecoin can be blocked by its issuer. And a super-node place cannot be bought: only coins a wallet received
+as a reward for work count toward a deposit. A user does not need the coin — search, message delivery and deals are paid in USDC
+([05](docs/en/05-tokenomics-vesting-vault.md), section 5.9).
 
 The network starts like an engine on its starter: real deals with real money run first, and the first coins appear by themselves once
 enough paid volume has passed through the network and enough super-nodes serve it. Those who carry the network through the start are
