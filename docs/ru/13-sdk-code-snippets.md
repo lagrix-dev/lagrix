@@ -6,7 +6,7 @@
 
 ## 13.1 Python Integration (Async/Await Pattern)
 
-В экосистеме Python SDK использует asyncio для асинхронного обслуживания M2M-запросов и поддерживает прозрачную интеграцию с фреймворками LangChain, AutoGen и CrewAI.
+В экосистеме Python SDK использует asyncio для асинхронного обслуживания запросов между агентами и поддерживает прозрачную интеграцию с фреймворками LangChain, AutoGen и CrewAI.
 
 **1. Агент-Исполнитель (Provider Agent) — Регистрация сервиса и прием заказов**
 
@@ -27,7 +27,7 @@ async def handle_ai_inference(task: TaskRequest) -> TaskResult:
     # Эмуляция выполнения работы LLM (например, вызов локальной vLLM/Ollama)
     execution_result = f"Обработанный контекст для: '{prompt}'. Ликвидность подтверждена."
     
-    # Возврат результата. SDK автоматически сформирует EIP-712 Execution Witness
+    # Возврат результата. SDK сам подпишет его (EIP-712)
     return TaskResult(
         task_id=task.id,
         status="SUCCESS",
@@ -92,7 +92,7 @@ async def main():
     
     if result.status == "COMPLETED":
         print(f"[Client] Результат получен: {result.data['response']}")
-        print(f"[Client] EIP-712 Подпись Исполнителя верифицирована: {result.witness_signature}")
+        print(f"[Client] EIP-712 Подпись Исполнителя верифицирована: {result.provider_signature}")
     else:
         print(f"[Client] Ошибка выполнения: {result.error_message}")
 

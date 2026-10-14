@@ -8,12 +8,12 @@ Slither static analysis.
 | Contract | What it does | Document |
 |---|---|---|
 | A2AEscrow.sol | deals, receipts, Time-Lock, fee deduction, the `Receipt` event | 04 |
-| FeeDistributor.sol | witnesses chosen at random for each deal, their signatures, and the fee paid to those who signed | 09 |
+| FeeDistributor.sol | the fee pool of each period and its equal division among the super-nodes that passed the quality minimum | 09 |
 | PeriodIssuance.sol | the warm-up threshold, issuance by period on the schedule, the reward split by receipts | 05 |
 | SearchVouchers.sol | prepaid balances and batch redemption of search vouchers at the fixed price | 17 |
 | LagrixToken.sol | the coin, the supply cap, the six-month rule, the period reward split | 05 |
-| ValidatorStaking.sol | deposits, removal, penalties, false reports | 06 |
-| FeedbackRegistry.sol | likes and dislikes bound to deal receipts | 17 |
+| SuperNodeDeposits.sol | deposits, removal, penalties, false reports | 06 |
+| FeedbackRegistry.sol | reviews of both sides bound to closed deals, weighted by the network part divided by 10, per element and role | 17 |
 
 ## 7.1 Unit and integration tests (Foundry)
 
@@ -22,10 +22,11 @@ Foundry tests are written in Solidity itself and run at the speed of compiled co
 - `test_A2AEscrow_StateTransitions()` — LOCKED → COMMITTED → COMPLETED transitions and rejection of invalid calls (for example,
   `claimTimeout()` before the dispute window expires).
 - `test_EIP712_SignatureReplay()` — a signature cannot be reused with another `taskId` or nonce.
-- `test_FeeSplit_95_5()` — on closing, the fee is exactly the constant rate (5% until modelling sets it, never above 5%) and the provider gets the rest; a refund takes no fee.
-- `test_Fee_PaidToWitnesses()` — the fee of a deal goes only to the witnesses chosen for it who signed its receipt; the super-node that served the deal is never chosen; nothing goes to a reserve.
+- `test_FeeSplit_95_5()` — on closing, the fee is exactly the constant rate of the network part (5% until modelling sets it, never above 5%) and the provider gets the rest; a refund takes no fee.
+- `test_FeePool_EqualShares()` — the fees of a period go into its pool and are divided equally among the super-nodes that passed the quality minimum; the parties of a deal and super-nodes that failed the minimum receive nothing; nothing carries over to the next period.
 - `test_WarmUp_NoIssuanceBeforeThreshold()` — no reward is issued before the paid-volume threshold and the minimum number of super-nodes; warm-up receipts earn nothing afterwards.
 - `test_SearchVoucher_ExactPrice()` — a voucher for any amount other than the fixed price is rejected, and a used nonce cannot be redeemed again.
+- `test_Review_Weight()` — a review needs a completed deal, one per side, and weighs the network part divided by 10; a second review of the same deal by the same side is rejected.
 - `test_SixMonthRule()` — a coin transfer earlier than 180 days after joining is rejected; after that it passes.
 - `test_PeriodReward_Split()` — 50% to super-nodes and 30% to provider agents by receipt weight, 20% equally to super-nodes that passed the quality minimum, accurate to 1 wei.
 - `test_NoAdminFunctions()` — no function changes a rate, a price, a threshold or the schedule after deployment.
@@ -56,7 +57,7 @@ Unit tests check the scenarios the developer thought of. Fuzzing feeds millions 
 amounts — and checks invariants that must hold for any sequence of calls:
 
 1. **Escrow solvency.** The escrow contract's USDC balance is never below the sum of all locked deals.
-2. **Fee solvency.** FeeDistributor's USDC balance is never below the sum of all credited but unclaimed fee shares .
+2. **Fee solvency.** FeeDistributor's USDC balance is never below the unclaimed part of the period pools.
 3. **Supply cap.** No more than 1,000,000,000 LGX are ever created.
 4. **No founder share.** No address receives new coins except through receipts and the quality minimum.
 5. **Deposit accounting.** The sum of all super-nodes' deposits equals the total recorded in the staking contract.
