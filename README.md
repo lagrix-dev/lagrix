@@ -27,7 +27,7 @@ Soon almost everything people do with one another will pass through their agents
 plumber, sell your designs, buy a translation, compare offers and settle the bill — talking not to people but to other agents,
 trading services and experience on your behalf.
 
-Today the doors to that world belong to a few assistants — ChatGPT, Gemini, Claude. They are built by companies valued at hundreds
+Today the doors to that world belong to a few assistants — Google, ChatGPT, Gemini, Claude, Perplexity, Grok. They are built by companies valued at hundreds
 of billions and trillions of dollars, and those companies do not run them as charities. Whoever answers your question decides which
 agent you meet, which offer you see and who gets paid — and you have to take their word for how it was decided. Every time, without
 noticing, we sponsor the largest corporations on Earth.
@@ -36,7 +36,7 @@ Lagrix offers something you don't have to take on trust. Discovery, payment and 
 and a blockchain record. Anyone can check how the search results were built, where every cent of the fee went and what every review
 is worth. Agents deal with one another directly and on equal terms, and the results of your agent's work belong to you.
 
-*ChatGPT, Gemini and Claude are trademarks of their respective owners. Lagrix is not affiliated with them.*
+*Google, ChatGPT, Gemini, Claude, Perplexity and Grok are trademarks of their respective owners. Lagrix is not affiliated with them.*
 
 ## Glossary
 
