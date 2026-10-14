@@ -16,8 +16,8 @@ not fixed below are set once, by modelling, before deployment.
 | How coins appear | only as the reward of an issuance period, divided by the receipts of that period (section 5.2) |
 | Sale at launch | none: no presale, no investor allocation, no fund created in advance |
 | Issuance schedule | declines smoothly, so issuance fades rather than stopping on a cliff; the exact shape is set by modelling |
-| Start of issuance | after the warm-up: a threshold of paid deal volume and a minimum number of super-nodes (section 5.2) |
-| Deal fee | a constant of at most 5% of the deal amount, set by modelling (5% until then), paid to witnesses (section 5.3, document 09) |
+| Start of issuance | after the warm-up: a threshold of deal volume paid through the network and a minimum number of super-nodes (section 5.2) |
+| Deal fee | a constant of at most 5% of the network part of a deal, set by modelling (5% until then), paid to the super-nodes that kept the network running (section 5.3, document 09) |
 | What the coin is for | an asset of its holder and the deposit of a super-node operator; it does not buy a place in search |
 | New participants | for the first 6 months after joining, coins can only be accumulated (section 5.4) |
 | Founder's share | none: the founder receives nothing from issuance and takes part on the same terms as anyone (section 5.5) |
@@ -30,8 +30,9 @@ layer-2 network (Arbitrum, Base), which already orders transactions and protects
 for what the network exists for — deals between agents that it has served.
 
 **Receipt.** When a deal between a customer and a provider is closed in escrow (document 04), the contract records a receipt — a record
-of a completed, paid deal for the customer, the provider and the super-node it passed through. A receipt's weight is the deal amount in
-USDC, not the number of messages: a thousand messages inside one deal give one receipt.
+of a completed, paid deal for the customer, the provider and the super-node it passed through, naming the element and the agent that did
+the work. A receipt's weight is the network part of the deal in USDC, not the number of messages: a thousand messages inside one deal
+give one receipt, and a part paid outside the network gives none (document 04, section 4.6).
 
 **Issuance period.** A block of Lagrix is a period set by the contract, not something found. At the end of every period the contract
 issues that period's reward from the schedule and divides it by the weight of the receipts closed in the period. Nobody can find,
@@ -52,25 +53,26 @@ a service would in effect be buying coins with that payment.
 **The warm-up start.** The network begins working on real deals with real money before any coin exists, like an engine that turns over
 on the starter before it fires:
 
-- the fee is taken from the very first deal and paid to that deal's witnesses, as always (section 5.3); nothing accumulates in the
-  contract;
-- no reward is issued until the network has passed a threshold of paid deal volume in USDC and has a minimum number of super-nodes —
-  both constants in code, their values set by modelling;
+- the fee is taken from the very first deal and goes into the pool of the period, which is divided among the super-nodes that passed the
+  quality minimum, as always (section 5.3); nothing carries over to later periods;
+- no reward is issued until the network has passed a threshold of deal volume in USDC paid through the network and has a minimum number
+  of super-nodes — both constants in code, their values set by modelling;
 - the first period then opens by itself; nobody presses a button;
 - receipts closed during the warm-up earn no coins afterwards.
 
 Taking the fee from the first deal makes the threshold expensive to fake: pushing the network to its start with empty deals would cost
-the fee on every one of them, paid to witnesses chosen at random. Counting paid volume rather than the number of deals stops a thousand one-cent deals
-from moving the start. Giving warm-up receipts no coins keeps the warm-up from becoming the cheapest time to collect the most valuable
-coins. Those who carry the network through the warm-up keep a real advantage: their six-month accumulation period (section 5.4) runs
-during it.
+the fee on every one of them, paid to the super-nodes of the network. Counting paid volume rather than the number of deals stops a
+thousand one-cent deals from moving the start. Giving warm-up receipts no coins keeps the warm-up from becoming the cheapest time to
+collect the most valuable coins. Those who carry the network through the warm-up keep a real advantage: their six-month accumulation
+period (section 5.4) runs during it.
 
 ## 5.3 The deal fee
 
-The network takes a fee on every deal, in USDC. Its size is a constant in code, set by modelling and never above 5%; until the modelling
-is done, it is 5%. The fee goes to **witnesses**: super-nodes chosen at random for each deal, which check its receipt and sign it. The
-super-node that served the deal is not a witness to it. The fee is how fake deals are made to cost real money: a deal with oneself, made
-to collect receipts, costs the fee on its amount, and the payer does not choose who receives it. The full rules are in document 09.
+The network takes a fee on the network part of every deal, in USDC. Its size is a constant in code, set by modelling and never above 5%;
+until the modelling is done, it is 5%. The fees of a period are pooled and divided in equal parts among the super-nodes that passed the
+quality minimum in that period; the parties of a deal never receive it. The fee pays super-nodes for the work they do all the time, and
+it is how fake deals are made to cost real money: a deal with oneself, made to collect receipts or reviews, costs the fee on its network
+part. The full rules are in document 09.
 
 ## 5.4 The six-month rule
 
@@ -95,38 +97,40 @@ The founder receives nothing from issuance: there is no founder share, no founde
 changes a rule; the start of issuance is triggered by volume, not by a person. Every coin goes to receipts of paid work and to the quality
 minimum (section 5.2).
 
-The founder and persons related to them, Fractera, Inc. included, take part only on the same terms as anyone: a super-node place only by
-the same random selection and on the same conditions (section 5.6), a witness only when chosen like anyone (document 09), provider agents
-paid by the same rules. There is no privilege and no exclusion.
+The founder and persons related to them, Fractera, Inc. included, take part only on the same terms as anyone: a super-node place only
+from the same queue and on the same conditions (section 5.6), provider agents paid by the same rules. There is no privilege and no
+exclusion.
 
 ## 5.6 How new super-nodes join
 
-A super-node is a permanent server that keeps the discovery index, builds search results, helps agents connect and checks and signs the receipts of deals; payment itself is settled by the escrow contract (document 04)
-(documents 01, 02, 06, 17). Places open in three stages, and every place is assigned at random, not bought:
+A super-node is a permanent server that keeps the discovery index, builds search results, keeps the index of receipts and reviews and
+helps agents connect; payment itself is settled by the escrow contract (documents 01, 02, 04, 06, 17). Places open in three stages, and
+every place is taken from a queue, not bought:
 
 - **Places 1–100: without a deposit.** At the start no coins exist, so a deposit cannot be paid. Instead, an operator's first rewards
   stay locked as their deposit until it reaches the required size, and penalties are taken from it (document 06). The privilege belongs
   to the operator, not to the place.
 - **Places 101–1,000: by invitation.** These places open regardless of the network's load. Invitations go only to owners of provider
-  agents with paid work over the last year; one ticket per address. The deposit is small, the same for everyone, and paid in coins the
-  applicant earned — it sells nothing to anyone.
+  agents with paid work over the last year; one application per address. The deposit is small, the same for everyone, and paid in coins
+  the applicant earned — it sells nothing to anyone.
 - **After 1,000: by overload.** New places open only when the network is overloaded — when deals per super-node exceed a constant — two
   places at a time.
-- **Measurement by random agents.** An applicant's server is measured by agents chosen at random, not by super-nodes: existing
-  super-nodes gain from having fewer competitors, so they must not be the ones who judge newcomers.
-- **Random selection with diversity.** Places are assigned at random among applicants whose servers passed, with diversity of networks and regions, so
-  that one applicant with many servers cannot take many places. Ranking applicants by power or by the number of operations is not used:
-  it would start a race for hardware and reward load generated by oneself.
-- **Rotation.** Once every 1 year / N, where N is the number of super-nodes, one super-node chosen at random leaves. There is no
-  penalty: its deposit is returned. Its place is assigned by the same random selection, on the terms of the day it reopens. On average a super-node stays
-  about a year, so the door stays open to those who do paid work now.
-- **The quality minimum.** Every period, random agents check each super-node against a minimum: passed or failed. Those who passed
-  share 20% of the period's reward equally (section 5.2); a super-node that fails for several periods leaves.
+- **Checks by agents in turn.** An applicant's server is checked by agents of registered nodes taken in turn, not by super-nodes:
+  existing super-nodes gain from having fewer competitors, so they must not be the ones who judge newcomers.
+- **A queue with diversity.** Places are taken from the queue of applicants whose servers passed the check, in order of application,
+  keeping diversity of networks and regions, so that one applicant with many servers cannot take many places. Ranking applicants by power
+  or by the number of operations is not used: it would start a race for hardware and reward load generated by oneself.
+- **Rotation.** Once every 1 year / N, where N is the number of super-nodes, the super-node that has served longest leaves. There is no
+  penalty: its deposit is returned. Its place goes to the next applicant in the queue, on the terms of the day it reopens. Each super-node
+  stays about a year, so the door stays open to those who do paid work now.
+- **The quality minimum.** Every period, agents taken in turn check each super-node against a minimum: passed or failed. Those who passed
+  share 20% of the period's reward and the period's fee pool equally (section 5.2, document 09); a super-node that fails for several
+  periods leaves.
 - **Vacancies.** A place freed by rotation, by failing the minimum or by removal for fraud (document 06) reopens on the terms of the day
   it reopens, never on the terms of the operator who left.
 
-The numbers — the deposit, the overload constant, how many failed periods lead to leaving — are set by modelling. The source of
-randomness for the selection of places and rotation, and how "passed or failed" is measured, are open questions (document 000).
+The numbers — the deposit, the overload constant, how many failed periods lead to leaving — are set by modelling. How "passed or failed"
+is measured is an open question (document 000).
 
 ## 5.7 What $LGX does not have
 
@@ -134,6 +138,7 @@ randomness for the selection of places and rotation, and how "passed or failed" 
 - No fund created in advance and no keys that let anyone create coins outside the issuance schedule.
 - No mechanism whose only purpose is price.
 - No place in search: ranking follows paid work, not coins (document 17).
+- No part in reputation: reputation is the weight of reviews from paid deals (document 17).
 - Lagrix makes no promise about the price of $LGX. It is an asset of its holder and the deposit of a super-node operator.
 
 ## 5.8 Why $LGX issuance is tied to the network's work
@@ -142,10 +147,10 @@ The rules of this document tie the issuance of coins to the volume of real deals
 promises.
 
 **The link through the fee.** New coins go to receipts, and every receipt is a deal from which a fee in USDC was deducted and paid to
-witnesses (document 09). If the value of the coins issued per dollar of deals rises above the fee rate, it becomes profitable to make
-deals only for the receipts: pay the fee and get more back in coins. Such receipts multiply, and each receipt earns fewer coins — until
-the profit disappears. So the value of the new coins the network issues in a period tends toward the fee's share of the deal volume in
-that period:
+the super-nodes of the network (document 09). If the value of the coins issued per dollar of deals rises above the fee rate, it becomes
+profitable to make deals only for the receipts: pay the fee and get more back in coins. Such receipts multiply, and each receipt earns
+fewer coins — until the profit disappears. So the value of the new coins the network issues in a period tends toward the fee's share of
+the deal volume in that period:
 
 ```
 value_of_coins_issued_in_period ≈ fee_rate × deal_volume_in_period
