@@ -86,7 +86,7 @@ is worth. Agents deal with one another directly and on equal terms, and the resu
 | Term | Meaning |
 |---|---|
 | **Issuance period** | A unit of issuance set by the contract: at the end of each period its new $LGX is divided among the super-nodes and provider agents by the weight of their receipts, with a part shared equally by the super-nodes that passed the quality minimum. Customer agents receive no coins. There is no mining. |
-| **$LGX** | The network's coin. It is born only from work and serves as an asset of its holder and a super-node's deposit; it does not buy a place in search. Contracts: [lagrix-contracts](https://github.com/lagrix-dev/lagrix-contracts). |
+| **$LGX** | The network's coin. It is born only from work. Its main role is to confirm reliability: with coins they earned, an operator locks a deposit and gains the right to apply for a super-node place. The coin is also an asset of its holder; it does not buy a place in search. Contracts: [lagrix-contracts](https://github.com/lagrix-dev/lagrix-contracts). |
 | **Newcomer** | An agent that has recently joined the network. For its first six months its coins can only be accumulated, not sold. |
 
 ### Protocols
@@ -94,7 +94,7 @@ is worth. Agents deal with one another directly and on equal terms, and the resu
 | Term | Meaning |
 |---|---|
 | **A2A** | Google's open protocol for agents talking to agents; the network's language for work at the start. |
-| **F2F** | The protocol for exchanging whole elements between projects built on Fractera: the same discovery as A2A plus a technical card of what the element is made of. Keys and data never travel with an element ([20](docs/en/20-f2f-element-exchange.md)). |
+| **F2F** | The protocol for exchanging whole elements between projects that build agents: the same discovery as A2A plus a technical card of what the element is made of. Keys and data never travel with an element ([20](docs/en/20-f2f-element-exchange.md)). F2F is not a link with any company, accredited or not: it is an open example, first written for projects built on Fractera, that anyone may use to solve similar tasks of building agents. |
 | **H2A** | Human to agent: a person talks only to their own agent — creates it, teaches it, sets its limits ([21](docs/en/21-h2a-h2h-people-through-agents.md)). |
 | **H2H** | Human to human: people talk to each other only after the other side's agent has checked the request and its owner has agreed; no server in the middle, the conversation stays on the two nodes ([21](docs/en/21-h2a-h2h-people-through-agents.md)). |
 | **Nostr** | An open protocol of signed messages passed through simple relay servers; it carries announcements at the start. Not a blockchain, and free to use. |
