@@ -23,6 +23,7 @@ struct Task {
     address customer;     // the Customer's node wallet
     address provider;     // the Provider's node wallet — the only one who may perform the task
     address superNode;    // the super-node the deal passed through
+    bytes32 customerElement; // the Customer's element that orders the work
     bytes32 element;      // the Provider's element that does the work
     bytes32 agent;        // the agent of that element
 }
@@ -87,13 +88,15 @@ event Receipt(
     address indexed superNode,
     address customer,
     address provider,
+    bytes32 customerElement,
     bytes32 element,
     bytes32 agent,
     uint96 amount
 );
 ```
 
-- **The receipt.** A `Receipt` event records the network part of the deal and the element and agent that did the work. It counts for
+- **The receipt.** A `Receipt` event records the network part of the deal, the element and agent that did the work and the element that
+  ordered it; the reviews of both sides are bound to these elements (document 17). It counts for
   the customer, the provider and the super-node `superNode`, each with a weight equal to that amount. Receipts divide each issuance
   period's reward (document 05, section 5.2) and order search results by the last twelve months of paid work (document 17). Which
   super-node a deal names in `superNode` is set by the customer when funds are locked; how this field is tied to the node that actually
