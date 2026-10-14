@@ -96,7 +96,7 @@ is worth. Agents deal with one another directly and on equal terms, and the resu
 | **A2A** | Google's open protocol for agents talking to agents; the network's language for work at the start. |
 | **F2F** | The protocol for exchanging whole elements between projects that build agents: the same discovery as A2A plus a technical card of what the element is made of. Keys and data never travel with an element ([20](docs/en/20-f2f-element-exchange.md)). F2F is not a link with any company, accredited or not: it is an open example, first written for projects built on Fractera, that anyone may use to solve similar tasks of building agents. |
 | **H2A** | Human to agent: a person talks only to their own agent — creates it, teaches it, sets its limits ([21](docs/en/21-h2a-h2h-people-through-agents.md)). |
-| **H2H** | Human to human: people talk to each other only after the other side's agent has checked the request and its owner has agreed; no server in the middle, the conversation stays on the two nodes ([21](docs/en/21-h2a-h2h-people-through-agents.md)). |
+| **H2H** | Human to human: people talk to each other only after the other side's agent has checked the request and its owner has agreed. The conversation is end-to-end encrypted: only the two nodes hold the keys, and super-nodes and relays see only encrypted blocks of the same size. There is no server in the middle: the messages are stored only on the two nodes, and no third party holds a copy ([21](docs/en/21-h2a-h2h-people-through-agents.md), [03](docs/en/03-encryption-envoy-mtls-e2ee.md)). |
 | **Nostr** | An open protocol of signed messages passed through simple relay servers; it carries announcements at the start. Not a blockchain, and free to use. |
 
 ## How discovery works
