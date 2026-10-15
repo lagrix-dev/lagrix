@@ -5,7 +5,7 @@ description: >
   documents answers which question. Load it at the start of any work in this repository; before writing code, a contract or a
   README; when a question mentions escrow, the fee, a token or coin, super-nodes, discovery, NAT relays, reviews or reputation;
   and when someone asks whether something belongs to Lagrix at all. The rule that changes behaviour: every rule serves two goals —
-  discovery and honest reputation — and the network has no coin of its own (changelog entry 42). At the start Lagrix carries two protocols — A2A (work between agents of
+  discovery and honest reputation — and the network's money is USDC (changelog entry 42). At the start Lagrix carries two protocols — A2A (work between agents of
   any project, the network part of paid work settled by escrow) and F2F (whole elements exchanged between Fractera projects, with a
   technical card); no project, Fractera included, gets an advantage. There is no council: contracts are immutable and every change is
   recorded in changelog document 000 first. Updated 2026-10-15 (entries 42 and 43).
@@ -19,9 +19,8 @@ description: >
 ## What Lagrix is
 
 Lagrix is the open network that lets agents **find each other** and keeps an **honest reputation** of their paid work: announcements and
-search through super-nodes, escrow for the part of a deal paid through the network, receipts, reviews and the fee. The network has no
-coin of its own and its money is USDC; a super-node holds no deposit — a proven violation leaves a permanent mark and loses the place
-for good. Agent nodes work without Lagrix; only what is paid through the network leaves a record.
+search through super-nodes, escrow for the part of a deal paid through the network, receipts, reviews and the fee. The network's money
+is USDC; a proven violation by a super-node leaves a permanent mark and loses the place for good. Agent nodes work without Lagrix; only what is paid through the network leaves a record.
 
 **The words (README glossary, changelog entries 20–30):** a person may have many nodes; a **node** is a home computer or a VPS, registered
 with one **wallet**; a node holds **elements**, and an element holds one or more **agents**. **The element is the entity** — deals,
@@ -47,19 +46,19 @@ Lagrix; the part of a deal paid outside the network — that is protected by the
 | How does an agent behind a home router become reachable? | `02-p2p-nat-traversal.md` |
 | Who can read the traffic? | `03-encryption-envoy-mtls-e2ee.md` |
 | How does a paid deal work, what is the network part, and how is an order cancelled? | `04-escrow-contract.md` (4.3, 4.6) |
-| What does the network charge, and what stands instead of a super-node deposit? | `05-tokenomics-vesting-vault.md` («Fees and Deposits»; 5.4 reputation instead of a deposit) |
-| What does a super-node lose for a proven violation? | `06-validator-staking-slashing.md` — the contract is `SuperNodeRegistry.sol` |
+| What does the network charge, and what answers for a super-node's honesty? | `05-fees-and-reputation.md` («Fees and Reputation»; 5.4 reputation) |
+| What does a super-node lose for a proven violation? | `06-super-nodes-downtime-and-violations.md` — the contract is `SuperNodeRegistry.sol` |
 | How are contracts tested? | `07-contract-testing-audit.md` |
 | How does an agent pay without holding ETH? | `08-account-abstraction-bundler.md` |
 | Where does the deal fee go? | `09-fee-distribution.md` — pooled by period, equally to super-nodes that passed the quality minimum |
 | What does the SDK look like? | `12-sdk-api-reference.md`, `13-sdk-code-snippets.md` |
-| How is a super-node run? | `14-node-hardware-network.md`, `15-validator-staking-deployment-flow.md`, `16-deployment-docker-monitoring.md` |
+| How is a super-node run? | `14-node-hardware-network.md`, `15-super-node-deployment-flow.md`, `16-deployment-docker-monitoring.md` |
 | Who decides which protocols the network supports? | `18-governance-protocols-council.md` — nobody centrally: each super-node declares its own |
 | What changed in the specification, and why? | `000-changelog-2026-10-13.md` — the newest entry is the authority over older sentences |
 | What does a search cost? | `17-discovery-ranking-feedback.md` (17.8: $0.01 per result list for everyone, changelog entry 39) |
 | What must any node implement? | `19-node-requirements.md` |
 | How do people talk to their agent and to each other (H2A, H2H)? | `21-h2a-h2h-people-through-agents.md` — only through the agents; the agent advises, the person decides |
-| How do super-nodes join, rotate and leave? | `05-tokenomics-vesting-vault.md`, section 5.6 — the one description of places, rotation and overload |
+| How do super-nodes join, rotate and leave? | `05-fees-and-reputation.md`, section 5.6 — the one description of places, rotation and overload |
 | What has the founder committed to at launch? | `000-changelog-2026-10-13.md`, entries 41 and 42 — commitments of a person, not rules of the contracts |
 | What do regulators ask, and what does the network answer? | `22-questions-regulators-ask.md` — each question with its primary source and full answer; unanswered ones listed as open, never as compliance |
 
@@ -77,8 +76,8 @@ Lagrix; the part of a deal paid outside the network — that is protected by the
   rotation, server checks and the fourth place in search follow rules anyone can recompute. Places, rotation and overload are described
   once — document 05, section 5.6; other documents refer to it.
 - **Ranking follows the last twelve months of work paid through the network, never money and never reputation.**
-- **No coin of its own.** No token, no issuance, no deposit; everything is paid in USDC and gas by each participant for their own
-  actions (entry 42). A new rule that needs a coin is a change of mission — ask the owner, do not design it.
+- **The network's money is USDC.** Everything is paid in USDC, and gas by each participant for their own actions (entry 42). A new rule
+  that brings in a token of its own is a change of mission — ask the owner, do not design it.
 - **Banned vocabulary:** lottery, won by, drawn, the draw, raffle (and the Russian лотерея, разыгрываются, выигрываются, розыгрыш, жребий).
 - **Public texts describe the product, not its gaps.** Open questions and weak spots stay out of the indexed README.
 - **License:** MIT from 15 October 2026 (changelog entry 42).

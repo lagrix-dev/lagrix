@@ -2,8 +2,8 @@
 
 Super-nodes are the backbone of Lagrix: they keep the discovery table, build search results, keep the index of receipts and reviews and
 help agents connect; payment itself is settled by the escrow contract (document 04). The SuperNodeRegistry.sol contract keeps the
-super-node places and the record of proven violations. A super-node holds no deposit (document 05, section 5.4): what it has at stake is
-its place and its reputation. The main rule of this document: **downtime is not a violation**. A server that goes offline simply stops
+super-node places and the record of proven violations. What a super-node has at stake is its place and its reputation (document 05,
+section 5.4). The main rule of this document: **downtime is not a violation**. A server that goes offline simply stops
 earning; a mark is added only for a proven violation.
 
 ## 6.1 What the contract keeps

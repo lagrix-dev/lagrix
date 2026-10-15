@@ -31,7 +31,7 @@ These are choices for the start, not forever. When a better protocol appears, su
 - The number of deals is not reputation and does not affect search results.
 - Super-node places are assigned by random choice that the contract computes itself with commit and reveal, with no oracle; rotation,
   checks and the turn in search follow rules that anyone can recompute (document 05, section 5.6).
-- The network has no coin of its own; its money is USDC (document 000, entry 42).
+- The network's money is USDC (document 05).
 - The network has no central server and no single point of failure.
 - The founder has no share of anything and takes part only on the same terms as anyone.
 
@@ -46,7 +46,7 @@ once have decided is either a constant or a formula in code:
 | Search fee | $0.01 per result list, one price for everyone, a constant (document 17) |
 | Weight of a review | the fee paid on the deal (document 17) |
 | The turn in search | a time slot fixed in code (document 17, section 17.3) |
-| Super-node entry | a window around the median of paid work and random choice; formulas of network size and load; no deposit (document 05, section 5.6) |
+| Super-node entry | a window around the median of paid work and random choice; formulas of network size and load (document 05, section 5.6) |
 | A proven violation | a permanent mark on the node's wallet and its elements, removal, no place again (document 06) |
 
 The values that are not yet numbers are set once, by modelling, before deployment.

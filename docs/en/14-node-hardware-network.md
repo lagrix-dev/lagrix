@@ -10,9 +10,9 @@ The protocol divides infrastructure servers into three categories depending on t
 
 | Node profile | Purpose and role | Entry | Target load |
 |---|---|---|---|
-| Tier-1: Discovery Node | Serving the Kademlia DHT, storing k-bucket tables, looking up addresses and signatures of agents. | no deposit; a place earned by paid work (document 05, section 5.6) | Low traffic, high-frequency UDP requests. |
-| Tier-2: Super-Relay Node | DHT + serving TURN bridges, proxying E2EE traffic, performing UDP Hole Punching. | no deposit; a place earned by paid work (document 05, section 5.6) | High traffic, parallel mTLS sessions, high I/O load. |
-| Tier-3: Enterprise Relay | Full stack: DHT + TURN + local L2 Full Node (Arbitrum/Base). Carries no one else's transactions for a fee and sells no stamps (changelog entry 38). | no deposit; a place earned by paid work (document 05, section 5.6) | Heavy load. |
+| Tier-1: Discovery Node | Serving the Kademlia DHT, storing k-bucket tables, looking up addresses and signatures of agents. | a place earned by paid work (document 05, section 5.6) | Low traffic, high-frequency UDP requests. |
+| Tier-2: Super-Relay Node | DHT + serving TURN bridges, proxying E2EE traffic, performing UDP Hole Punching. | a place earned by paid work (document 05, section 5.6) | High traffic, parallel mTLS sessions, high I/O load. |
+| Tier-3: Enterprise Relay | Full stack: DHT + TURN + local L2 Full Node (Arbitrum/Base). Carries no one else's transactions for a fee and sells no stamps (changelog entry 38). | a place earned by paid work (document 05, section 5.6) | Heavy load. |
 
 ## 14.2 Minimum and Recommended System Requirements
 
