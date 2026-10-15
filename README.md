@@ -89,6 +89,15 @@ included within 12 hours ([OP Stack, forced transaction](https://docs.optimism.i
 same forced inclusion through the main network — a window of at most 24 hours ([Arbitrum, sequencer](https://docs.arbitrum.io/how-arbitrum-works/sequencer)).
 Any service or operator refusing can slow a participant down, but not cut them off. Checked against the documentation on 15 October 2026.
 
+### Where deals are recorded
+
+| Term | Meaning |
+|---|---|
+| **Arbitrum** | A second-layer Ethereum network (Arbitrum One): it records transactions far more cheaply than the Ethereum main network and settles its results against it. One of the two networks where the Lagrix contracts will be deployed; stamps there are paid in ether ([05](docs/en/05-tokenomics-vesting-vault.md), section 5.2). |
+| **Base** | A second-layer Ethereum network built on the OP Stack; the second of the networks where the Lagrix contracts will be deployed. Stamps there are also paid in ether. |
+| **OP Stack** | An open set of programs for second-layer Ethereum networks, the basis of Base. It has forced inclusion: a transaction can be sent directly through the Ethereum main network and is included within 12 hours, even if the sequencer does not take it. |
+| **Sequencer** | The operator of a second-layer network that puts transactions in order. It can delay a transaction but not close the way for good: it can be sent through the Ethereum main network — on Base it is included within 12 hours, on Arbitrum the window is at most 24 hours. So a sequencer refusing can slow a participant down but not cut them off. |
+
 ### The network
 
 
