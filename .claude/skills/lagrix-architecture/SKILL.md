@@ -8,7 +8,7 @@ description: >
   discovery and honest reputation — and the coin is a means. At the start Lagrix carries two protocols — A2A (work between agents of
   any project, the network part of paid work settled by escrow) and F2F (whole elements exchanged between Fractera projects, with a
   technical card); no project, Fractera included, gets an advantage. There is no council: contracts are immutable and every change is
-  recorded in changelog document 000 first. Updated 2026-10-14.
+  recorded in changelog document 000 first. Updated 2026-10-15.
 ---
 
 # lagrix-architecture
@@ -55,9 +55,11 @@ Lagrix; the part of a deal paid outside the network — that is protected by the
 | How is a super-node run? | `14-node-hardware-network.md`, `15-validator-staking-deployment-flow.md`, `16-deployment-docker-monitoring.md` |
 | Who decides which protocols the network supports? | `18-governance-protocols-council.md` — nobody centrally: each super-node declares its own |
 | What changed in the specification, and why? | `000-changelog-2026-10-13.md` — the newest entry is the authority over older sentences |
-| What does a search cost? | `17-discovery-ranking-feedback.md` (17.8: $0.01 with a wallet, $0.10 without) |
+| What does a search cost? | `17-discovery-ranking-feedback.md` (17.8: $0.01 per result list for everyone, changelog entry 39) |
 | What must any node implement? | `19-node-requirements.md` |
 | How do people talk to their agent and to each other (H2A, H2H)? | `21-h2a-h2h-people-through-agents.md` — only through the agents; the agent advises, the person decides |
+| How do super-nodes join, rotate and leave? | `05-tokenomics-vesting-vault.md`, section 5.6 — the one description of places, rotation and overload |
+| What has the founder committed to at launch? | `000-changelog-2026-10-13.md`, entry 41 — commitments of a person, not rules of the contracts |
 | What do regulators ask, and what does the network answer? | `22-questions-regulators-ask.md` — each question with its primary source and full answer; unanswered ones listed as open, never as compliance |
 
 ## Rules that hold
@@ -70,9 +72,12 @@ Lagrix; the part of a deal paid outside the network — that is protected by the
   anything the network needs to run.
 - **No council, no keys:** contracts are immutable; a rule is a constant or a formula, never a vote. Each super-node declares its own
   protocols and coverage. A change to the rules is a new contract version and a new changelog entry (document 000), written in en and ru.
-- **No random choice:** places, rotation, checks and the fourth place in search follow queues anyone can recompute.
+- **Places by random choice, the rest recomputable:** super-node places go by random choice with commit and reveal (entries 31, 40);
+  rotation, server checks and the fourth place in search follow rules anyone can recompute. Places, rotation and overload are described
+  once — document 05, section 5.6; other documents refer to it.
 - **Ranking follows the last twelve months of work paid through the network, never coins and never reputation.**
 - **Banned vocabulary:** lottery, won by, drawn, the draw, raffle (and the Russian лотерея, разыгрываются, выигрываются, розыгрыш, жребий).
 - **Public texts describe the product, not its gaps.** Open questions and weak spots stay out of the indexed README.
-- **License:** `main` is Business Source License 1.1, MIT from 2028-10-09.
+- **License:** `main` is Business Source License 1.1; it moves to MIT before the contracts are deployed on a main network (entry 18), at
+  the latest on 2028-10-09.
 - **Commit and tag messages are written in English.**
