@@ -374,10 +374,8 @@ Specification stage. The documents below describe the architecture; the implemen
 
 ## License
 
-[Business Source License 1.1](LICENSE) — the project is in its research stage:
-
-- copying, modifying and non-production use are allowed; **non-commercial research and education are allowed in production too**;
-- on **2028-10-09** the Licensed Work becomes available under the **MIT License**.
+[MIT License](LICENSE) — from 15 October 2026 (changelog entry 42): anyone may use, copy, modify and distribute the protocol, including
+commercially.
 
 ---
-*Maintained under `lagrix.dev` / source-available research, MIT from 2028-10-09.*
+*Maintained under `lagrix.dev` / open source, MIT.*

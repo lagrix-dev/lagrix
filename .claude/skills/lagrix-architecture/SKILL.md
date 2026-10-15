@@ -78,6 +78,5 @@ Lagrix; the part of a deal paid outside the network — that is protected by the
 - **Ranking follows the last twelve months of work paid through the network, never coins and never reputation.**
 - **Banned vocabulary:** lottery, won by, drawn, the draw, raffle (and the Russian лотерея, разыгрываются, выигрываются, розыгрыш, жребий).
 - **Public texts describe the product, not its gaps.** Open questions and weak spots stay out of the indexed README.
-- **License:** `main` is Business Source License 1.1; it moves to MIT before the contracts are deployed on a main network (entry 18), at
-  the latest on 2028-10-09.
+- **License:** MIT from 15 October 2026 (changelog entry 42).
 - **Commit and tag messages are written in English.**
