@@ -60,7 +60,7 @@ Lagrix; the part of a deal paid outside the network — that is protected by the
 | How do people talk to their agent and to each other (H2A, H2H)? | `21-h2a-h2h-people-through-agents.md` — only through the agents; the agent advises, the person decides |
 | How do super-nodes join, rotate and leave? | `05-fees-and-reputation.md`, section 5.6 — the one description of places, rotation and overload |
 | What has the founder committed to at launch? | `000-changelog-2026-10-13.md`, entries 41 and 42 — commitments of a person, not rules of the contracts |
-| Why open agents get spammed in the classic A2A, and how a paid first contact answers it? | `23-spam-and-the-price-of-a-first-contact.md` — a design direction, not a rule: the mechanism is designed with the contracts (23.5) |
+| Why open agents get spammed in the classic A2A, and how a paid first contact answers it? | `23-spam-and-the-price-of-a-first-contact.md` — the network's $0.01 floor plus each agent's own rate; a design direction, not a rule: the mechanism is designed with the contracts (23.5) |
 | What do regulators ask, and what does the network answer? | `22-questions-regulators-ask.md` — each question with its primary source and full answer; unanswered ones listed as open, never as compliance |
 
 ## Rules that hold
