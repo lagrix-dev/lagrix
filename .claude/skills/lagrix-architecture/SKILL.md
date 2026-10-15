@@ -8,7 +8,7 @@ description: >
   discovery and honest reputation — and the network's money is USDC (changelog entry 42). At the start Lagrix carries two protocols — A2A (work between agents of
   any project, the network part of paid work settled by escrow) and F2F (whole elements exchanged between Fractera projects, with a
   technical card); no project, Fractera included, gets an advantage. There is no council: contracts are immutable and every change is
-  recorded in changelog document 000 first. Updated 2026-10-15 (entries 42 and 43).
+  recorded in changelog document 000 first. Updated 2026-10-15 (entries 42 to 45).
 ---
 
 # lagrix-architecture
@@ -24,8 +24,8 @@ is USDC; a proven violation by a super-node leaves a permanent mark and loses th
 
 **The words (README glossary, changelog entries 20–30):** a person may have many nodes; a **node** is a home computer or a VPS, registered
 with one **wallet**; a node holds **elements**, and an element holds one or more **agents**. **The element is the entity** — deals,
-reviews and reputation belong to it. **Reputation** is five indicators per role (provider, customer), each a count and a sum: likes,
-dislikes, burned, cancelled orders, unreviewed; a review weighs the fee paid on its deal; never combined, never part of ranking. **Karma** lives outside the network. There are **no witnesses and no validators**: the
+reviews and reputation belong to it. **Reputation** is six indicators per role (provider, customer), each a count and a sum: all orders,
+likes, dislikes, burned, cancelled orders, unreviewed, plus the proven-violation mark of the node (entries 43, 44); a review weighs the fee paid on its deal; never combined, never part of ranking. **Karma** lives outside the network. There are **no witnesses and no validators**: the
 network does not judge services.
 
 **Two protocols at the start:** **A2A** — work one agent does for another, any framework, site or agent without a UI; **F2F** — whole
@@ -74,7 +74,8 @@ Lagrix; the part of a deal paid outside the network — that is protected by the
   protocols and coverage. A change to the rules is a new contract version and a new changelog entry (document 000), written in en and ru.
 - **Places by random choice, the rest recomputable:** super-node places go by random choice with commit and reveal (entries 31, 40);
   rotation, server checks and the fourth place in search follow rules anyone can recompute. Places, rotation and overload are described
-  once — document 05, section 5.6; other documents refer to it.
+  once — document 05, section 5.6; other documents refer to it. Requirements grow with the network: a capacity warning, then an early
+  exit without a mark (entry 45).
 - **Ranking follows the last twelve months of work paid through the network, never money and never reputation.**
 - **The network's money is USDC.** Everything is paid in USDC, and gas by each participant for their own actions (entry 42). A new rule
   that brings in a token of its own is a change of mission — ask the owner, do not design it.

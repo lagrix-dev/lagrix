@@ -113,6 +113,9 @@ and not taken by number: places have no stages and no numbers, and the terms are
   about a year, so the door stays open to those who do paid work now, and capacity does not dip while a place changes hands.
 - **The quality minimum.** Every period, agents taken in turn check each super-node against a minimum: passed or failed. Those who passed
   share the period's fee pool equally (section 5.3, document 09); a super-node that fails for several periods leaves.
+- **Requirements grow.** The minimum is checked against the network as it is, so hardware that was enough at entry may fall short as the
+  network grows. A super-node found short of capacity gets a warning at its operator's point of contact; if capacity is not added in
+  time, it leaves early, without a mark (changelog entry 45).
 - **Vacancies.** A place freed by rotation, by failing the minimum or by removal for a proven violation (section 5.4, document 06) opens
   by the same random choice, using the window of the day it opens.
 - **The cost we do not hide.** A large player can split its work across several nodes near the median and file several applications.

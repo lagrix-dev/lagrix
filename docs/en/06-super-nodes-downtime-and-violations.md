@@ -29,6 +29,7 @@ As in Bitcoin, where a miner that is switched off simply finds no blocks, a supe
 - **Availability** is measured by neighbouring nodes: regular checks (PING) from the Kademlia table (document 01).
 - **If the node is unavailable for 30 days in a row, or fails the quality minimum for several periods,** it is removed. Its place
   reopens on the terms of the day it reopens (document 05, section 5.6). It receives no mark: it did not cheat — it left.
+- **Leaving early after an unanswered capacity warning** is not a penalty either: there is no mark (changelog entry 45).
 - **Leaving by rotation or by overload is not a penalty either;** the rules are in document 05, section 5.6.
 
 ## 6.3 Violations and their proof

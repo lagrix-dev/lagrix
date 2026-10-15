@@ -2,7 +2,7 @@
 
 The resilience, throughput and latency of the Lagrix network depend directly on the configuration of the hardware on which Super-Nodes (Core Relays) and TURN bridges are deployed. Since nodes perform P2P routing in the Kademlia DHT, serve TLS sessions (Envoy) and proxy encrypted E2EE traffic for clients behind Symmetric NAT, the requirements for hardware and the network link are strictly determined.
 
-This section describes the official hardware profiles for operators who want to run a super-node and earn its share of the deal fee, the search fee and the delivery fee.
+This section describes the official hardware profiles for operators who want to run a super-node and earn its share of the deal fee, the search fee and the delivery fee. The profiles are a starting point: requirements grow with the network, and an operator warned of a shortfall adds capacity in time or leaves early (changelog entry 45).
 
 ## 14.1 Node Tier Profiles
 
