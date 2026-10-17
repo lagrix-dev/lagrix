@@ -68,7 +68,7 @@ judgment, not a fact a program can compute.
 
 ## 24.7 How the mark reaches announcements
 
-The marks live in the contracts. An announcement of a marked element may carry a tag that points to its mark — for example
+The marks live in the contract `OfficialMarks.sol`. An announcement of a marked element may carry a tag that points to its mark — for example
 `["official", "<mark id>"]` in the announcement of document 17, section 17.1. A super-node shows the mark only after it finds the same
 record in the contract for the same wallet; a tag without a matching record is ignored. The exact name of the tag is chosen at
 implementation.
@@ -87,7 +87,7 @@ implementation.
 - How often a mark may be challenged.
 - Whether a panel member that does not vote is replaced by another chosen at random.
 - Whether a holder may move its mark to a new wallet of its own without a challenge.
-- The contract that keeps the marks, and how a super-node reads it cheaply.
+- How a super-node reads the marks of `OfficialMarks.sol` cheaply.
 
 ## Sources
 
