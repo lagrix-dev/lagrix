@@ -56,6 +56,7 @@ Lagrix; the part of a deal paid outside the network — that is protected by the
 | How is a super-node run? | `14-node-hardware-network.md`, `15-super-node-deployment-flow.md`, `16-deployment-docker-monitoring.md` |
 | Who decides which protocols the network supports? | `18-governance-protocols-council.md` — nobody centrally: each super-node declares its own |
 | What changed in the specification, and why? | `000-changelog-2026-10-13.md` — the newest entry is the authority over older sentences |
+| Where does a node publish its announcements, and how does a new super-node catch up? | `17-discovery-ranking-feedback.md`, section 17.12 — the holders of each kind of service, computed from the registry (entry 48) |
 | What does a search cost? | `17-discovery-ranking-feedback.md` (17.8: $0.01 per result list for everyone, changelog entry 39) |
 | What must any node implement? | `19-node-requirements.md` |
 | How do people talk to their agent and to each other (H2A, H2H)? | `21-h2a-h2h-people-through-agents.md` — only through the agents; the agent advises, the person decides |
@@ -78,6 +79,10 @@ Lagrix; the part of a deal paid outside the network — that is protected by the
   rotation, server checks and the fourth place in search follow rules anyone can recompute. Places, rotation and overload are described
   once — document 05, section 5.6; other documents refer to it. Requirements grow with the network: a capacity warning, then an early
   exit without a mark (entry 45).
+- **Growth by formula, bounded work per super-node** (entry 47): whatever depends on the size of the network is a formula of what the
+  contracts see; no rule may make one super-node's work grow with the whole network. Each kind of service is held by `HOLDERS`
+  super-nodes computed from the registry; nodes publish to them and they copy only among themselves (entry 48, document 17, 17.12).
+  Check every new rule as the load on one super-node as a function of the size of the network.
 - **Ranking follows the last twelve months of work paid through the network, never money and never reputation.**
 - **The network's money is USDC.** Everything is paid in USDC, and gas by each participant for their own actions (entry 42). A new rule
   that brings in a token of its own is a change of mission — ask the owner, do not design it.
