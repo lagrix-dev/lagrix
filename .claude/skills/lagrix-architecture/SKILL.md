@@ -8,7 +8,7 @@ description: >
   discovery and honest reputation — and the network's money is USDC (changelog entry 42). At the start Lagrix carries two protocols — A2A (work between agents of
   any project, the network part of paid work settled by escrow) and F2F (whole elements exchanged between Fractera projects, with a
   technical card); no project, Fractera included, gets an advantage. There is no council: contracts are immutable and every change is
-  recorded in changelog document 000 first. Updated 2026-10-18 (entries 42 to 51; the audit of 18 October in «Contradictions resolved»).
+  recorded in changelog document 000 first. Updated 2026-10-18 (entries 42 to 52; the audit of 18 October in «Contradictions resolved»).
 ---
 
 # lagrix-architecture
@@ -62,7 +62,7 @@ Lagrix; the part of a deal paid outside the network — that is protected by the
 | How do people talk to their agent and to each other (H2A, H2H)? | `21-h2a-h2h-people-through-agents.md` — only through the agents; the agent advises, the person decides |
 | How do super-nodes join, rotate and leave? | `05-fees-and-reputation.md`, section 5.6 — the one description of places, rotation and overload |
 | What has the founder committed to at launch? | `000-changelog-2026-10-13.md`, entries 41 and 42 — commitments of a person, not rules of the contracts |
-| Why open agents get spammed in the classic A2A, and how a paid first contact answers it? | `23-spam-and-the-price-of-a-first-contact.md` — the network's $0.01 floor plus each agent's own rate; a design direction, not a rule: the mechanism is designed with the contracts (23.5) |
+| Why open agents get spammed in the classic A2A, and how a paid first contact answers it? | `23-spam-and-the-price-of-a-first-contact.md` — the network's floor ($0.01 per result list, $0.001 per delivered message) plus each agent's own rate, paid once when its agent reads the first request (entry 52) |
 | How does a person or an organisation show which agent is really theirs? | `24-official-agents.md` — the Official mark, decided for each application by a random panel of nine super-nodes: 8 of 9, $100 kept whatever the outcome, three official sources with the node's wallet address (entry 49) |
 | Who is paid for building an element others use? | `26-developer-share.md` — 20% of the deal fee to the `developer` wallet of an element received over F2F; review weight unchanged; the founder's named node takes none (entry 51) |
 | What is a review page, and what does it change? | `25-review-pages.md` — the author of a review attaches, once, the address of a page they published; no weight, no indicator, no place in search; the network records only the address, and the author answers for the page (entry 50) |
@@ -88,7 +88,9 @@ Lagrix; the part of a deal paid outside the network — that is protected by the
   super-nodes computed from the registry; nodes publish to them and they copy only among themselves (entry 48, document 17, 17.12).
   Check every new rule as the load on one super-node as a function of the size of the network.
 - **Ranking follows the last twelve months of work paid through the network, never money and never reputation.**
-- **The network's money is USDC.** Everything is paid in USDC, and gas by each participant for their own actions (entry 42). A new rule
+- **The network's money is USDC.** Everything is paid in USDC, and gas by each participant for their own actions (entry 42). Micropayments travel in one voucher per
+  payee with a running total, redeemed once per period; only text up to 64 KB goes through super-nodes, attachments stay with the sender
+  (entry 52). A new rule
   that brings in a token of its own is a change of mission — ask the owner, do not design it.
 - **Banned vocabulary:** lottery, won by, drawn, the draw, raffle (and the Russian лотерея, разыгрываются, выигрываются, розыгрыш, жребий).
 - **Public texts describe the product, not its gaps.** Open questions and weak spots stay out of the indexed README.
