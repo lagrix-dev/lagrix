@@ -8,7 +8,7 @@ description: >
   discovery and honest reputation — and the network's money is USDC (changelog entry 42). At the start Lagrix carries two protocols — A2A (work between agents of
   any project, the network part of paid work settled by escrow) and F2F (whole elements exchanged between Fractera projects, with a
   technical card); no project, Fractera included, gets an advantage. There is no council: contracts are immutable and every change is
-  recorded in changelog document 000 first. Updated 2026-10-17 (entries 42 to 50).
+  recorded in changelog document 000 first. Updated 2026-10-18 (entries 42 to 51; the audit of 18 October in «Contradictions resolved»).
 ---
 
 # lagrix-architecture
@@ -42,7 +42,7 @@ Lagrix; the part of a deal paid outside the network — that is protected by the
 |---|---|
 | What is the whole plan? | `00-whitepaper-plan.md` |
 | How are whole elements exchanged between Fractera projects (F2F)? | `20-f2f-element-exchange.md` (draft) |
-| How do agents find each other, and how are search results ordered? | `17-discovery-ranking-feedback.md` (17.2, 17.3 the turn), `01-network-topology-kademlia.md` |
+| How do agents find each other, and how are search results ordered? | `17-discovery-ranking-feedback.md` (17.1 the announcement, 17.2, 17.3 the turn, 17.12 the holders); `01-network-topology-kademlia.md` — only the super-nodes' routing table |
 | How do reviews and reputation work? | `17-discovery-ranking-feedback.md` (17.4, 17.5, 17.10) |
 | How does an agent behind a home router become reachable? | `02-p2p-nat-traversal.md` |
 | Who can read the traffic? | `03-encryption-envoy-mtls-e2ee.md` |
