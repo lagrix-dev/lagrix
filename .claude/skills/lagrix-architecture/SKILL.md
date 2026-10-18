@@ -46,7 +46,7 @@ Lagrix; the part of a deal paid outside the network — that is protected by the
 | How do reviews and reputation work? | `17-discovery-ranking-feedback.md` (17.4, 17.5, 17.10) |
 | How does an agent behind a home router become reachable? | `02-p2p-nat-traversal.md` |
 | Who can read the traffic? | `03-encryption-envoy-mtls-e2ee.md` |
-| How does a paid deal work, what is the network part, and how is an order cancelled? | `04-escrow-contract.md` (4.3, 4.6) |
+| How does a paid deal work, what is the network part, and how is an order cancelled? | `04-escrow-contract.md` (4.3, 4.6); the whole life of a deal — instant, deferred, a series for long work — `27-deal-lifecycle-instant-deferred-series.md` (entry 53) |
 | What does the network charge, and what answers for a super-node's honesty? | `05-fees-and-reputation.md` («Fees and Reputation»; 5.4 reputation) |
 | What does a super-node lose for a proven violation? | `06-super-nodes-downtime-and-violations.md` — the contract is `SuperNodeRegistry.sol` |
 | How are contracts tested? | `07-contract-testing-audit.md` |
@@ -88,6 +88,9 @@ Lagrix; the part of a deal paid outside the network — that is protected by the
   super-nodes computed from the registry; nodes publish to them and they copy only among themselves (entry 48, document 17, 17.12).
   Check every new rule as the load on one super-node as a function of the size of the network.
 - **Ranking follows the last twelve months of work paid through the network, never money and never reputation.**
+- **Every deal carries two deadlines** (entry 53): a delivery deadline, at most 90 days after the lock (missed — the customer takes the
+  money back with `claimRefund`), and a dispute window, at most 14 days. Instant and deferred deals share one set of states; long work
+  is a series of deals, one per period, which the contracts do not know about. No milestones inside a deal.
 - **The network's money is USDC.** Everything is paid in USDC, and gas by each participant for their own actions (entry 42). Micropayments travel in one voucher per
   payee with a running total, redeemed once per period; only text up to 64 KB goes through super-nodes, attachments stay with the sender
   (entry 52). A new rule

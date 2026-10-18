@@ -7,7 +7,7 @@ Slither static analysis.
 
 | Contract | What it does | Document |
 |---|---|---|
-| A2AEscrow.sol | deals, receipts, Time-Lock, cancellation, fee deduction, the `Receipt` event | 04 |
+| A2AEscrow.sol | deals, receipts, Time-Lock with the delivery deadline and dispute window of each deal, cancellation, fee deduction, the `Receipt` event | 04, 27 |
 | FeeDistributor.sol | the fee pool of each period and its equal division among the super-nodes that passed the quality minimum | 09 |
 | SearchVouchers.sol | prepaid balances with a withdrawal delay; one voucher per payee carrying a running total for searches, delivered messages and first-contact rates, redeemed once per period | 17, 23 |
 | SuperNodeRegistry.sol | places, removal, «proven violation» marks, false reports | 05, 06 |
@@ -20,6 +20,14 @@ Foundry tests are written in Solidity itself and run at the speed of compiled co
 
 - `test_A2AEscrow_StateTransitions()` — LOCKED → COMMITTED → COMPLETED transitions and rejection of invalid calls (for example,
   `claimTimeout()` before the dispute window expires).
+- `test_Deadlines_Limits()` — a lock whose delivery deadline is not in the future or lies more than 90 days ahead, or whose dispute
+  window is longer than 14 days, is rejected.
+- `test_Deadline_LateDeliveryRejected()` — `commitResult()` after `deliverBy` is rejected.
+- `test_ClaimRefund_AfterDeadline()` — `claimRefund()` returns the whole amount and moves the deal to REFUNDED only after `deliverBy`
+  and only with no delivery; it takes no fee and writes no receipt; before the deadline or after a delivery it is rejected.
+- `test_DeclineTask()` — the provider declines before delivery and the whole amount returns with no fee; after delivery a decline is
+  rejected.
+- `test_DisputeWindow_PerDeal()` — two deals with different dispute windows close each on its own timer.
 - `test_EIP712_SignatureReplay()` — a signature cannot be reused with another `taskId` or nonce.
 - `test_FeeSplit_95_5()` — on closing, the fee is exactly the constant rate of the network part (5% until modelling sets it, never above 5%) and the provider gets the rest; a refund takes no fee.
 - `test_DeveloperShare()` — with a `developer` named for a deal on an element received over F2F, 20% of the fee goes to that wallet and 80% to the pool of the period; with no `developer`, the whole fee goes to the pool; a refund pays neither.
@@ -36,19 +44,20 @@ Foundry tests are written in Solidity itself and run at the speed of compiled co
 - `test_ProvenViolation_MarkAndReward()` — a valid proof adds a permanent mark to the node's wallet, removes it from its place, blocks any new place and pays the reporter's reward in USDC; a false proof loses the reporter's locked amount.
 
 ```solidity
-// Example: Time-Lock in A2AEscrow.t.sol
-function test_CannotClaimTimeoutBeforeDisputePeriod() public {
+// Example: Time-Lock in A2AEscrow.t.sol — the dispute window belongs to the deal (changelog, entry 53)
+function test_CannotClaimTimeoutBeforeDisputeWindow() public {
     vm.prank(customer);
-    escrow.lockFunds(taskId, provider, superNode, 100 * 10**6); // lock 100 USDC (6 decimals)
+    // lock 100 USDC (6 decimals) for a deferred deal: deliver within a day, a dispute window of 24 hours
+    escrow.lockFunds(taskId, provider, superNode, 100 * 10**6, uint40(block.timestamp + 1 days), 24 hours);
 
     vm.prank(provider);
     escrow.commitResult(taskId, resultHash, address(0)); // no developer: the provider's own element (document 26)
 
-    // try to collect after 2 minutes, before the 5-minute window expires
-    vm.warp(block.timestamp + 2 minutes);
+    // try to collect 2 hours after delivery, before the deal's 24-hour window expires
+    vm.warp(block.timestamp + 2 hours);
 
     vm.prank(provider);
-    vm.expectRevert(A2AEscrow.DisputePeriodNotExpired.selector);
+    vm.expectRevert(A2AEscrow.DisputeWindowNotExpired.selector);
     escrow.claimTimeout(taskId);
 }
 ```
@@ -66,6 +75,8 @@ amounts — and checks invariants that must hold for any sequence of calls:
 5. **Likes never go below zero.** A refund never exceeds the weight of likes that remains.
 6. **Negative ratings stay in bounds.** The weight of dislikes an element has given in a role never exceeds the reviewable weight of its
    orders in that role.
+7. **Every deal can end.** A deal past its delivery deadline with no delivery can always be refunded by the customer, and a delivered
+   deal past its dispute window can always be closed by the provider: within 104 days of the lock, every deal has a call that ends it.
 
 ```solidity
 function invariant_EscrowSolvency() public view {

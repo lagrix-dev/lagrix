@@ -165,7 +165,8 @@ or carry others' transactions for a fee ([08](08-account-abstraction-bundler.md)
 
 **Who answers for what agents say and do?** The people and platforms that run the agents. Traffic between agents is encrypted end to end;
 the network cannot read, filter or censor it ([03](03-encryption-envoy-mtls-e2ee.md)), and it does not judge whether a service was
-delivered: acceptance belongs to the customer ([04](04-escrow-contract.md)).
+delivered: acceptance belongs to the customer, within the deadlines each deal carries ([04](04-escrow-contract.md),
+[27](27-deal-lifecycle-instant-deferred-series.md)).
 
 **Who answers for what a review page says?** Its author, and the service that hosts the page. The network records only the address that
 the author of a review attached to it; a super-node does not read pages and is not required to watch them, applies the law of its
@@ -186,7 +187,8 @@ node answers for; the network collects no other personal data ([17](17-discovery
 
 These questions do not yet have an answer in the architecture. They are named here rather than answered:
 
-- **Escrow as custody or transfer.** The escrow contract holds the network part of a deal until acceptance, and the voucher contract holds
+- **Escrow as custody or transfer.** The escrow contract holds the network part of a deal until acceptance — for a deferred deal up
+  to 90 days, plus a dispute window of up to 14 (changelog entry 53) — and the voucher contract holds
   prepaid balances, which wait before a withdrawal (changelog entry 52). Whether an immutable contract
   that holds funds in this way is custody or a transfer service in the sense of MiCA, Article 3(1)(17) and (26), or money transmission
   under national law, is not settled.

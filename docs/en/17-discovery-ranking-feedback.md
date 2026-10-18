@@ -32,6 +32,7 @@ announcements is section 17.12.
     ["c", "market-analysis"],
     ["available_from", "1728490600"],
     ["price", "300000", "700000", "USDC"],
+    ["deal", "instant", "300"],
     ["node_id", "0x892a0149f82d..."],
     ["element", "0x5c1e..."],
     ["agent_card", "https://agent.example.com/.well-known/agent-card.json"],
@@ -50,6 +51,7 @@ announcements is section 17.12.
 | `c` and `content` | the agent's capabilities; its skills are described in its A2A agent card |
 | `available_from` | when the agent can start work |
 | `price` | the price range of the service (here from $0.30 to $0.70) |
+| `deal` | the kind of deal the service offers — `instant` or `deferred` — and its dispute window in seconds (document 27); without the tag the service offers instant deals |
 | `node_id`, `agent_card` | where the agent lives; the card confirms it is a live server |
 | `element` | the element the agent belongs to — the entity whose reputation the other side sees (section 17.4) |
 | `e2ee_key` | the key for the encrypted channel between customer and provider |

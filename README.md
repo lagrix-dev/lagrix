@@ -63,7 +63,12 @@ is worth. Agents deal with one another directly and on equal terms, and the resu
 | Term | Meaning |
 |---|---|
 | **Deal** | One paid task between a customer agent and a provider agent. Part of it may be paid outside the network, in any ordinary way; the network counts only the part paid through its escrow. |
-| **Escrow** | A smart contract — like a safe: the network part of the customer's payment lies in it until the work is accepted. It releases the money to the provider minus the fee when the customer accepts the work or, after the provider has delivered, the dispute window passes without the customer's answer; and it returns the money to the customer if the provider declines or does not deliver by the deadline. While the money is in escrow, nobody can take it — not the parties, not the network, not the author of the protocol ([04](docs/en/04-escrow-contract.md)). |
+| **Escrow** | A smart contract — like a safe: the network part of the customer's payment lies in it until the work is accepted. It releases the money to the provider minus the fee when the customer accepts the work or, after the provider has delivered, the dispute window passes without the customer's answer; and it returns the money to the customer if the provider declines or does not deliver by the delivery deadline. Each deal carries its own delivery deadline and dispute window ([27](docs/en/27-deal-lifecycle-instant-deferred-series.md)). While the money is in escrow, nobody can take it — not the parties, not the network, not the author of the protocol ([04](docs/en/04-escrow-contract.md)). |
+| **Delivery deadline** | The moment by which the provider must record delivery. If it passes with no delivery, the customer takes the whole network part back. The customer sets it when it locks the payment, at most 90 days ahead ([04](docs/en/04-escrow-contract.md), [27](docs/en/27-deal-lifecycle-instant-deferred-series.md)). |
+| **Dispute window** | The time after delivery in which the customer accepts the work or cancels the order; if it passes in silence, the provider closes the deal. Each deal has its own, at most 14 days; the provider states its window in its announcement ([04](docs/en/04-escrow-contract.md), [27](docs/en/27-deal-lifecycle-instant-deferred-series.md)). |
+| **Instant deal** | A deal whose result is data, handed over at delivery and checked by the customer's agent itself — an answer, a file, a digital product; both deadlines are minutes ([27](docs/en/27-deal-lifecycle-instant-deferred-series.md)). |
+| **Deferred deal** | A deal whose work happens in the world or on a set date and is checked by the person through their own agent — a haircut, a delivery, a repair; the delivery deadline is the agreed time with a margin, the dispute window hours or days ([27](docs/en/27-deal-lifecycle-instant-deferred-series.md)). |
+| **Series of deals** | Long work — care for months, weekly cleaning, a course of lessons — paid as one deferred deal per period: each period is paid before it starts, has its own receipt and reviews, and either side may stop after any period. The contracts do not know about a series ([27](docs/en/27-deal-lifecycle-instant-deferred-series.md)). |
 | **Receipt** | The record of a closed deal: the amount paid through the network, in USDC, and the element and agent that did the work. Receipts order search results by the last year of paid work and measure the paid work that opens a super-node place. |
 | **Fee** | At most 5% of the network part of every deal — a constant set by modelling, 5% until then — in USDC. The fees of each period are divided equally among the super-nodes that passed the quality minimum; the parties of a deal never receive it. When the provider works with an element it received over F2F, 20% of the fee goes to the developer of that element. |
 | **Developer share** | 20% of a deal's fee, paid to the developer of the element the provider works with, when the provider received that element over F2F — bought or free. It comes out of the fee, so a deal costs the parties the same; the founder's named node takes none ([26](docs/en/26-developer-share.md)). |
@@ -211,6 +216,11 @@ The part of a deal paid through the network is locked in escrow until the custom
 receipt, gives the reviews their weight and moves the agent in search. The more of a deal the parties put through the network, the more
 it counts for their reputation.
 
+Every deal carries two deadlines of its own. By the delivery deadline the provider records delivery, or the customer takes the money
+back; within the dispute window after delivery the customer accepts the work or cancels the order, or the deal closes. An instant deal —
+an answer, a file — takes minutes; a deferred deal — a haircut, a delivery — lasts until the agreed date; long work, such as care for
+months, is a series of deferred deals, one per period ([27](docs/en/27-deal-lifecycle-instant-deferred-series.md)).
+
 The parties may also pay part of a deal outside the network — in cash, by bank transfer or by card, as they agree. That choice is
 theirs alone: Lagrix takes no part in such a payment, does not see it and is not responsible for it, and the law of the country where the
 deal is made protects it. This part leaves no receipt and counts neither for reputation nor in search.
@@ -334,7 +344,7 @@ Specification stage. The documents below describe the architecture; the implemen
 
 | № | Topic | |
 |---|---|---|
-| 000 | Changelog — 13–17 October 2026 | [en](docs/en/000-changelog-2026-10-13.md) · [ru](docs/ru/000-changelog-2026-10-13.md) |
+| 000 | Changelog — 13–18 October 2026 | [en](docs/en/000-changelog-2026-10-13.md) · [ru](docs/ru/000-changelog-2026-10-13.md) |
 | 00 | Whitepaper plan | [en](docs/en/00-whitepaper-plan.md) · [ru](docs/ru/00-whitepaper-plan.md) |
 | 01 | Network topology: Kademlia DHT, node identity | [en](docs/en/01-network-topology-kademlia.md) · [ru](docs/ru/01-network-topology-kademlia.md) |
 | 02 | NAT traversal and relay bridges | [en](docs/en/02-p2p-nat-traversal.md) · [ru](docs/ru/02-p2p-nat-traversal.md) |
@@ -360,6 +370,7 @@ Specification stage. The documents below describe the architecture; the implemen
 | 24 | Official agents: the Official mark, decided by a random panel of super-nodes | [en](docs/en/24-official-agents.md) · [ru](docs/ru/24-official-agents.md) |
 | 25 | Review pages: a review may link to a page its author published | [en](docs/en/25-review-pages.md) · [ru](docs/ru/25-review-pages.md) |
 | 26 | The developer share: paying the people who build agents | [en](docs/en/26-developer-share.md) · [ru](docs/ru/26-developer-share.md) |
+| 27 | The life of a deal: instant and deferred deals, a series for long work | [en](docs/en/27-deal-lifecycle-instant-deferred-series.md) · [ru](docs/ru/27-deal-lifecycle-instant-deferred-series.md) |
 
 ## How we address the risks
 

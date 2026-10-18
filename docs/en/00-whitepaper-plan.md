@@ -46,9 +46,13 @@ Account Abstraction (ERC-4337): agents pay for gas in USDC through a third-party
 holding ETH; a node can always pay gas itself (document 08, changelog entries 37 and 38).
 
 Escrow with receipts and Time-Lock: the network part of a payment is locked before the work and released on the customer's signature;
-the provider is protected from a hang. A deal may be split: the part paid outside the network is protected by the law of the country
+each deal carries its own delivery deadline and dispute window, so there is a way out both when a provider never delivers and when a
+customer never answers. A deal may be split: the part paid outside the network is protected by the law of the country
 where the deal is made. A customer may cancel a paid order: the refund is at most the weight of the customer's likes, and that
 weight is deducted from its likes (document 04).
+
+The life of a deal: an instant deal — a result handed over as data — takes minutes; a deferred deal — work in the world or on a set
+date — lasts until the agreed time; long work is a series of deferred deals, one per period (document 27).
 
 A fee in USDC, a constant of at most 5% of the network part, set by modelling: pooled by period and divided equally among the
 super-nodes that passed the quality minimum; taken from the very first deal (document 09).
