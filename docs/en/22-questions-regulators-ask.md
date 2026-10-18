@@ -70,11 +70,15 @@ exchange for services it provides", with a structure "predetermined by the proto
 Payment for services, fixed in code:
 - the deal fee of each period is divided equally among the super-nodes that passed that period's quality minimum — payment for the work
   every deal relies on: search, connections and the index of receipts and reviews ([09](09-fee-distribution.md); changelog entry 25);
+  the pool receives 4% of a deal made with an element received over F2F (1% goes to the element's developer) and 5% of a deal made with
+  the provider's own element ([26](26-developer-share.md));
 - the search fee is paid to the super-node that built the result list, and the delivery fee to the super-node that delivered the message
   ([17](17-discovery-ranking-feedback.md), section 17.8; changelog entries 33 and 39);
 - the fee for an application for the Official mark is divided equally among the panel members who voted — payment for reviewing that
-  application ([24](24-official-agents.md)).
-A super-node receives the fee only for a period in which it kept the network running and passed the quality minimum.
+  application ([24](24-official-agents.md));
+- whoever proves a violation by a super-node receives a reward from the fees ([06](06-super-nodes-downtime-and-violations.md), section 6.4).
+A super-node receives the fee only for a period in which it kept the network running and passed the quality minimum; the share it did not
+receive stays in the pool of those that did. The whole list is in [05](05-fees-and-reputation.md), section 5.7.
 
 **Is a provider's income payment for work?** Yes. The customer pays the provider for the service through escrow; the network takes its
 fee and nothing else ([04](04-escrow-contract.md), section 4.4).
@@ -129,7 +133,8 @@ the first receives an invitation, and its server is checked by agents in turn, n
 can never hold a place ([05](05-fees-and-reputation.md), sections 5.4 and 5.6; changelog entries 31, 40 and 42).
 
 **Can likes or reviews be faked by bots?** *(market integrity)*
-A review requires a deal paid through the network, and its weight is the fee paid on it, so a fake unit of weight costs a real dollar.
+A review requires a deal paid through the network, and its weight is the fee paid on it, so a fake unit of weight costs a real dollar —
+80 cents for a node that names a wallet of its own as the developer (the exception above, [26](26-developer-share.md)).
 Every indicator is shown as a count together with its sum, so many tiny deals are visible as such. Reviews do not move the ranking
 ([17](17-discovery-ranking-feedback.md); changelog entry 43). A review page can be attached only by the author of a review, once, and adds no weight
 ([25](25-review-pages.md); changelog entry 50).

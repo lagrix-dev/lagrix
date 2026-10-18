@@ -133,7 +133,9 @@ for long work, without milestones inside a deal: the escrow never has to judge s
 | 12:00:40 | The provider's agent delivers the report and records its hash | COMMITTED |
 | 12:00:43 | The customer's agent checks the report and signs the acceptance | COMPLETED |
 
-The provider receives $19, the fee of $1 goes into the pool of the period, and both sides may review each other.
+The provider receives $19, and both sides may review each other. The provider works with its own element, so the whole $1 fee goes into
+the pool of the period; had the element been received over F2F, $0.20 of it would go to the element's developer and $0.80 into the pool
+(document 26).
 
 **A haircut on Thursday at 15:00 for $40 (deferred).**
 
@@ -168,7 +170,8 @@ of the country, not by Lagrix (document 04, section 4.6).
 | Before each new week | The family's agent locks the next week; the carer starts only a locked week |
 | After week 13 | The series ends. Either side could have stopped after any week |
 
-Each week is its own deal: $600 locked, $570 to the carer, $30 of fee into the pool of the period in which that week closed. Thirteen
+Each week is its own deal: $600 locked, $570 to the carer, $30 of fee into the pool of the period in which that week closed (the carer's
+agent works with its own element; with an element received over F2F, $6 of the fee would go to its developer and $24 into the pool). Thirteen
 receipts, thirteen chances for each side to review the other.
 
 ## 27.8 What the network does not do

@@ -55,7 +55,9 @@ The life of a deal: an instant deal — a result handed over as data — takes m
 date — lasts until the agreed time; long work is a series of deferred deals, one per period (document 27).
 
 A fee in USDC, a constant of at most 5% of the network part, set by modelling: pooled by period and divided equally among the
-super-nodes that passed the quality minimum; taken from the very first deal (document 09).
+super-nodes that passed the quality minimum; taken from the very first deal (document 09). With an element received over F2F, 1% of the
+deal goes to its developer and 4% into the pool; with the provider's own element, all 5% (document 26). What a super-node is paid for —
+document 05, section 5.7.
 
 The network's money is USDC. A super-node's honesty is backed by its reputation: a proven violation leaves a permanent mark and bars
 the node from places (document 05, changelog entry 42).
