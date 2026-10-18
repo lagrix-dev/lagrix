@@ -96,6 +96,9 @@ a lesson, a ride. The network cannot see whether a parcel arrived or a lesson to
   within the window, and the refund is again at most the weight of its likes. The network does not decide who was right: a cancelled
   order is recorded for both sides, and the next partner sees it (document 17).
 - **A provider who did not come** records no delivery, and after the deadline the customer takes the whole network part back.
+- **Confirming the order.** The provider's agent may confirm the booking to the customer's agent — for example with an off-chain
+  signature of the order and its date — so the customer knows its time is held. The network does not read a confirmation, and it
+  changes neither the deal nor anyone's reputation (changelog, entry 54).
 
 A deferred deal keeps the customer's money in escrow for days or weeks, and the provider still works before it is paid: the escrow is
 what both sides rely on in the meantime.
@@ -173,21 +176,21 @@ receipts, thirteen chances for each side to review the other.
 - **It has no stages inside a deal.** A deal is one task with two deadlines. Work in stages is a series of deals.
 - **It does not know about a series** and does not lock the next period by itself: the customer's agent does that, on its owner's
   instructions.
-- **It does not count missed orders** (section 27.9).
+- **It does not count missed orders** — on purpose (section 27.9; changelog, entry 54).
 
 ## 27.9 The cost we do not hide
 
-- **A provider that took an order and did not come** loses only that deal: the money returns, and its reputation shows nothing. Counting
-  missed orders would need a step in which the provider confirms the order: without it, anyone could damage a provider's reputation by
-  locking deals the provider never saw.
+- **A provider that did not come is not marked for it.** A provider that lets the deadline pass returns the whole payment; one that
+  records a false delivery keeps everything above the weight of the customer's likes — about $37 of a $40 haircut when the customer has
+  $3 of likes. A «missed orders» indicator would therefore catch only the honest and teach providers to lie. A false delivery leaves its
+  own trace — a cancelled order in the provider's role — and, while the customer has few likes, it stays profitable for a dishonest
+  provider (changelog, entry 54).
 - **A series counts as many orders.** Thirteen weekly deals are thirteen orders in «all orders»; the sums are exact.
 - **Money waits longer.** A deferred deal keeps the customer's money in escrow for days or weeks, and a series still asks the provider to
   work each period before it is paid.
 
 ## 27.10 Open questions
 
-- **Confirming an order and missed orders** (changelog, entry 53): whether a provider confirms a deferred order before its date, and
-  whether orders it confirmed and did not deliver show in its reputation as «missed orders».
 - **A series in reputation** (changelog, entry 53): whether the deals of one series are shown as one line.
 - **A cancelled order** (changelog, entry 42): whether the fee is taken from the part the provider receives, and whether a cancelled order
   leaves a receipt and reviews.
