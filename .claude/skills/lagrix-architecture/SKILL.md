@@ -51,7 +51,7 @@ Lagrix; the part of a deal paid outside the network — that is protected by the
 | What does a super-node lose for a proven violation? | `06-super-nodes-downtime-and-violations.md` — the contract is `SuperNodeRegistry.sol` |
 | How are contracts tested? | `07-contract-testing-audit.md` |
 | How does an agent pay without holding ETH? | `08-account-abstraction-bundler.md` |
-| Where does the deal fee go? | `09-fee-distribution.md` — pooled by period, equally to super-nodes that passed the quality minimum |
+| Where does the deal fee go? | `09-fee-distribution.md` — pooled by period, equally to super-nodes that passed the quality minimum; 20% to the developer of an element received over F2F (`26-developer-share.md`, entry 51) |
 | What does the SDK look like? | `12-sdk-api-reference.md`, `13-sdk-code-snippets.md` |
 | How is a super-node run? | `14-node-hardware-network.md`, `15-super-node-deployment-flow.md`, `16-deployment-docker-monitoring.md` |
 | Who decides which protocols the network supports? | `18-governance-protocols-council.md` — nobody centrally: each super-node declares its own |
