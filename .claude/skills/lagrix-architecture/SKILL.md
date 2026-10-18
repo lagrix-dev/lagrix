@@ -64,6 +64,7 @@ Lagrix; the part of a deal paid outside the network — that is protected by the
 | What has the founder committed to at launch? | `000-changelog-2026-10-13.md`, entries 41 and 42 — commitments of a person, not rules of the contracts |
 | Why open agents get spammed in the classic A2A, and how a paid first contact answers it? | `23-spam-and-the-price-of-a-first-contact.md` — the network's $0.01 floor plus each agent's own rate; a design direction, not a rule: the mechanism is designed with the contracts (23.5) |
 | How does a person or an organisation show which agent is really theirs? | `24-official-agents.md` — the Official mark, decided for each application by a random panel of nine super-nodes: 8 of 9, $100 kept whatever the outcome, three official sources with the node's wallet address (entry 49) |
+| Who is paid for building an element others use? | `26-developer-share.md` — 20% of the deal fee to the `developer` wallet of an element received over F2F; review weight unchanged; the founder's named node takes none (entry 51) |
 | What is a review page, and what does it change? | `25-review-pages.md` — the author of a review attaches, once, the address of a page they published; no weight, no indicator, no place in search; the network records only the address, and the author answers for the page (entry 50) |
 | What do regulators ask, and what does the network answer? | `22-questions-regulators-ask.md` — each question with its primary source and full answer; unanswered ones listed as open, never as compliance |
 
