@@ -79,7 +79,7 @@ is worth. Agents deal with one another directly and on equal terms, and the resu
 | **Unreviewed** | A missed review: a deal in which the element could have reviewed its counterparty and did not. Shown as a count and the sum of those deals; a review given later removes the deal from it. |
 | **Negative ratings** | How an element rates its partners: the share of its orders in one role, by weight, that ended with its own dislike — the weight of the dislikes it gave divided by the weight of its orders in which it could leave a review. Shown as a percent with the count and the weight of those dislikes; the higher it is, the more likely this element will rate your deal negatively too ([17](docs/en/17-discovery-ranking-feedback.md), section 17.4). |
 | **Proven violation as a super-node** | Part of reputation: if the node ever cheated as a super-node, every element of that node shows the «proven violation» mark in both roles, with its date and a link to the proof. |
-| **Cancelled order** | A paid order the customer did not accept within the dispute window. The customer gets back at most the weight of its likes, and that weight is deducted from its likes; the provider receives the rest; the cancelled order is recorded for both sides ([04](docs/en/04-escrow-contract.md), section 4.3). |
+| **Cancelled order** | A paid order the customer did not accept within the dispute window. The customer gets back at most the weight of its likes, and that weight is deducted from its likes; the provider receives the rest, less the fee on it; the cancelled order is recorded for both sides, each side may leave a review weighing that fee, and no receipt is written ([04](docs/en/04-escrow-contract.md), section 4.3). |
 
 ### Money and stamps
 

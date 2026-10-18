@@ -124,7 +124,8 @@ place_in_group = turn mod 4
 
 Каждая сторона сделки, оплаченной через сеть, ставит другой один отзыв — лайк или дизлайк: исполнитель — заказчику, заказчик —
 исполнителю. Вес отзыва равен комиссии, уплаченной по сделке, — 5 % её сетевой части, пока комиссия 5 %. Без сделки отзыв
-поставить нельзя, и изменить его потом нельзя. Срока у отзыва нет: поставленный, он убирает сделку из «без отзыва».
+поставить нельзя, и изменить его потом нельзя. Отменённый заказ тоже даёт отзывы: они весят комиссию, взятую с части, оставшейся
+исполнителю, а заказ, по которому вернули всё, отзыва не даёт (журнал, запись 55). Срока у отзыва нет: поставленный, он убирает сделку из «без отзыва».
 Автор может один раз привязать к нему адрес страницы, которую сам опубликовал, — вместе с отзывом или позже; ни лайк или дизлайк, ни
 его вес от этого не меняются (документ 25, журнал, запись 50).
 
@@ -144,7 +145,7 @@ contract FeedbackRegistry {
     mapping(bytes32 => mapping(uint8 => Reputation)) public reputation; // элемент => роль (0 исполнитель, 1 заказчик)
     mapping(uint256 => mapping(address => bool)) public reviewed;       // taskId => кто уже оставил отзыв
 
-    function onCompleted(uint256 taskId) external onlyEscrow {          // обе стороны теперь могут оценить друг друга
+    function onClosed(uint256 taskId) external onlyEscrow {             // COMPLETED или CANCELLED с комиссией (запись 55): обе стороны теперь могут оценить друг друга
         (, , bytes32 customerElement, bytes32 providerElement, uint96 amount, ) = escrow.dealParties(taskId);
         _add(reputation[customerElement][1].unreviewed, amount);
         _add(reputation[providerElement][0].unreviewed, amount);
@@ -154,9 +155,9 @@ contract FeedbackRegistry {
     }
 
     function review(uint256 taskId, bool like) external {
-        (address customer, address provider, bytes32 customerElement, bytes32 providerElement, uint96 amount, bool completed)
-            = escrow.dealParties(taskId);
-        require(completed, "Feedback: deal not completed");
+        (address customer, address provider, bytes32 customerElement, bytes32 providerElement, uint96 amount, bool reviewable)
+            = escrow.dealParties(taskId);                                  // reviewable: COMPLETED или CANCELLED с комиссией
+        require(reviewable, "Feedback: no review for this deal");
         require(msg.sender == customer || msg.sender == provider, "Feedback: not a party");
         require(!reviewed[taskId][msg.sender], "Feedback: already reviewed");
         reviewed[taskId][msg.sender] = true;

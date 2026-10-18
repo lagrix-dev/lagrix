@@ -40,7 +40,8 @@ Every deal, instant or deferred, goes the same way:
    The deal is REFUNDED; no fee is taken and no receipt is written.
 9. **Receipt and reviews.** A COMPLETED deal writes a receipt; its fee goes into the pool of the period in which the deal closed
    (document 09) — with the developer share when the provider works with an element received over F2F (document 26). Both sides may
-   review each other (document 17), and the author of a review may link it to a page (document 25).
+   review each other (document 17), and the author of a review may link it to a page (document 25). A CANCELLED order pays the fee on
+   the part left to the provider and lets both sides review it, but writes no receipt (changelog, entry 55).
 
 Who can act at each stretch of a deal:
 
@@ -94,7 +95,7 @@ a lesson, a ride. The network cannot see whether a parcel arrived or a lesson to
   a cancellation after delivery, within the dispute window, with a refund of at most the weight of its likes.
 - **A customer who did not come.** The provider held the time and may record delivery with a note saying so. The customer may cancel
   within the window, and the refund is again at most the weight of its likes. The network does not decide who was right: a cancelled
-  order is recorded for both sides, and the next partner sees it (document 17).
+  order is recorded for both sides, both may review it, and the next partner sees it (document 17; changelog, entry 55).
 - **A provider who did not come** records no delivery, and after the deadline the customer takes the whole network part back.
 - **Confirming the order.** The provider's agent may confirm the booking to the customer's agent — for example with an off-chain
   signature of the order and its date — so the customer knows its time is held. The network does not read a confirmation, and it
@@ -153,8 +154,9 @@ have closed the deal on Friday at 15:50.
 | Day 4 | The courier hands over the parcel; the shop's agent records delivery | COMMITTED |
 | Day 5 | The customer finds the item broken; its agent cancels within the window | CANCELLED |
 
-The customer gets back at most the weight of its likes as a customer — say $3 — and the same weight is deducted from its likes; the shop
-receives the rest, and a cancelled order is recorded for both. If part of the price was paid outside the network, that part is protected by the law
+The customer gets back at most the weight of its likes as a customer — say $3 — and the same weight is deducted from its likes. Of
+the $57 left, the fee is $2.85 and the shop receives $54.15; a cancelled order is recorded for both, each side may leave a review
+weighing $2.85, and no receipt is written (changelog, entry 55). If part of the price was paid outside the network, that part is protected by the law
 of the country, not by Lagrix (document 04, section 4.6).
 
 **Care for three months, $600 a week (series).**
@@ -183,7 +185,7 @@ receipts, thirteen chances for each side to review the other.
 - **A provider that did not come is not marked for it.** A provider that lets the deadline pass returns the whole payment; one that
   records a false delivery keeps everything above the weight of the customer's likes — about $37 of a $40 haircut when the customer has
   $3 of likes. A «missed orders» indicator would therefore catch only the honest and teach providers to lie. A false delivery leaves its
-  own trace — a cancelled order in the provider's role — and, while the customer has few likes, it stays profitable for a dishonest
+  own trace — a cancelled order in the provider's role and the customer's review of it (changelog, entry 55) — and, while the customer has few likes, it stays profitable for a dishonest
   provider (changelog, entry 54).
 - **A series counts as many orders.** Thirteen weekly deals are thirteen orders in «all orders»; the sums are exact.
 - **Money waits longer.** A deferred deal keeps the customer's money in escrow for days or weeks, and a series still asks the provider to
@@ -192,5 +194,3 @@ receipts, thirteen chances for each side to review the other.
 ## 27.10 Open questions
 
 - **A series in reputation** (changelog, entry 53): whether the deals of one series are shown as one line.
-- **A cancelled order** (changelog, entry 42): whether the fee is taken from the part the provider receives, and whether a cancelled order
-  leaves a receipt and reviews.

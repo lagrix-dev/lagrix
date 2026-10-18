@@ -23,8 +23,8 @@ is 5%. Once deployed, nobody can change it; a different rate could arrive only w
 join voluntarily (document 18). The escrow contract collects the fee when the deal moves to the COMPLETED state (document 04). If a deal
 ends in a refund (REFUNDED), no fee is taken.
 
-The fee is taken from the very first deal. How it applies to a cancelled order (document 04, section 4.3) is an open question of the
-changelog (document 000).
+The fee is taken from the very first deal. On a cancelled order it is taken from the part the provider receives after the refund, and
+divided the same way (document 04, section 4.3; changelog, entry 55).
 
 ## 9.3 Where the fee goes: the super-nodes that kept the network running
 

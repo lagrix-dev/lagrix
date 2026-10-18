@@ -26,7 +26,7 @@ is USDC; a proven violation by a super-node leaves a permanent mark and loses th
 with one **wallet**; a node holds **elements**, and an element holds one or more **agents**. **The element is the entity** — deals,
 reviews and reputation belong to it. **Reputation** is six indicators per role (provider, customer), each a count and a sum: all orders,
 likes, dislikes, negative ratings (a percent: the weight of the dislikes the element gave ÷ the weight of its orders it could review),
-cancelled orders, unreviewed, plus the proven-violation mark of the node (entries 43, 44, 46); a refund is deducted from the customer's likes; a review weighs the fee paid on its deal, and its author may attach to it, once, the address of a review page — no weight, no indicator (entry 50); never combined, never part of ranking. **Karma** lives outside the network. There are **no witnesses and no validators**: the
+cancelled orders, unreviewed, plus the proven-violation mark of the node (entries 43, 44, 46); a refund is deducted from the customer's likes; a cancelled order pays the fee on the provider's part, gives both sides a review and writes no receipt (entry 55); a review weighs the fee paid on its deal, and its author may attach to it, once, the address of a review page — no weight, no indicator (entry 50); never combined, never part of ranking. **Karma** lives outside the network. There are **no witnesses and no validators**: the
 network does not judge services.
 
 **Two protocols at the start:** **A2A** — work one agent does for another, any framework, site or agent without a UI; **F2F** — whole

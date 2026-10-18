@@ -127,7 +127,8 @@ with a wallet takes part in reputation (document 19).
 
 Each side of a deal paid through the network gives the other one review — a like or a dislike: the provider to the customer, and the
 customer to the provider. A review's weight equals the fee paid on the deal — 5% of its network part while the fee is 5%. A review
-cannot be given without a deal and cannot be changed afterwards. It has no deadline: once given, it removes the deal from «unreviewed».
+cannot be given without a deal and cannot be changed afterwards. A cancelled order counts too: its reviews weigh the fee taken from the
+part the provider kept, and an order refunded in full gives no review (changelog, entry 55). A review has no deadline: once given, it removes the deal from «unreviewed».
 Its author may attach to it, once, the address of a page they published — together with the review or later; this changes neither the
 like or dislike nor its weight (document 25, changelog entry 50).
 
@@ -147,7 +148,7 @@ contract FeedbackRegistry {
     mapping(bytes32 => mapping(uint8 => Reputation)) public reputation; // element => role (0 provider, 1 customer)
     mapping(uint256 => mapping(address => bool)) public reviewed;       // taskId => who has reviewed
 
-    function onCompleted(uint256 taskId) external onlyEscrow {          // both sides may now review each other
+    function onClosed(uint256 taskId) external onlyEscrow {             // COMPLETED, or CANCELLED with a fee (entry 55): both may now review
         (, , bytes32 customerElement, bytes32 providerElement, uint96 amount, ) = escrow.dealParties(taskId);
         _add(reputation[customerElement][1].unreviewed, amount);
         _add(reputation[providerElement][0].unreviewed, amount);
@@ -157,9 +158,9 @@ contract FeedbackRegistry {
     }
 
     function review(uint256 taskId, bool like) external {
-        (address customer, address provider, bytes32 customerElement, bytes32 providerElement, uint96 amount, bool completed)
-            = escrow.dealParties(taskId);
-        require(completed, "Feedback: deal not completed");
+        (address customer, address provider, bytes32 customerElement, bytes32 providerElement, uint96 amount, bool reviewable)
+            = escrow.dealParties(taskId);                                  // reviewable: COMPLETED, or CANCELLED with a fee
+        require(reviewable, "Feedback: no review for this deal");
         require(msg.sender == customer || msg.sender == provider, "Feedback: not a party");
         require(!reviewed[taskId][msg.sender], "Feedback: already reviewed");
         reviewed[taskId][msg.sender] = true;
